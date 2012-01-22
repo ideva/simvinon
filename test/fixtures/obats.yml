@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  nama: MyString
+  kode_kategori: MyString
+  bentuk_kekuatan_kemasan: MyString
+  jumlah: 1
+  satuan: MyString
+  het_satuan: 1.5
+  het_pack: 1
+
+two:
+  kode: MyString
+  nama: MyString
+  kode_kategori: MyString
+  bentuk_kekuatan_kemasan: MyString
+  jumlah: 1
+  satuan: MyString
+  het_satuan: 1.5
+  het_pack: 1

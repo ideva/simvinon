@@ -1,0 +1,26 @@
+<%
+  @d_user_detail = DUserDetail.find_by_iduser(@user.id)
+  if @d_user_detail.url_nick.nil? || @d_user_detail.url_nick == ""
+    link_adddress = "http://#{SITE}/#{@d_user_detail.user.to_param}/profile/#{@d_user_detail.id}"
+  else
+    link_adddress = "http://#{SITE}/profile/#{@d_user_detail.url_nick}"
+  end
+%>
+<div style="margin-bottom:10px">
+  <%= (link_to @user.full_name, link_adddress) rescue @user%>
+  sent you a message.<br/>
+</div>
+<%unless @msg == "" || @msg.nil?%>
+  <div>
+    <u>Message</u>:
+    <div style="margin-top:10px">
+      <%=@msg%>
+    </div>
+  </div>
+<%end%>
+
+
+<div style="margin-top:20px">
+  Do not replay this email. Send private email to <%= (link_to @user.full_name, link_adddress) rescue @user%> to replay it.
+</div>
+

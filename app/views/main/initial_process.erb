@@ -1,0 +1,13 @@
+Press Process button to assign 0 value to selected table<br/>
+
+<input type="button" value="Process" style="width: 100px; cursor: pointer; text-align: center; margin-bottom: 5px;" class="as_button"
+         onclick="
+                        <%= remote_function(
+                                  :loading => "$('loading_body').show();",
+                                  :complete => "$('loading_body').hide();",
+                                  :url => { :controller => :main,
+                                            :action => :execute_initial_process,
+                                            :id => "new" },
+                                  :with => "") %>
+                  "
+      </input

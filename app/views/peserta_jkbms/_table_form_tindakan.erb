@@ -1,0 +1,41 @@
+<%
+
+  if (verifikasi_tindakan.id.nil? rescue true)
+    verifikasi_tindakan = VerifikasiTindakan.new
+  else
+    @verifikasi_tindakan = verifikasi_tindakan
+    #@verifikasi = @verifikasi_pemeriksaan.kode_verifikasi
+  end
+%>
+<tr id="tr_<%= no  %>">
+  <td><%= no %></td>
+  <td>
+    <%#= text_field "verifikasi_pemeriksaan#{no}", :kode_pemeriksaan_ejkbm %>
+    <%= collection_select "verifikasi_tindakan#{no}",:kode_t_medis_rs, TindakanMedi.order("kode"), :kode, :nama, {:prompt => true }%>
+
+    <%= hidden_field "verifikasi_tindakan#{no}", :kode, :value => (@verifikasi_tindakan.kode rescue ''),
+      :class => "", :size => 1 %>
+  </td>
+  <td>
+    <%if @is_show %>
+    <%else%>
+
+    <% if (@verifikasi_tindakan.id.nil? rescue true)%>
+      <%= link_to (image_tag 'delete.png', :style => "width: 20px", :title => "Hapus"), "",
+             :onclick => "var r=confirm('Apakah anda yakin untuk menghapus item ini?'); if (r==true){jQuery('#tr_#{no}').remove();return false;}else{return false;}" %>
+    <%else%>
+      <%= link_to (image_tag 'delete.png', :style => "width: 20px", :title => "Hapus"),
+                "/penerimaan_details/destroy/#{@verifikasi_tindakan.id}?no=#{no}",
+                 :confirm => "Apakah anda yakin untuk menghapus item ini?", :remote => true, :onclick => "ajax_call_back(this); $('counter').value = $('counter').value - 1;" %>
+    <%end%>
+    <span style="display: none" id="loading<%=no%>"><%= image_tag 'loading.gif' %></span>
+    <%end%>
+  </td>
+
+    <%#= text_field "verifikasi_pemeriksaan#{no}", :jumlah, :value => (@verifikasi_pemeriksaan.jumlah rescue ''),
+      :size => 8 %>
+
+    <%#= hidden_field "verifikasi_pemeriksaan#{no}", :jumlah, :value => (@verifikasi_pemeriksaan.jumlah rescue ''),
+      :size => 8, :class => "" %>
+
+  </tr>

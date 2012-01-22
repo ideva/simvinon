@@ -1,0 +1,20 @@
+<style type="text/css">
+  fieldset{
+    background-color: transparent;
+}
+</style>
+   
+<div>
+ <% if @jenis_laporan == 'laporan1' %>
+  <%= render 'laporan1' %>
+ <% elsif @jenis_laporan == 'laporan2'%>
+  <%= render 'laporan2' %>
+<%elsif @jenis_laporan == 'laporan3'%>
+  <%= render 'laporan3' %>
+<%elsif @jenis_laporan == 'laporan4'%>
+  <%= render 'laporan4' %>
+<%elsif @jenis_laporan == 'laporan5'%>
+  <%= render 'laporan5' %>
+<%else%>
+<% end %>
+</div>

@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tanggal:</b>
+  <%= @test_plant.tanggal %>
+</p>
+
+<p>
+  <b>Menu:</b>
+  <%= @test_plant.menu %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @test_plant.url %>
+</p>
+
+<p>
+  <b>Skenario:</b>
+  <%= @test_plant.skenario %>
+</p>
+
+<p>
+  <b>Hasil:</b>
+  <%= @test_plant.hasil %>
+</p>
+
+<p>
+  <b>Deskripsi hasil:</b>
+  <%= @test_plant.deskripsi_hasil %>
+</p>
+
+<p>
+  <b>Komentar:</b>
+  <%= @test_plant.komentar %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @test_plant.image %>
+</p>
+
+
+<%= link_to 'Edit', edit_test_plant_path(@test_plant) %> |
+<%= link_to 'Back', test_plants_path %>

@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery( "#laporan_tanggal_awal " ).datepicker( { dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true } );
+    jQuery( "#laporan_tanggal_akhir " ).datepicker( { dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true } );
+  });
+</script>
+
+<h1>Form Laporan</h1>
+
+<%= form_for(:laporan, :url => {:action => :laporan, :id => @id},
+   :html => {:id => "new_laporan_form"}) do |f| %>
+
+<div class="field" style="float: left;margin-right: 10px">
+    <label><b>Pilih Bulan</b></label><br/>
+    <%= select_month Date.today, {:prefix => :tanggal}, {:style => "width: 150px"} %>
+</div>
+<div class="field" style="float: left;margin-right: 10px;">
+    <label><b>Pilih Tahun</b></label><br/>
+    <%= select_year Date.today.year,
+      {:start_year => Date.today.year - 6, :end_year => Date.today.year,
+      :prefix => :tanggal}, {:style => "width: 150px"} %>
+</div>
+<div class="field" style="float: left;margin-right: 10px;">
+  <label><b>Pilih Kabupaten</b></label><br/>
+  <%= collection_select :laporan, :kode_kabupaten, Kabupaten.all, :kode, :nama,
+    {:prompt => "-- Semua --", :selected => @kode_kabupaten}, :style => "width: 150px" %>
+</div>
+<div class="field" style="float: left;margin-right: 0px">
+    <label><b>Jenis Laporan</b></label><br/>
+     <%jenis = @jenis_laporan rescue '-'%>
+     <% option = [['Pilih Jenis Laporan', ''], ['Laporan Rekapitulasi Klaim Biaya Total Pelayanan', 'laporan1'], ['Laporan RekapitulasiR Klaim Biaya RITL', 'laporan2'], ['Laporan Rekapitulasi Klaim Biaya One Day Care', 'laporan3'], ['Laporan Rekapitulasi Klaim Biaya RJTL', 'laporan4'], ['Laporan Rekapitulasi Klaim Biaya IGD', 'laporan5']] %>
+      <%= select :laporan, :jenis_laporan, option, {:selected => jenis} , {:class =>"required"} %>
+  </div>
+<div style="clear : both"></div>
+<div class="actions">
+    <%= f.submit %>
+</div>
+
+
+<% end %>
+
+<% if request.post? & @laporans.empty?  %>
+<h1>Data tidak ditemukan</h1>
+<%else%>
+  <div style="overflow: auto;">
+    <div style="width: auto">
+    <% if @jenis_laporan == 'laporan1' %>
+      <%= render 'laporan1' %>
+     <% elsif @jenis_laporan == 'laporan2'%>
+      <%= render 'laporan2' %>
+    <%elsif @jenis_laporan == 'laporan3'%>
+      <%= render 'laporan3' %>
+    <%elsif @jenis_laporan == 'laporan4'%>
+      <%= render 'laporan4' %>
+    <%elsif @jenis_laporan == 'laporan5'%>
+      <%= render 'laporan3' %>
+    <%else%>
+    <% end %>
+    </div>
+  </div>
+<%end%>

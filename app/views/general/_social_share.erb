@@ -1,0 +1,15 @@
+
+       <%if Rails.env == 'production'%>
+        <div style="float:left;margin-left:0px;margin-top:5px">
+          <a  href="http://twitter.com/share"  class="twitter-share-button" data-count="horizontal"
+          data-url="<%=@share_url%>"
+          data-text="<%=@share_title%>">Tweet</a>
+          <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+        </div>
+        <div style="float:left;margin-top:5px">
+          <span class="st_facebook_hcount" st_url="<%=@share_url%>" st_title="<%=@share_title%>" displayText="Share"></span>
+        </div>
+      <%end%>
+      <div style="clear:both"></div>
+
+

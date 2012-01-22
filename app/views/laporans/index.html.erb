@@ -1,0 +1,20 @@
+<h1>Listing laporans</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @laporans.each do |laporan| %>
+  <tr>
+    <td><%= laporan.kode %></td>
+    <td><%= link_to 'Show', laporan %></td>
+    <td><%= link_to 'Edit', edit_laporan_path(laporan) %></td>
+    <td><%= link_to 'Destroy', laporan, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+

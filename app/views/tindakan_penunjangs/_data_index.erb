@@ -1,0 +1,24 @@
+<% @tindakan_penunjangs.each do |tindakan_penunjang| %>
+  <tr>
+    <td><%= tindakan_penunjang.kode %></td>
+    <td><%= tindakan_penunjang.kategori_tindakan_penunjang.nama rescue "-" %></td>
+    <td><%= tindakan_penunjang.nama %></td>
+    <td><%= tindakan_penunjang.tarif %></td>
+    <td><%= tindakan_penunjang.status_flag %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_tindakan_penunjang_path(tindakan_penunjang) %></td>
+  </tr>
+<% end %>
+
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @tindakan_penunjangs %>
+        </div>
+        <%= will_paginate @tindakan_penunjangs, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

@@ -1,0 +1,21 @@
+<% @mapping_data_tindakan_penunjangs.each do |mapping_data_tindakan_penunjang| %>
+  <tr>
+    <td><%= mapping_data_tindakan_penunjang.kode_rs %></td>
+    <td><%= mapping_data_tindakan_penunjang.kode_ejkbm %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_mapping_data_tindakan_penunjang_path(mapping_data_tindakan_penunjang) %></td>
+  </tr>
+<% end %>
+
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @mapping_data_tindakan_penunjangs %>
+        </div>
+        <%= will_paginate @mapping_data_tindakan_penunjangs, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

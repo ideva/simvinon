@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  kode_verifikasi: MyString
+  kode_pelayanan_lain_ejkbm: MyString
+  kode_pelayanan_lain_rs: MyString
+  jumlah_pelayanan_lain_rs: 1
+  nama_pelayanan_lain_rs: MyString
+  tgl_pelayanan_lain_rs: MyString
+  satuan_tarif_ejkbm: 
+  sub_total_tarif_ejkbm: 
+  iduser: 1
+
+two:
+  kode: MyString
+  kode_verifikasi: MyString
+  kode_pelayanan_lain_ejkbm: MyString
+  kode_pelayanan_lain_rs: MyString
+  jumlah_pelayanan_lain_rs: 1
+  nama_pelayanan_lain_rs: MyString
+  tgl_pelayanan_lain_rs: MyString
+  satuan_tarif_ejkbm: 
+  sub_total_tarif_ejkbm: 
+  iduser: 1

@@ -1,0 +1,12 @@
+KODE PEMERIKSAAN;NAMA PEMERIKSAAN;TARIF;FLAG
+0001;Pemeriksaan dan pengobatan oleh dokter;10000;1
+0002;Pemeriksaan dan pengobatan oleh dokter spesialis;25000;1
+0003;Pemeriksaan dan pengobatan dokter gigi;25000;1
+0004;Perawatan rawat inap;75000;1
+0005;Visite dokter spesialis rawat inap;25000;1
+0006;Paket P1 (Pemeriksaan) di Unit Pelayanan Spesialistik (Kelas A, B, C);15000;2
+0007;Paket P1 (Pemeriksaan) di Unit Gawat Darurat (Kelas A, B, C);25000;2
+0008;Paket One Day Care (Kelas A,B, C);100000;2
+0009;Rawat Inap Tingkat Lanjutan di Ruang Perawatan (Kelas A, B, C);90000;2
+0010;Rawat Inap Tingkat Lanjutan di Ruang ICU/ICCU/NICU/PICU (Kelas A, B, C);1000000;2
+0011;Rawat Inap Tingkat Lanjutan di Ruang Intermediate/Hight Care Unit (HCU)/Setara  (Kelas A, B, C);350000;2

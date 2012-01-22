@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode_rs: MyString
+  kode_ejkbm: MyString
+
+two:
+  kode_rs: MyString
+  kode_ejkbm: MyString

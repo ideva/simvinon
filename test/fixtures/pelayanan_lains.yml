@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  nama: MyString
+  tarif: MyString
+  iduser: MyString
+
+two:
+  kode: MyString
+  nama: MyString
+  tarif: MyString
+  iduser: MyString

@@ -1,0 +1,2 @@
+module TindakanMedisHelper
+end

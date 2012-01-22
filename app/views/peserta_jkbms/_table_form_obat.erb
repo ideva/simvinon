@@ -1,0 +1,46 @@
+<%
+
+  if (verifikasi_obat.id.nil? rescue true)
+    verifikasi_obat = VerifikasiObat.new
+  else
+    @verifikasi_obat = verifikasi_obat
+    #@verifikasi = @verifikasi_pemeriksaan.kode_verifikasi
+  end
+%>
+<tr id="tr_<%= no  %>">
+  <td><%= no %></td>
+  <td>
+    <%#= text_field "verifikasi_pemeriksaan#{no}", :kode_pemeriksaan_ejkbm %>
+    <%= collection_select "verifikasi_obat#{no}",:kode_obat_rs, Obat.order("kode"), :kode, :nama, {:prompt => true }, :style => "width:150px"%>
+
+    <%= hidden_field "verifikasi_obat#{no}", :kode, :value => (@verifikasi_obat.kode rescue ''),
+      :class => "", :size => 1 %>
+  </td>
+  <td>
+    <%= text_field "verifikasi_obat#{no}",:jumlah_obat_rs, :value => (@verifikasi_obat.jumlah_obat_rs rescue '')%>
+
+
+  </td>
+  <td>
+    <%if @is_show %>
+    <%else%>
+
+    <% if (@verifikasi_obat.id.nil? rescue true)%>
+      <%= link_to (image_tag 'delete.png', :style => "width: 20px", :title => "Hapus"), "",
+             :onclick => "var r=confirm('Apakah anda yakin untuk menghapus item ini?'); if (r==true){jQuery('#tr_#{no}').remove();return false;}else{return false;}" %>
+    <%else%>
+      <%= link_to (image_tag 'delete.png', :style => "width: 20px", :title => "Hapus"),
+                "/penerimaan_details/destroy/#{@verifikasi_obat.id}?no=#{no}",
+                 :confirm => "Apakah anda yakin untuk menghapus item ini?", :remote => true, :onclick => "ajax_call_back(this); $('counter').value = $('counter').value - 1;" %>
+    <%end%>
+    <span style="display: none" id="loading<%=no%>"><%= image_tag 'loading.gif' %></span>
+    <%end%>
+  </td>
+
+    <%#= text_field "verifikasi_pemeriksaan#{no}", :jumlah, :value => (@verifikasi_pemeriksaan.jumlah rescue ''),
+      :size => 8 %>
+
+    <%#= hidden_field "verifikasi_pemeriksaan#{no}", :jumlah, :value => (@verifikasi_pemeriksaan.jumlah rescue ''),
+      :size => 8, :class => "" %>
+
+  </tr>

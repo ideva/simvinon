@@ -1,0 +1,75 @@
+<div class="thumb" id="photo<%= param_id %>">
+  <%=hidden_field_tag :param_id, param_id, :id => "hid_param_id" %>
+<%
+# Form for uploading new image is attached in this partial
+prefer_image_width = width.to_i rescue 70
+prefer_image_height = height.to_i rescue 70
+css_plus = 5
+prefer_image_width = prefer_image_width.to_i + css_plus
+prefer_image_height = prefer_image_height.to_i + css_plus
+
+
+if object_photo.nil?
+%>
+    <% if (show_none_image == true rescue true) %>
+      <div style="float:left;margin-right:5px">
+        <%= image_tag "none.gif", :size => "#{prefer_image_width}x#{prefer_image_width}" %>
+      </div>
+    <%end%>
+      <% if logged_in? &&  (current_user.id.to_s == iduser.to_s rescue false) %>
+      <div style="float:left">
+        <%= render :partial => "general/upload_photo_form", :locals => {:controller => controller,:model => model, :param_id => param_id, :iduser => iduser, :action_update => (action_update rescue "update_photo"), :show_none_image =>(show_none_image rescue true)} %>
+      </div>
+      <%end%>
+      <div style="clear:both"></div>
+
+<%
+else
+    image_width = object_photo.width
+    image_height = object_photo.height
+    if image_width > image_height
+      ratio = image_width.quo(image_height)
+      prefer_image_height = ((prefer_image_width.quo(ratio)).to_f).round
+    else
+      ratio = image_height.quo(image_width)
+      prefer_image_width = ((prefer_image_height.quo(ratio)).to_f).round
+    end
+  
+%>
+  <div style="float:left;">
+   <%= link_to image_tag(object_photo.public_filename((object_photo.thumb rescue nil)),:size => "#{prefer_image_width}x#{prefer_image_height}", :title => photo_title, :alt => photo_title), object_photo.public_filename , :rel => "sexylightbox[#{group rescue 'photo'}]", :title => photo_title %>
+   </div>
+    <% if logged_in? &&  (current_user.id.to_s == iduser.to_s rescue false) %>
+        <div style="float:left;margin-left:10px;margin-bottom:5px;text-align:left;" id="edit_pic">
+          <label class="as_link" onclick="$('edit_pic').hide();$('update_pic').show();" >Change Image</label><br/>
+          <label>
+                    <%=  link_to_remote "Delete",
+                         {
+                             :confirm => DELETE_CONFIRM,
+                             :failure =>  "alert('Something went wrong')",
+                             :loading =>  "$('loading_pp').show();",
+                             :complete  => "$('loading_pp').hide();",
+                             :url    => { :controller => controller,
+                                          :model => model,
+                                          :action     => (action_delete rescue "delete_photo"),
+                                          :id =>object_photo.id,
+                                          :iduser => iduser,
+                                          :param_id => param_id,
+                                          :show_none_image =>(show_none_image rescue true),
+                                          :render_upload_form => true
+                                        },
+                             :html => { :id  => "delete#{object_photo.id}", :title => "Delete this photo", :class => "as_link" }
+                         }
+                   %><%= image_tag "loading.gif", :style =>"display:none;", :id =>"loading_pp" %>
+           </label>
+        </div>
+        <div id="update_pic" style="float:left;margin-left:10px;display:none">
+          <%= render :partial => "general/upload_photo_form", :locals => {:controller => controller,:model => model, :param_id => param_id, :iduser => iduser, :action_update => (action_update rescue "update_photo")} %><br/>
+          <label class="as_link" onclick="$('edit_pic').show();$('update_pic').hide();" >Cancel</label>
+        </div>
+      <%end%>
+      <div style="clear:both"></div>
+<%end%>
+
+</div>
+

@@ -1,0 +1,22 @@
+<% @mapping_data_tindakan_medis.each do |mapping_data_tindakan_medi| %>
+  <tr>
+    <td><%= mapping_data_tindakan_medi.kode_rs %></td>
+    <td><%= mapping_data_tindakan_medi.kode_ejkbm %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_mapping_data_tindakan_medi_path(mapping_data_tindakan_medi) %></td>
+  </tr>
+<% end %>
+
+<tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @mapping_data_tindakan_medis %>
+        </div>
+        <%= will_paginate @mapping_data_tindakan_medis, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>
+

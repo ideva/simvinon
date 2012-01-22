@@ -1,0 +1,17 @@
+<h1>Listing settings</h1>
+
+<table>
+  <tr>
+    <th>Variabel</th>
+    <th>Nilai</th>
+    <th></th>
+  </tr>
+
+<% @settings.each do |setting| %>
+  <tr>
+    <td><%= setting.name %></td>
+    <td><%= setting.string_value %></td>
+    <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
+  </tr>
+<% end %>
+</table>

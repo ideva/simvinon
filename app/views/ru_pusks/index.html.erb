@@ -1,0 +1,27 @@
+<h1>Listing ru_pusks</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Default</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ru_pusks.each do |ru_pusk| %>
+  <tr>
+    <td><%= ru_pusk.kode %></td>
+    <td><%= ru_pusk.nama %></td>
+    <td><%= ru_pusk.default %></td>
+    <td><%= link_to 'Show', ru_pusk %></td>
+    <td><%= link_to 'Edit', edit_ru_pusk_path(ru_pusk) %></td>
+    <td><%= link_to 'Destroy', ru_pusk, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ru pusk', new_ru_pusk_path %>

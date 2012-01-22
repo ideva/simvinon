@@ -1,0 +1,301 @@
+
+  <meta name="description" content="<%=h @meta_description ? @meta_description : DEFAULT_META_DESCRIPTION %>" />
+  <meta name="keywords" content="<%= @meta_keywords ? @meta_keywords : DEFAULT_META_KEYWORDS %>" />
+  
+  <title><%= @title? @title: DEFAULT_TITLE %></title>
+  <link href="<%=@canonical_url%>" rel="canonical" />
+  <link rel="shortcut icon" href="/favicon.png" />
+
+   
+  <% if (session[:mobile] rescue false) %>
+    <%= stylesheet_link_tag 'style_mobile','general' %>
+  <%else%>
+    <%= javascript_include_tag :defaults, '/lightbox2.05/js/scriptaculous.js?load=effects,builder', '/lightbox2.05/js/lightbox.js' %>
+    <%= csrf_meta_tag %>
+  
+    <%=  javascript_include_tag 'jquery.validate.min', 'jquery.easing.1.3',
+                                '/jquery_ui/jquery-ui-1.8.min.js', 'jquery.qtip-1.0.0-rc3.min', 'jquery.periodicalupdater',
+                                '/uploadify/swfobject.js','/uploadify/jquery.uploadify.v2.1.4.min.js'
+                                #'/file_uploader/fileuploader.js, 'jquery-1.6.4.min','
+    %>
+    <%= stylesheet_link_tag 'scaffold','general', 'photo', '/jquery_ui/jquery-ui-1.8.rails.css',
+                            '/lightbox2.05/css/lightbox.css',
+                            '/uploadify/uploadify.css'
+                            #'/file_uploader/fileuploader.css, '
+    %>
+    <%= stylesheet_link_tag('print', 'general', :media => :print) %>
+
+    
+<script type="text/javascript">
+  $().ready(function(){
+    make_label_mandatory();
+    make_table_tr_color();
+    make_text_box_focus();
+    //set_check_box_padding();
+  })
+
+  jQuery(function($) {
+    // create a convenient toggleLoading function
+    var toggleLoading = function() { $("#loading-body").toggle() };
+
+    $("#"+form_id)
+      .bind("ajax:loading",  toggleLoading)
+      .bind("ajax:complete", toggleLoading)
+      .bind("ajax:success", function(event, data, status, xhr) {
+        $("#response").html(data);
+      });
+
+
+  });
+
+  ajaxifyPagination();
+
+
+</script>
+
+<script type="text/javascript">
+  jQuery.validator.setDefaults({
+    highlight: function(input) {
+      jQuery(input).addClass("ui-state-highlight");
+    },
+    unhighlight: function(input) {
+      jQuery(input).removeClass("ui-state-highlight");
+    }
+  });
+
+  jQuery.validator.addMethod("max_char_200", function(number, element) {
+      number = number.replace(/\s+/g, "");
+          return this.optional(element) || number.length <= 200;
+  }, "Melebihi jumlah maximum karakter");
+
+  jQuery.validator.addMethod("max_char", function(number, element) {
+      number = number.replace(/\s+/g, "");
+          return this.optional(element) || number.length <= 30;
+  }, "Melebihi jumlah maximum karakter");
+
+  jQuery.validator.addMethod("keterangan", function(number, element) {
+      number = number.replace(/\s+/g, "");
+          return this.optional(element) || number.length <= 30;
+  }, "Melebihi jumlah maximum karakter");
+
+   jQuery.validator.addMethod("notzero", function(number, element) {
+      number = number.replace(/\s+/g, "");
+          return this.optional(element) || number.length >= 1 &&
+                  number > 0;
+  }, "Angka harus > 0");
+  
+  jQuery.validator.addMethod("phone", function(phone_number, element) {
+    phone_number = phone_number.replace(/\s+/g, "");
+	return this.optional(element) || phone_number.length > 5 &&
+		phone_number.match(/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/);
+}, "Please insert a valid phone");
+
+  jQuery.extend(jQuery.validator.messages, {
+    
+    required: "Diperlukan.",
+    remote: "Please fix this field.",
+    email: "Masukkan alamat email yang valid.",
+    url: "Please enter a valid URL.",
+    date: "Please enter a valid date.",
+    dateISO: "Please enter a valid date (ISO).",
+    number: "Masukan angka.",
+    digits: "Please enter only digits.",
+    creditcard: "Masukkan no credit card yang valid.",
+    equalTo: "Please enter the same value again.",
+    accept: "Please enter a value with a valid extension.",
+    maxlength: jQuery.validator.format("Please enter no more than {0} characters."),
+    minlength: jQuery.validator.format("Please enter at least {0} characters."),
+    rangelength: jQuery.validator.format("Please enter a value between {0} and {1} characters long."),
+    range: jQuery.validator.format("Please enter a value between {0} and {1}."),
+    max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
+    min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
+    
+});
+
+
+jQuery().ready(function() {
+  jQuery("#"+form_id).validate({
+    rules: {
+      "<%=controller.controller_name.singularize%>[nama]": {
+          required: true,
+          minlength: 2,
+          maxlength: 30
+      },
+      "<%=controller.controller_name.singularize%>[alamat]": {
+          minlength: 2,
+          maxlength: 35
+      },
+      "<%=controller.controller_name.singularize%>[keterangan]": {
+          minlength: 2,
+          maxlength: 30
+      },
+      "<%=controller.controller_name.singularize%>[contact_person]": {
+          minlength: 2,
+          maxlength: 30
+      },
+      "<%=controller.controller_name.singularize%>[tlp]": {
+          minlength: 2,
+          maxlength: 15
+      },
+      "<%=controller.controller_name.singularize%>[telepon]": {
+          minlength: 2,
+          maxlength: 15
+      },
+      "<%=controller.controller_name.singularize%>[hp]": {
+          minlength: 2,
+          maxlength: 15
+      },
+      "<%=controller.controller_name.singularize%>[hp_cp]": {
+          minlength: 3,
+          maxlength: 15
+      },
+      "supplier[telepon]": {
+          minlength: 2,
+          maxlength: 13
+      }
+    }
+  });
+});
+
+  jQuery(document).ready(function(){
+    jQuery('#content img[title], a[title], label[title], td[title], input[title]').qtip({
+        content: {
+           text: false // Use each elements title attribute
+        },
+        position: {
+              adjust: {
+                 screen: true // Keep the tooltip on-screen at all times
+              }
+           },
+           show: {
+              //when: 'click',
+              solo: true // Only show one tooltip at a time
+           },
+           hide:{fixed:true},
+        style: {
+              tip: true, // Give it a speech bubble tip with automatic corner detection
+              name: 'dark',
+              border: {
+                 width: 1,
+                 radius: 5
+                 //color: '#6699CC'
+              }
+           }
+     });
+   });
+</script>
+  
+
+
+<%end%>
+
+
+  
+ <style>
+  .ui-autocomplete-loading { background: white url('/images/loading.gif') right center no-repeat; }
+</style>
+
+<% if logged_in? %>
+  <% unless super_admin? %>
+    <script type="text/javascript">
+
+   function is_integer(string) {
+     integer_match = "[0-9]"
+     if ( string.match(integer_match) ){
+       return true;
+     }
+      return false;
+  }
+
+    function contains_string_in_array(array_contrroler,array_action, obj) {
+      for(i=0; i < array_contrroler.length; i++) {
+        a = "(?=.*"+array_contrroler[i]+")(?=.*/)(?=.*"+array_action[i]+")(?=.*/)(?=.*"+array_action[i]+")";
+        string = obj;
+        //alert(a+"=="+string)
+        if( string.match(a) ){
+          return true;
+        }
+        //if (obj.match(array[i])) {
+        //     return true;
+        //}
+      }
+      return false;
+  }
+
+    var function_list_array = new Array();
+    var function_list_array2 = new Array();
+    var controller_name_array = new Array();
+    var action_name_array = new Array();
+    <% user_types = UserTypeFunction.where(:iduser_type => current_user.iduser_type) %>
+    <%
+      i = 0
+      user_types.each do |user_type|
+        url_path = "#{user_type.function.controller_name}/#{user_type.function.action_name.to_s rescue ''}"
+        url_path2 = "#{user_type.function.controller_name}/#{params[:id]}/#{user_type.function.action_name}"
+        controller_name = "#{user_type.function.controller_name.strip}"
+        action_name = "#{user_type.function.action_name.strip}"
+
+    %>
+      //alert('<%=url_path%>');
+      function_list_array[<%=i%>] = '<%= url_path %>';
+      function_list_array2[<%=i%>] = '<%= url_path2 %>';
+      controller_name_array[<%=i%>] = '<%= controller_name %>';
+      action_name_array[<%=i%>] = '<%= action_name %>';
+
+      <% i=i+1 %>
+    <%end%>
+      //controller_name_array = jQuery.unique(controller_name_array);
+
+    $().ready(function(){
+     var element = $('.nav_horizontal').find('ul li');
+      $.each(element, function(i, l){
+
+        span = $(l).find("span");
+        //alert($(span).text());
+        if($(span).text()){
+        }else{
+          a = $(l).find("a");
+          href = a.attr("href"); 
+          path = href.split('/');
+          path = path[1]+"/"+path[2];
+          match = $.inArray( path, function_list_array );
+          //alert(path+' <=> '+function_list_array+' <=> '+match);
+          if(match == -1){
+            a.attr("href","#");
+            $(l).removeClass();
+            $(l).addClass("menu_disable");
+          }
+        }
+       });
+
+      var element = $('#content').find('a');
+
+      $.each(element, function(i, l){
+        protokol = l.href.split('//');
+        domain = protokol[1].split('/');
+
+        if ( is_integer(domain[2]) && domain[3] == null ){
+          //alert('match');
+          domain[2] = "show"
+        }else{
+          //alert('not match');
+        }
+
+        path2 = domain[1]+"/"+domain[2]+"/"+domain[3];
+
+
+
+        if(contains_string_in_array(controller_name_array, action_name_array, path2)){
+
+        }else{
+            //alert(path2+'-'+l.href);
+            l.href = '#';
+            l.onclick = ''
+            $(l).addClass("menu_disable");
+        }
+       });
+    })
+  </script>
+  <%end%>
+<%end%>
+

@@ -1,0 +1,52 @@
+<h1>Data Obat</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Nama kategori</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td>
+      <input type="text" size="7" onkeyup="searching(this.value, 'kode')"/>
+    </td>
+    <td>
+      <input type="text" size="20" onkeyup="searching(this.value, 'nama')"/>
+    </td>
+    <td>
+      <input type="text" size="30" onkeyup="searching(this.value, 'kode_kategori')"/>
+    </td>
+    <td colspan="9"></td>
+  </tr>
+
+  <tbody id="data_ajax_target">
+    <%= render :partial => "obats/data_index", :locals => {:obats => @obats} %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  function searching(text, tipe){
+    jQuery.ajax({
+      url: "/obats/index/new",
+      dataType: "script",// "json",
+      data: {
+        authenticity_token: encodeURIComponent('<%= u form_authenticity_token %>'),
+        param: text,
+        tipe: tipe
+      },
+      beforeSend: function(data) {
+        jQuery('#loading_body').toggle();
+      },
+      success: function(data) {
+        //jQuery('#data').html(data);
+      },
+      complete: function(data) {
+        jQuery('#loading_body').toggle();
+      }
+    });
+  }
+</script>
+

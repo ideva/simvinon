@@ -1,0 +1,81 @@
+<%
+  if object_photo.image_url.nil?
+    object_photo.destroy
+%>
+
+<%else%>
+<div style="position: relative;" class="thumb_horizontal fix_image_thumb" id="photo_<%= object_photo.id %>">
+<%
+prefer_image_width = width.to_i rescue 70
+prefer_image_height = height.to_i rescue 70
+css_plus = 5
+prefer_image_width = prefer_image_width.to_i + css_plus
+prefer_image_height = prefer_image_height.to_i + css_plus
+size = ''
+
+%>
+
+  <%= link_to image_tag(object_photo.image_url(:thumb),:size => size, :title => (object_photo.caption rescue ""), :alt => (bject_photo.caption rescue "")),
+          object_photo.image_url , :rel => "lightbox[#{group rescue 'photo'}]", :title => (object_photo.caption rescue "")%>
+  <%= render :partial => 'general/photo_caption', :locals => {:object_photo => object_photo} %>
+
+  <% if logged_in? && (editing_mode == true rescue false)  %>
+  <div>
+    <div style="position:absolute;top:0;right:0;text-align: left; display: block;" class="label_opaque"  id="photo_edit<%= object_photo.id rescue '' %>">
+      <%if (use_cover == true || use_cover == "true" rescue false) %>
+        <%
+          if (object_photo.is_cover rescue false)
+            checked = true
+          end
+        %>
+        <div class="as_link_simple">
+          <%= radio_button_tag "thumbnail_cover", object_photo.id.to_i, (checked rescue false),
+                            :onchange => remote_function( :falure => FAILURE_MESSAGE,
+                                                          #:loading =>  "$('indicator_price_type_#{date}').show();",
+                                                          #:complete  =>  "$('indicator_price_type_#{date}').hide();",
+                                                          :url => { :controller =>"general",
+                                                                    :model => model,
+                                                                    :action => "select_thumbnail_cover",
+                                                                    :id => object_photo.id,
+                                                                    :param_id => param_id,
+                                                                  }
+                                                         ) %>Cover
+        </div>
+      <%end%>
+          <label class="as_link_simple"  onclick="$('photo_caption<%=object_photo.id%>').focus();Effect.toggle('edit_caption<%=object_photo.id%>','Blind', {duration:1}); return false;" >Edit Caption</label>
+          <br/>
+          <label class="">
+                      <%=  link_to "Delete",
+
+                               { :controller => "general",
+                                            :model => model,
+                                            :action => (action_delete rescue "delete_photo"),
+                                            :id =>object_photo.id,
+                                            :param_id => param_id,
+                                            :render_upload_form => false
+                               },
+                               :confirm => DELETE_CONFIRM,
+                               :id  => "delete#{object_photo.id}", :title => "Delete this photo",
+                               :remote => true,
+                               :onclick => "ajax_call_back(this);", :class => "as_link_simple", :style => "color: #086590;"
+                     %><%#= image_tag "loading.gif", :style =>"display:none;", :id =>"loading_#{object_photo.id}" %>
+             </label>
+    </div>
+    <div id="edit_caption<%=object_photo.id%>" style="width:auto;display:none; border:1px solid gray; background-color:white;padding:5px;z-index:1000;position:absolute;bottom:0">
+     <%= text_field :object, :caption, :id => "photo_caption#{object_photo.id}" ,:value => object_photo.caption, :size => "15",
+                      :onblur => remote_function(
+                                :loading => "$('loading_body').show()",
+                                :complete => "$('loading_body').hide()",
+                                :url => { :controller => "general",
+                                          :model => model,
+                                          :action  => "update_photo_caption",
+                                          :id => object_photo.id
+                                           },
+                                :with => "'caption='+this.value")
+      %>
+    </div>
+  </div>
+  <%end%>
+
+  </div>
+<% end %>

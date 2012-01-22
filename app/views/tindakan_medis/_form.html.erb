@@ -1,0 +1,40 @@
+<%= form_for(@tindakan_medi) do |f| %>
+  <% if @tindakan_medi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tindakan_medi.errors.count, "error") %> prohibited this tindakan_medi from being saved:</h2>
+
+      <ul>
+      <% @tindakan_medi.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode, :class => "required" %><br />
+    <%= f.text_field :kode, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_kategori_tindakan_medis, :class => "required" %><br />
+    <%#= f.text_field :kode_kategori_tindakan_medis %>
+    <%= f.collection_select :kode_kategori_tindakan_medis, KategoriTindakanMedi.all, :kode, :nama, {:prompt => true}, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :nama, :class => "required" %><br />
+    <%= f.text_field :nama, :class => "required"%>
+  </div>
+  <div class="field">
+    <%= f.label :tarif, "Tarif (Rp.)" %><br />
+    <%= f.text_field :tarif, :class => "number" %>
+  </div>
+  <div class="field">
+    <%= f.label :flag, :class => "required" %><br />
+    <%#= f.text_field :flag %>
+    <%= f.radio_button :flag, 1, :style => "width: 50px;" %>Puskesmas<br />
+    <%= f.radio_button :flag, 2, :style => "width: 50px;" %>Rumah Sakit
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

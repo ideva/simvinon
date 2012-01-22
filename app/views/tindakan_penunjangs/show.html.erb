@@ -1,0 +1,28 @@
+
+<p>
+  <b>Kode:</b>
+  <%= @tindakan_penunjang.kode %>
+</p>
+
+<p>
+  <b>Kode kategori tindakan penunjang:</b>
+  <%= @tindakan_penunjang.kode_kategori_tindakan_penunjang %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @tindakan_penunjang.nama %>
+</p>
+
+<p>
+  <b>Tarif:</b>
+  <%#= @tindakan_penunjang.tarif %>
+  <%= number_to_currency(@tindakan_penunjang.tarif, :unit => "Rp ") %>
+</p>
+
+<p>
+  <b>Flag:</b>
+  <%= @tindakan_penunjang.flag %>
+</p>
+
+

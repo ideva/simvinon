@@ -1,0 +1,25 @@
+<% @obats.each do |obat| %>
+  <tr>
+    <td><%= obat.kode %></td>
+    <td><%= obat.nama %></td>
+    <%#kategori = KategoriObat.find_by_kode(obat.kode_kategori)%>
+    <td><%= obat.kategori_obat.nama rescue "-" %></td>
+    <td><%= link_to 'Lihat', obat %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_obat_path(obat) %></td>
+  </tr>
+<% end %>
+
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @obats %>
+        </div>
+        <%= will_paginate @obats, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+
+<script type="text/javascript">
+    ajaxifyPagination();
+  </script>

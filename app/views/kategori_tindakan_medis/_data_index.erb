@@ -1,0 +1,22 @@
+<% @kategori_tindakan_medis.each do |kategori_tindakan_medi| %>
+  <tr>
+    <td><%= kategori_tindakan_medi.kode %></td>
+    <td><%= kategori_tindakan_medi.nama %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_kategori_tindakan_medi_path(kategori_tindakan_medi) %></td>
+  </tr>
+<% end %>
+
+<tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @kategori_tindakan_medis %>
+        </div>
+        <%= will_paginate @kategori_tindakan_medis, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>
+

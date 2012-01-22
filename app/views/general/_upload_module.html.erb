@@ -1,0 +1,26 @@
+<div style="margin-bottom:10px">
+      <%= render :partial => "general/upload_photo_form", :locals => {
+              :controller => "general", :model=> model,
+              :param_id => param_id,
+              :param_name => param_name,
+              :iduser => current_user.id,
+              :action_update => "create_photo",
+              :multi => true, :width => 150, :height => 150, :group => "gallery"} %>
+</div>
+<div style="clear:both"></div>
+
+<!--
+<div class="field">
+      <input type="hidden" name="counter" id="counter" value="<%= 3 %>"/>
+      <img src="/images/upload.png" border="0" style="width: 20px; height: 20px"/><%= file_field "gallery1", :image, :size => 15, :style => "width: auto" %><br/>
+      <img src="/images/upload.png" border="0" style="width: 20px; height: 20px"/><%= file_field "gallery2", :image, :size => 15, :style => "width: auto" %><br/>
+      <img src="/images/upload.png" border="0" style="width: 20px; height: 20px"/><%= file_field "gallery3", :image, :size => 15, :style => "width: auto" %>
+</div>
+-->
+
+<%= render :partial => "general/photo_list_sortable", :locals => {:editing_mode => true, :model => model, :param_id => param_id,
+                                                  :object_photos =>  object_photos, :use_cover => true, :width => 30 } %>
+
+<span id ="new_photo"></span>
+<div style="clear:both"></div>
+

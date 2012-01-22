@@ -1,0 +1,644 @@
+
+<div class="">
+  <h2>Pemeriksaan</h2>
+  <table>
+    <tr>
+      <th style="width: 150px">Nama</th>
+      <th style="width: 50px">Jumlah</th>
+      <th style="width: 130px">Satuan</th>
+      <th style="width: 100px">Total</th>
+      <th style="width: 130px">Status</th>
+      <th style="width: auto">Alasan</th>
+      <th style="width: auto">Komentar</th>
+    </tr>
+    <% @verifikasi_pemeriksaans.each do |tm| %>
+    <tr>
+      <td><%= tm.pemeriksaan.nama rescue '-' %></td>
+      <%  %>
+      <td style=""><%= tm.jumlah %></td>
+      <td style="text-align: right; "><%= number_to_currency(tm.tarif_pemeriksaan, :unit => "Rp") %></td>
+      <td style="text-align: right; "><%= number_to_currency(tm.sub_total_tarif_ejkbm, :unit => "Rp") %></td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%= tm.status_verifikasi %>
+        <%else%>
+          <%= radio_button("verifikasi_pemeriksaan#{tm.kode}", "status_verifikasi_verifikator", "1",
+              :class => "required", :onclick => "check_status_verifikasi('pemeriksaan#{tm.kode}','1')",
+              :checked => (tm.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+              <span style="cursor: pointer" onclick="check_box_toggle2('pemeriksaan<%= tm.kode %>', '1')">Layak</span><br/>
+
+          <%= radio_button("verifikasi_pemeriksaan#{tm.kode}", "status_verifikasi_verifikator", "2",
+              :onclick => "check_status_verifikasi('pemeriksaan#{tm.kode}','2')",
+              :checked => (tm.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+              <span style="cursor: pointer" onclick="check_box_toggle2('pemeriksaan<%= tm.kode %>', '2')">Tidak Layak</span>
+
+          <label for="verifikasi_pemeriksaan<%=tm.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+
+          <%#= select "verifikasi_pemeriksaan#{tm.kode}", :status_verifikasi_verifikator, option,
+            {:selected => tm.status_verifikasi_verifikator},
+            {:class => "required", :onchange => "check_status_verifikasi('pemeriksaan#{tm.kode}')"} %>
+        <%end%>
+      </td>
+      <td>
+        <%
+        if tm.status_verifikasi_verifikator == 0 || tm.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+        %>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.alasan_verifikasi.alasan.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= collection_select "verifikasi_pemeriksaan#{tm.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+              {:prompt => true, :selected => ( tm.kode_alasan_verifikasi rescue '') },
+              {:class => "required", :disabled => disabled, :style => "width: 100px" } %>
+        <%end%>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.komentar.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= text_field "verifikasi_pemeriksaan#{tm.kode}", :komentar,
+            :value => (tm.komentar rescue ''), :size => 10, :disabled => disabled %>
+        <%end%>
+      </td>
+    </tr>
+    <%end%>
+    <tr class="total">
+      <td colspan="3" style="text-align: right">Sub Total</td>
+      <td colspan="" style="text-align: right"><%= number_to_currency(@verifikasi_pemeriksaans.sum(:sub_total_tarif_ejkbm), :unit => "Rp") %></td>
+      <td colspan="3" style="text-align: left"></td>
+    </tr>
+  </table>
+
+<h2>Obat</h2>
+  <table>
+    <tr>
+      <th style="width: 150px">Nama</th>
+      <th style="width: 50px">Jumlah</th>
+      <th style="width: 100px">Tarif</th>
+      <th style="width: 100px">Total</th>
+      <th style="width: 130px">Status</th>
+      <th style="width: auto">Alasan</th>
+      <th style="width: auto">Komentar</th>
+    </tr>
+    <% @verifikasi_obats.each do |verifikasi_obat| %>
+    <tr>
+      <td><%= verifikasi_obat.obat.nama rescue '-' %></td>
+      <td style=""><%= verifikasi_obat.jumlah_obat_rs %></td>
+      <td style="text-align: right;">
+        <%= number_to_currency(verifikasi_obat.satuan_tarif_ejkbm, :unit => "Rp") %>
+      </td>
+      <td style="text-align: right; ">
+        <%= number_to_currency(verifikasi_obat.sub_total_tarif_ejkbm, :unit => "Rp") %>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%= verifikasi_obat.status_verifikasi %>
+        <%else%>
+          <%= radio_button("verifikasi_obat#{verifikasi_obat.kode}", "status_verifikasi_verifikator", "1",
+              :class => "required", :onclick => "check_status_verifikasi('obat#{verifikasi_obat.kode}', '1')",
+              :checked => (verifikasi_obat.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('obat<%= verifikasi_obat.kode %>', '1')">Layak</span><br/>
+
+          <%= radio_button("verifikasi_obat#{verifikasi_obat.kode}", "status_verifikasi_verifikator", "2",
+              :onclick => "check_status_verifikasi('obat#{verifikasi_obat.kode}', '2')",
+              :checked => (verifikasi_obat.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('obat<%= verifikasi_obat.kode %>', '2')">Tidak Layak</span>
+
+          <label for="verifikasi_obat<%=verifikasi_obat.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+
+          <%#= select "verifikasi_obat#{verifikasi_obat.kode}", :status_verifikasi_verifikator, option,
+            {:selected => verifikasi_obat.status_verifikasi_verifikator, :prompt => true},
+            {:class => "required", :onchange => "check_status_verifikasi('obat#{verifikasi_obat.kode}')"} %>
+        <%end%>
+      </td>
+      <td>
+        <%
+        if verifikasi_obat.status_verifikasi_verifikator == 0 || verifikasi_obat.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+        %>
+        <%if controller.action_name == "show" %>
+          <%
+            a = verifikasi_obat.alasan_verifikasi.alasan.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+            <%= collection_select "verifikasi_obat#{verifikasi_obat.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+              {:prompt => true, :selected => ( verifikasi_obat.kode_alasan_verifikasi rescue '') },
+              {:class => "required", :disabled => disabled, :style => "width: 100px"} %>
+        <%end%>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%
+            a = verifikasi_obat.komentar.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= text_field "verifikasi_obat#{verifikasi_obat.kode}", :komentar,
+            :value => (verifikasi_obat.komentar rescue ''), :size => 10, :disabled => disabled %>
+         <%end%>
+      </td>
+    </tr>
+    <%end%>
+    <tr class="total">
+      <td colspan="3" style="text-align: right">Sub Total</td>
+      <td colspan="1" style="text-align: right"><%= number_to_currency(@verifikasi_obats.sum(:sub_total_tarif_ejkbm), :unit => "Rp") %></td>
+      <td colspan="3" style="text-align: left"></td>
+    </tr>
+  </table>
+</div>
+<div class="">
+  <h2>Tindakan Medis</h2>
+  <table>
+    <tr>
+      <th style="width: 150px">Nama</th>
+      <th style="width: 50px">Jumlah</th>
+      <th style="width: 100px">Tarif</th>
+      <th style="width: 100px">Total</th>
+      <th style="width: 130px">Status</th>
+      <th style="width: auto">Alasan</th>
+      <th style="width: auto">Komentar</th>
+    </tr>
+    <% @verifikasi_tindakan_medis.each do |tm| %>
+    <tr>
+      <td><%= tm.tindakan_medi.nama rescue '-' %></td>
+      <td style=""><%= tm.jumlah_t_medis_rs %></td>
+      <td style="text-align: right;"><%= number_to_currency(tm.satuan_tarif_ejkbm, :unit => "Rp") %></td>
+      <td style="text-align: right;"><%= number_to_currency(tm.sub_total_tarif_ejkbm, :unit => "Rp") %></td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%= tm.status_verifikasi %>
+        <%else%>
+          <%= radio_button("verifikasi_tindakan#{tm.kode}", "status_verifikasi_verifikator", "1",
+              :class => "required", :onclick => "check_status_verifikasi('tindakan#{tm.kode}', '1')",
+              :checked => (tm.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('tindakan<%= tm.kode %>', '1')">Layak</span><br/>
+
+          <%= radio_button("verifikasi_tindakan#{tm.kode}", "status_verifikasi_verifikator", "2",
+              :onclick => "check_status_verifikasi('tindakan#{tm.kode}', '2')",
+              :checked => (tm.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('tindakan<%= tm.kode %>', '2')">Tidak Layak</span>
+
+          <label for="verifikasi_tindakan<%=tm.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+          
+          <%#= select "verifikasi_tindakan#{tm.kode}", :status_verifikasi_verifikator, option,
+            {:selected => tm.status_verifikasi_verifikator},
+            {:class => "required", :onchange => "check_status_verifikasi('tindakan#{tm.kode}')"} %>
+        <%end%>
+      </td>
+      <td>
+        <%
+        if tm.status_verifikasi_verifikator == 0 || tm.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+        %>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.alasan_verifikasi.alasan.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= collection_select "verifikasi_tindakan#{tm.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+              {:prompt => true, :selected => ( tm.kode_alasan_verifikasi rescue '') },
+              {:class => "required", :disabled => disabled, :style => "width: 100px"} %>
+        <%end%>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.komentar.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= text_field "verifikasi_tindakan#{tm.kode}", :komentar,
+            :value => (tm.komentar rescue ''), :size => 10, :disabled => disabled %>
+        <%end%>
+      </td>
+    </tr>
+    <%end%>
+    <tr class="total">
+      <td colspan="3" style="text-align: right">Sub Total</td>
+      <td colspan="1" style="text-align: right"><%= number_to_currency(@verifikasi_tindakan_medis.sum(:sub_total_tarif_ejkbm), :unit => "Rp") %></td>
+      <td colspan="3" style="text-align: left"></td>
+    </tr>
+  </table>
+
+  <h2>Tindakan Penunjang</h2>
+  <table>
+    <tr>
+      <th style="width: 150px">Nama</th>
+      <th style="width: 50px">Jumlah</th>
+      <th style="width: 100px">Tarif</th>
+      <th style="width: 100px">Total</th>
+      <th style="width: 130px">Status</th>
+      <th style="width: auto">Alasan</th>
+      <th style="width: auto">Komentar</th>
+    </tr>
+    <% @verifikasi_tindakan_penunjangs.each do |tm| %>
+    <tr>
+      <td><%= tm.tindakan_penunjang.nama rescue '-' %></td>
+      <td style=""><%= tm.jumlah_t_medis_rs %></td>
+      <td style="text-align: right;"><%= number_to_currency(tm.satuan_tarif_ejkbm, :unit => "Rp") %></td>
+      <td style="text-align: right;"><%= number_to_currency(tm.sub_total_tarif_ejkbm, :unit => "Rp") %></td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%= tm.status_verifikasi %>
+        <%else%>
+          <%= radio_button("verifikasi_tindakan#{tm.kode}", "status_verifikasi_verifikator", "1",
+              :class => "required", :onclick => "check_status_verifikasi('tindakan#{tm.kode}', '1')",
+              :checked => (tm.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('tindakan<%= tm.kode %>', '1')">Layak</span><br/>
+
+          <%= radio_button("verifikasi_tindakan#{tm.kode}", "status_verifikasi_verifikator", "2",
+              :onclick => "check_status_verifikasi('tindakan#{tm.kode}', '2')",
+              :checked => (tm.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('tindakan<%= tm.kode %>', '2')">Tidak Layak</span><br/>
+
+          <label for="verifikasi_tindakan<%=tm.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+
+          <%#= select "verifikasi_tindakan#{tm.kode}", :status_verifikasi_verifikator, option,
+            {:selected => tm.status_verifikasi_verifikator},
+            {:class => "required", :onchange => "check_status_verifikasi('tindakan#{tm.kode}')"} %>
+        <%end%>
+      </td>
+      <td>
+        <%
+        if tm.status_verifikasi_verifikator == 0 || tm.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+        %>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.alasan_verifikasi.alasan.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= collection_select "verifikasi_tindakan#{tm.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+              {:prompt => true, :selected => ( tm.kode_alasan_verifikasi rescue '') },
+              {:class => "required", :disabled => disabled, :style => "width: 100px"} %>
+          <%end%>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.komentar.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= text_field "verifikasi_tindakan#{tm.kode}", :komentar, :value => (tm.komentar rescue ''),
+            :size => 10, :disabled => disabled %>
+         <%end%>
+      </td>
+    </tr>
+    <%end%>
+    <tr class="total">
+      <td colspan="3" style="text-align: right">Sub Total</td>
+      <td colspan="1" style="text-align: right"><%= number_to_currency(@verifikasi_tindakan_penunjangs.sum(:sub_total_tarif_ejkbm), :unit => "Rp") %></td>
+      <td colspan="3" style="text-align: left"></td>
+    </tr>
+  </table>
+
+  <h2>Pelayanan Lainnya</h2>
+  <table>
+    <tr>
+      <th style="width: 150px">Nama</th>
+      <th style="width: 50px">Jumlah</th>
+      <th style="width: 100px">Tarif</th>
+      <th style="width: 100px">Total</th>
+      <th style="width: 130px">Status</th>
+      <th style="width: auto">Alasan</th>
+      <th style="width: auto">Komentar</th>
+    </tr>
+    <% @verifikasi_pelayanan_lains.each do |tm| %>
+    <tr>
+      <td><%= tm.nama_pelayanan_lain_rs rescue '-' %></td>
+      <td style=""><%= tm.jumlah_pelayanan_lain_rs %></td>
+      <td style="text-align: right;"><%= number_to_currency(tm.satuan_tarif, :unit => "Rp") %></td>
+      <td style="text-align: right;"><%= number_to_currency(tm.sub_total_tarif, :unit => "Rp") %></td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%= tm.status_verifikasi %>
+        <%else%>
+          <%= radio_button("verifikasi_pelayanan_lain#{tm.kode}", "status_verifikasi_verifikator", "1",
+              :class => "required", :onclick => "check_status_verifikasi('pelayanan_lain#{tm.kode}', '1')",
+              :checked => (tm.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('pelayanan_lain<%= tm.kode %>', '1')">Layak</span><br/>
+
+          <%= radio_button("verifikasi_pelayanan_lain#{tm.kode}", "status_verifikasi_verifikator", "2",
+              :onclick => "check_status_verifikasi('pelayanan_lain#{tm.kode}', '2')",
+              :checked => (tm.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+          <span style="cursor: pointer" onclick="check_box_toggle2('pelayanan_lain<%= tm.kode %>', '2')">Tidak Layak</span>
+
+          <label for="verifikasi_pelayanan_lain<%=tm.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+
+          <%#= select "verifikasi_pelayanan_lain#{tm.kode}", :status_verifikasi_verifikator, option,
+            {:selected => tm.status_verifikasi_verifikator},
+            {:class => "required", :onchange => "check_status_verifikasi('pelayanan_lain#{tm.kode}')"} %>
+        <%end%>
+      </td>
+      <td>
+        <%
+        if tm.status_verifikasi_verifikator == 0 || tm.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+        %>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.alasan_verifikasi.alasan.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= collection_select "verifikasi_pelayanan_lain#{tm.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+              {:prompt => true, :selected => ( tm.kode_alasan_verifikasi rescue '') },
+              {:class => "required", :disabled => disabled, :style => "width: 100px"} %>
+        <%end%>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.komentar.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= text_field "verifikasi_pelayanan_lain#{tm.kode}", :komentar,
+              :value => (tm.komentar rescue ''), :size => 10, :disabled => disabled %>
+        <%end%>
+      </td>
+    </tr>
+    <%end%>
+    <tr class="total">
+      <td colspan="3" style="text-align: right">Sub Total</td>
+      <td colspan="1" style="text-align: right"><%= number_to_currency(@verifikasi_pelayanan_lains.sum(:sub_total_tarif), :unit => "Rp") %></td>
+      <td colspan="3" style="text-align: left"></td>
+    </tr>
+  </table>
+</div>
+<div style="clear: both"></div>
+
+  <table style="margin-top: 30px;">
+    <tr class="total" style="font-size: large">
+      <th colspan="" style="text-align: right; width: 365px">Total</th>
+      <th colspan="" style="text-align: right; ">
+        <%= number_to_currency(@verifikasi.total_tarif, :unit => "Rp") %>
+      </th>
+    </tr>
+  </table>
+
+<% if !@verifikasi_tindakan_medis_non_mapping.empty? || !@verifikasi_obats_non_mapping.empty? %>
+  <h2 style="color: red">Data Tidak Berhasil Dicocokkan</h2>
+
+  <% if !@verifikasi_obats_non_mapping.empty? %>
+      <h3 >Data Obat</h3>
+      <table>
+        <tr>
+          <th style="width: 50px">Kode</th>
+          <th style="width: 150px">Nama</th>
+          <th style="width: 50px">Jumlah</th>
+          <th style="width: 100px">Tarif</th>
+          <th style="width: 100px">Total</th>
+          <th style="width: 130px">Status</th>
+          <th style="width: auto">Alasan</th>
+          <th style="width: auto">Komentar</th>
+        </tr>
+        <% @verifikasi_obats_non_mapping.each do |verifikasi_obat| %>
+        <tr>
+          <td><%= verifikasi_obat.kode_obat_rs rescue '-' %></td>
+          <td><%= verifikasi_obat.nama_obat_rs rescue '-' %></td>
+          <td style=""><%= verifikasi_obat.jumlah_obat_rs %></td>
+          <td style="text-align: right; ">-<%#= number_to_currency(tm.satuan_tarif_ejkbm, :unit => "Rp") %></td>
+          <td style="text-align: right;">-<%#= number_to_currency(tm.sub_total_tarif_ejkbm, :unit => "Rp") %></td>
+          <td>
+            <%if controller.action_name == "show" %>
+              <%= verifikasi_obat.status_verifikasi %>
+            <%else%>
+
+              <%= radio_button("verifikasi_obat#{verifikasi_obat.kode}", "status_verifikasi_verifikator", "1",
+                :class => "required", :onclick => "check_status_verifikasi('obat#{verifikasi_obat.kode}', '1')",
+                :checked => (verifikasi_obat.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+              <span style="cursor: pointer" onclick="check_box_toggle2('obat<%= verifikasi_obat.kode %>', '1')">Layak</span><br/>
+
+              <%= radio_button("verifikasi_obat#{verifikasi_obat.kode}", "status_verifikasi_verifikator", "2",
+                :onclick => "check_status_verifikasi('obat#{verifikasi_obat.kode}', '2')",
+                :checked => (verifikasi_obat.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+              <span style="cursor: pointer" onclick="check_box_toggle2('obat<%= verifikasi_obat.kode %>', '2')">Tidak Layak</span>
+
+              <label for="verifikasi_obat<%=verifikasi_obat.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+
+              <%#= select "verifikasi_obat#{verifikasi_obat.kode}", :status_verifikasi_verifikator, option,
+                {:selected => verifikasi_obat.status_verifikasi_verifikator},
+                {:class => "required", :onchange => "check_status_verifikasi('obat#{verifikasi_obat.kode}')"} %>
+            <%end%>
+          </td>
+          <td>
+            <%
+            if verifikasi_obat.status_verifikasi_verifikator == 0 || verifikasi_obat.status_verifikasi_verifikator == 1
+              disabled = true
+            else
+              disabled = false
+            end
+            %>
+            <%if controller.action_name == "show" %>
+              <%
+                a = verifikasi_obat.alasan_verifikasi.alasan.to_s rescue ''
+                if a.length > 10
+                  cut = a[0..10]+"..."
+                else
+                  cut = a
+                end
+              %>
+            <label title="<%= a %>"><%= cut %></label>
+          <%else%>
+            <%= collection_select "verifikasi_obat#{verifikasi_obat.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+                  {:prompt => true, :selected => ( verifikasi_obat.kode_alasan_verifikasi rescue '') },
+                  {:class => "required", :disabled => disabled, :style => "width: 100px"} %>
+            <%end%>
+          </td>
+          <td>
+            <%if controller.action_name == "show" %>
+            <%
+              a = verifikasi_obat.komentar.to_s rescue ''
+              if a.length > 10
+                cut = a[0..10]+"..."
+              else
+                cut = a
+              end
+            %>
+            <label title="<%= a %>"><%= cut %></label>
+          <%else%>
+            <%= text_field "verifikasi_obat#{verifikasi_obat.kode}", :komentar, 
+              :value => (verifikasi_obat.komentar rescue ''),:size => 10, :disabled => disabled %>
+           <%end%>
+          </td>
+        </tr>
+        <%end%>
+        <tr class="total">
+          <td colspan="4" style="text-align: right">Sub Total</td>
+          <td colspan="1" style="text-align: right">-<%#= number_to_currency(@verifikasi_tindakan_medis_non_mapping.sum(:sub_total_tarif_ejkbm), :unit => "Rp") %></td>
+          <td colspan="3" style="text-align: left"></td>
+        </tr>
+      </table>
+  <%end%>
+
+  <% if !@verifikasi_tindakan_medis_non_mapping.empty? %>
+      <h3 style="">Data Tindakan Medis</h3>
+      <table>
+        <tr>
+          <th style="width: 50px">Kode</th>
+          <th style="width: 150px">Nama</th>
+          <th style="width: 50px">Jumlah</th>
+          <th style="width: 100px">Tarif</th>
+          <th style="width: 100px">Total</th>
+          <th style="width: 130px">Status</th>
+          <th style="width: auto">Alasan</th>
+          <th style="width: auto">Komentar</th>
+        </tr>
+        <% @verifikasi_tindakan_medis_non_mapping.each do |tm| %>
+        <tr>
+          <td><%= tm.kode_t_medis_rs rescue '-' %></td>
+          <td><%= tm.nama_t_medis_rs rescue '-' %></td>
+          <td style=""><%= tm.jumlah_t_medis_rs %></td>
+          <td style="text-align: right; ">-<%#= number_to_currency(tm.satuan_tarif_ejkbm, :unit => "Rp") %></td>
+          <td style="text-align: right;">-<%#= number_to_currency(tm.sub_total_tarif_ejkbm, :unit => "Rp") %></td>
+          <td>
+            <%if controller.action_name == "show" %>
+              <%= tm.status_verifikasi %>
+            <%else%>
+
+              <%= radio_button("verifikasi_tindakan#{tm.kode}", "status_verifikasi_verifikator", "1",
+                :class => "required", :onclick => "check_status_verifikasi('tindakan#{tm.kode}', '1')",
+                :checked => (tm.status_verifikasi_verifikator == 1 ? "checked" : "" ) ) %>
+              <span style="cursor: pointer" onclick="check_box_toggle2('tindakan<%= tm.kode %>', '1')">Layak</span><br/>
+
+              <%= radio_button("verifikasi_tindakan#{tm.kode}", "status_verifikasi_verifikator", "2",
+                :onclick => "check_status_verifikasi('tindakan#{tm.kode}', '2')",
+                :checked => (tm.status_verifikasi_verifikator == 2 ? "checked" : "" ) ) %>
+              <span style="cursor: pointer" onclick="check_box_toggle2('tindakan<%= tm.kode %>', '2')">Tidak Layak</span>
+
+              <label for="verifikasi_tindakan<%=tm.kode%>[status_verifikasi_verifikator]" class="error" style="display: none">Diperlukan.</label>
+
+
+              <%#= select "verifikasi_tindakan#{tm.kode}", :status_verifikasi_verifikator, option,
+                {:selected => tm.status_verifikasi_verifikator},
+                {:class => "required", :onchange => "check_status_verifikasi('tindakan#{tm.kode}')"} %>
+            <%end%>
+          </td>
+      <td>
+        <%
+        if tm.status_verifikasi_verifikator == 0 || tm.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+        %>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.alasan_verifikasi.alasan.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= collection_select "verifikasi_tindakan#{tm.kode}", :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan,
+              {:prompt => true, :selected => ( tm.kode_alasan_verifikasi rescue '') },
+              {:class => "required", :disabled => disabled, :style => "width: 100px"} %>
+        <%end%>
+      </td>
+      <td>
+        <%if controller.action_name == "show" %>
+          <%
+            a = tm.komentar.to_s rescue ''
+            if a.length > 10
+              cut = a[0..10]+"..."
+            else
+              cut = a
+            end
+          %>
+          <label title="<%= a %>"><%= cut %></label>
+        <%else%>
+          <%= text_field "verifikasi_tindakan#{tm.kode}", :komentar,
+            :value => (tm.komentar rescue ''), :size => 10, :disabled => disabled %>
+        <%end%>
+      </td>
+        </tr>
+        <%end%>
+        <tr class="total">
+          <td colspan="4" style="text-align: right">Sub Total</td>
+          <td colspan="1" style="text-align: right">-<%#= number_to_currency(@verifikasi_tindakan_medis_non_mapping.sum(:sub_total_tarif_ejkbm), :unit => "Rp") %></td>
+          <td colspan="3" style="text-align: left"></td>
+        </tr>
+      </table>
+  <%end%>
+<%end%>
+
+

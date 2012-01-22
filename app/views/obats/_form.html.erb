@@ -1,0 +1,62 @@
+<%= form_for(@obat) do |f| %>
+  <% if @obat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@obat.errors.count, "error") %> prohibited this obat from being saved:</h2>
+
+      <ul>
+      <% @obat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="left">
+  <div class="field">
+    <%= f.label :kode, :class => "required"  %><br />
+    <%= f.text_field :kode, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :nama, :class => "required" %><br />
+    <%= f.text_field :nama, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_kategori, :class => "required" %><br />
+    <%#= f.text_field :kode_kategori %>
+    <%=f.collection_select :kode_kategori, KategoriObat.all, :kode, :nama, {:prompt => true},:class => "required combo_box"%>
+  </div>
+  <div class="field">
+    <%= f.label :bentuk_kekuatan_kemasan %><br />
+    <%= f.text_field :bentuk_kekuatan_kemasan %>
+  </div>
+</div>
+<div class="right">
+  <div class="field">
+    <%= f.label :jumlah %><br />
+    <%= f.text_field :jumlah, :class => "number" %>
+  </div>
+  <div class="field">
+    <%= f.label :satuan , :class => "required"%><br />
+    <%#= f.text_field :satuan %>
+    <% option = [['amp', "amp"], ['btl', "btl"], ['jam', "jam"], ['kaplet', "kaplet"], ['kaps', "kaps"], ['ktk', "ktk"], ['lembar', "lembar"], ['ml', "ml"], ['pot', "pot"], ['sachet', "sachet"], ['set', "set"], ['strip', "strip"], ['supp', "supp"], ['susp', "susp"], ['tab', "tab"], ['tube', "tube"], ['vial', "vial"]] %>
+    <%= select :obat,:satuan, option, {:include_blank => "-- Silahkan Pilih --", :selected => @obat.satuan}, :class => "required combo_box"%>
+    <%#= select :obat, :satuan, option, {:selected => @obat.satuan}, {}%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :het_satuan, "Het Satuan (Rp.)", :class => "required" %><br />
+    <%= f.text_field :het_satuan, :class => "number", :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :het_pack, "Het Pack (Rp.)", :class => "required" %><br />
+    <%= f.text_field :het_pack, :class => "number", :class => "required" %>
+  </div>
+</div>
+<div style="clear: both"></div>
+
+ <div class="actions">
+   <%= f.submit %>
+ </div>
+
+<% end %>
+  

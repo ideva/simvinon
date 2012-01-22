@@ -1,0 +1,36 @@
+.img{
+    padding: 4px; border: 1px solid #ccc;
+    background-color: white;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 3px 3px 3px black;
+    -webkit-box-shadow: 3px 3px 3px black;
+    box-shadow: 3px 3px 3px black;
+
+}
+/*---------------------PHOTO------------------------------*/
+
+.fix_image_thumb{
+    height: 100px;
+    width: 130px;
+}
+.fix_image_thumb img, fix_image_thumb a img{
+    max-width: 130px;
+    max-height: 90px;
+    min-height: 70px;
+    min-width: 100px;
+    background-color: white;
+    padding: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 5px 5px 5px black;
+    -webkit-box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px black;
+}
+
+.thumb_horizontal{
+    float: left;
+    margin: 7px;
+    padding: 4px;
+    background-color: white;    
+}

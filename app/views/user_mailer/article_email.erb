@@ -1,0 +1,42 @@
+<div style="margin-bottom:10px">
+  <div style="margin-bottom:10px;">
+    <%= (link_to @user.full_name, "http://#{SITE}/#{@user.to_param}/profile/#{@user.id}") rescue @user%>
+    wants you to read this article.<br/>
+    <%=link_to "#{@d_blog.title}", "http://#{SITE}/article/#{@d_blog.id}/#{@d_blog.to_param}"%>
+  </div>
+<%unless @msg == "" || @msg.nil?%>
+  <div>
+    <u>Message from <%=@user.full_name rescue @user%></u>: <br/>
+    <%=@msg%>
+  </div>
+<%end%>
+</div>
+
+<div>
+  <div style="width:100%;">
+      <div style="float:left;width:80%;margin-left:5px;">
+      <h2>
+        <%=link_to "#{@d_blog.title}", "http://#{SITE}/article/#{@d_blog.id}/#{@d_blog.to_param}"%>
+      </h2>
+        <i>By <%= @d_blog.user.full_name %></i><br/>
+        <label>Taged as
+          <%= render :partial => "l_tags/tag_list_simple", :locals => {:l_tags => @array_tag, :action => "by_tag", :model => "DBlog"}  %>
+        </label><br/>
+        <label>Readed <%= @d_blog.counter   %> times.</label>
+      </div>
+    <div style="clear:both"></div>
+  </div>
+
+  <br/>
+  <p>
+    <%= @d_blog.meta_description %>
+  </p>
+  <%=link_to "See Detail", "http://#{SITE}/article/#{@d_blog.id}/#{@d_blog.to_param}"%>
+</div>
+<div>
+  <%= link_to "#{@d_blog.user.full_name}'s Article", "http://#{SITE}/#{@d_blog.user.to_param}/bloglist/#{@d_blog.user.id}" %>
+</div>
+
+<div style="clear:both"></div>
+
+

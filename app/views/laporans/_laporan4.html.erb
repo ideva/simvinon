@@ -1,0 +1,49 @@
+<%if @form_print == false%>
+<h1>Data Laporan <%= @nama_laporan  %> </h1>
+<%end%>
+<table>
+  <tr>
+    <th>No</th>
+    <th>Hari/Tanggal</th>
+    <th>Jumlah Pasien</th>
+    <th>Pemeriksaan (Rp)</th>
+    <th>Penunjang Diagnostik (Rp)</th>
+    <th>Tindakan Medis (Rp)</th>
+    <th>Kantong Darah (Rp)</th>
+    <th>Haemodialisa (Rp)</th>
+    <th>Yan Obat (Rp)</th>
+    <th>Total (Rp)</th>
+  </tr>
+  <%if @form_print == true%>
+  <tr class="centre_td">
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+    <td>10</td>
+  </tr>
+  <%end%>
+  <% i = 1 %>
+  <% @laporans.each do |laporan| %>
+  <% tanggal = laporan.created_at %>
+  <tr>
+    <td style="text-align: right"><%= i  %></td>
+    <td><%= tanggal.to_date.strftime('%d-%m-%Y')%></td>
+    <td style="text-align: right"><%= Verifikasi.where("kode_jenis_pelayanan = '4' and DATE(created_at) = DATE('#{tanggal.strftime('%Y/%m/%d')}')").count %></td>
+    <td style="text-align: right"><%= jum1 = Verifikasi.joins('INNER JOIN (jenis_pelayanans,verifikasi_pemeriksaans) ON (verifikasis.kode_jenis_pelayanan = jenis_pelayanans.kode AND verifikasis.kode = verifikasi_pemeriksaans.kode_verifikasi)').where("verifikasis.kode_jenis_pelayanan = '4' AND DATE(verifikasis.created_at) = DATE('#{tanggal.strftime('%Y/%m/%d')}')").sum("verifikasi_pemeriksaans.tarif_pemeriksaan") %></td>
+    <td style="text-align: right"><%= jum2 = Verifikasi.joins('INNER JOIN (jenis_pelayanans,verifikasi_tindakans) ON (verifikasis.kode_jenis_pelayanan = jenis_pelayanans.kode AND verifikasis.kode = verifikasi_tindakans.kode_verifikasi)').where("verifikasis.kode_jenis_pelayanan = '4' AND verifikasi_tindakans.flag = '2' AND DATE(verifikasis.created_at) = DATE('#{tanggal.strftime('%Y/%m/%d')}')").sum("verifikasi_tindakans.satuan_tarif_ejkbm") %></td>
+    <td style="text-align: right"><%= jum3 = Verifikasi.joins('INNER JOIN (jenis_pelayanans,verifikasi_tindakans) ON (verifikasis.kode_jenis_pelayanan = jenis_pelayanans.kode AND verifikasis.kode = verifikasi_tindakans.kode_verifikasi)').where("verifikasis.kode_jenis_pelayanan = '4' AND verifikasi_tindakans.flag = '1' AND DATE(verifikasis.created_at) = DATE('#{tanggal.strftime('%Y/%m/%d')}')").sum("verifikasi_tindakans.satuan_tarif_ejkbm") %></td>
+    <td style="text-align: right"> Kantong Darah </td>
+    <td style="text-align: right"> Haemodialisa </td>
+    <td style="text-align: right"><%= jum4 = Verifikasi.joins('INNER JOIN (jenis_pelayanans,verifikasi_obats) ON (verifikasis.kode_jenis_pelayanan = jenis_pelayanans.kode AND verifikasis.kode = verifikasi_obats.kode_verifikasi)').where("verifikasis.kode_jenis_pelayanan = '4' AND DATE(verifikasis.created_at) = DATE('#{tanggal.strftime('%Y/%m/%d')}')").sum("verifikasi_obats.sub_total_tarif_ejkbm") %></td>
+    <td style="text-align: right"><%= jum1.to_f + jum2.to_f + jum3.to_f + jum4.to_f %></td>
+  </tr>
+<% i = i+1 %>
+<% end %>
+
+</table>

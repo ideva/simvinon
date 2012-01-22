@@ -1,0 +1,28 @@
+<% @verifikasis.each do |verifikasi| %>
+  <tr>
+    <td><%= verifikasi.kode %></td>
+    <td><%= verifikasi.no_pelayanan %></td>
+    <td><%= l(verifikasi.tgl_keluar.to_time, :format => :ind) rescue '-' %></td>
+    <td><%= verifikasi.no_kk %></td>
+    <td><%= verifikasi.nik %></td>
+    <td><%= verifikasi.ktp %></td>
+    <td><%= verifikasi.poli %></td>
+    <td><%= verifikasi.status_verifikasi %></td>
+    <td><%= link_to 'Lihat', verifikasi %></td>
+    <td><%= link_to 'Periksa', edit_verifikasi_path(verifikasi), :class => verifikasi.verifikasi_sukses_and_gagal ? "disable" : "s" %></td>
+  </tr>
+<% end %>
+
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @verifikasis %>
+        </div>
+        <%= will_paginate @verifikasis, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

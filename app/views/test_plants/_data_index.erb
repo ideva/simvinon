@@ -1,0 +1,27 @@
+<% @test_plants.each do |test_plant| %>
+  <tr>
+    <td><%= test_plant.tanggal %></td>
+    <td><%= test_plant.menu %></td>
+    <td><%= test_plant.url %></td>
+    <td><%= test_plant.skenario %></td>
+    <td><%= test_plant.hasil %></td>
+    <td><%= test_plant.deskripsi_hasil %></td>
+    <td><%= test_plant.komentar %></td>
+    <td><%= test_plant.image %></td>
+    <td><%= link_to 'Edit', edit_test_plant_path(test_plant) %></td>
+  </tr>
+<% end %>
+
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @test_plants %>
+        </div>
+        <%= will_paginate @test_plants, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

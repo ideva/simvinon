@@ -1,0 +1,71 @@
+<% code = image_code(model) %>
+<input type="hidden" value="<%= code %>" name="code"/>
+
+<div style="">
+
+     <%= text_field :object, :remote_image_url, :class => "text_box required", :value => "Image URL", :style => "width:100px",
+                             :onfocus => "if($('object_remote_image_url').value == 'Image URL'){$('object_remote_image_url').value = ''}" %>
+  <input type="button" value="Get Image" class="as_button"
+         onclick="<%= remote_function(
+                                #:update => "date_picker#{property.id};",
+                                :loading => "$('loading_body').show();",
+                                :complete => "$('loading_body').hide();",
+                                :url =>{
+                                  :controller => controller, :action => (action_update rescue "update_photo") ,
+                                  :param_id => param_id, :iduser => iduser, :model => model, :code => (code rescue ''),
+                                }
+                              ) %>" />
+
+
+</div>
+
+<div style="">
+  <label style="padding: 10px">OR</label>
+</div>
+<div>
+  <input id="file_upload<%= input_id rescue ''%>" name="file_upload<%= input_id rescue '' %>" type="file" />
+</div>
+<div style="clear: both"></div>
+
+<% session_key_name = Rails.application.config.session_options[:key] %>
+    <script type="text/javascript">
+      jQuery(document).ready(function(){
+        jQuery('#file_upload<%= input_id rescue '' %>').uploadify({
+          'uploader'  : '/uploadify/uploadify.swf',
+          'script'    : '/<%=controller%>/<%=(action_update rescue "update_photo")%>/<%=param_id%>',
+          'cancelImg' : '/uploadify/cancel.png',
+          'fileExt'     : '*.jpg;*.gif;*.png',
+          'fileDesc'    : 'Image Files',
+          //'folder'    : '/uploads',
+          'auto'      : true,
+          'sizeLimit'   : 4024000,
+          <%if (multi rescue false)%>
+            'multi'    : true,
+            'queueSizeLimit' : 10,
+          <%end%>
+          //'displayData' : 'speed',
+          'method'      : 'get',
+          //'width': 120,
+          //'height': 24,
+          'buttonText': 'Add Photos',
+          'onComplete': function(a, b, c, response){ eval(response) },
+          'scriptData': {
+            '_http_accept': "application/javascript",
+            'format' : 'js',
+            '_method': 'put',
+            '<%= session_key_name %>' : encodeURIComponent('<%= u cookies[session_key_name] %>'),
+            'authenticity_token': encodeURIComponent('<%= u form_authenticity_token %>'),
+
+            'param_id' : '<%=param_id%>',
+            'param_name' : '<%= param_name %>',
+            'iduser' : '<%=iduser%>',
+            'model' : '<%=model%>',
+            'width' : '<%=width rescue 100%>',
+            'height' : '<%=height rescue 100%>',
+            'show_none_image' : '<%= (show_none_image rescue true) %>',
+            'code' : '<%= code rescue ""%>'
+          }
+        })
+      });
+  </script>
+

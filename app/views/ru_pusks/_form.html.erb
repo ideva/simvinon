@@ -1,0 +1,29 @@
+<%= form_for(@ru_pusk) do |f| %>
+  <% if @ru_pusk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ru_pusk.errors.count, "error") %> prohibited this ru_pusk from being saved:</h2>
+
+      <ul>
+      <% @ru_pusk.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :nama %><br />
+    <%= f.text_field :nama %>
+  </div>
+  <div class="field">
+    <%= f.label :default %><br />
+    <%= f.check_box :default %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">verifikasi_sim_development</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="users" view="colnames">
+<left>14</left>
+<top>522</top>
+<width>212</width>
+<height>277</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(40) DEFAULT NULL,
+  `name` varchar(100) DEFAULT '',
+  `email` varchar(100) DEFAULT NULL,
+  `crypted_password` varchar(40) DEFAULT NULL,
+  `salt` varchar(40) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `remember_token` varchar(40) DEFAULT NULL,
+  `remember_token_expires_at` datetime DEFAULT NULL,
+  `super_admin` tinyint(1) DEFAULT '0',
+  `iduser_type` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IndexUser1` (`id`),
+  UNIQUE KEY `index_users_on_login` (`login`),
+  KEY `NewIndex1` (`id`),
+  KEY `NewIndex2` (`iduser_type`),
+  CONSTRAINT `FK_users` FOREIGN KEY (`iduser_type`) REFERENCES `user_types` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="user_types" view="colnames">
+<left>192</left>
+<top>1088</top>
+<width>110</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `user_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `description` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`kode`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="user_type_functions" view="colnames">
+<left>16</left>
+<top>1258</top>
+<width>113</width>
+<height>158</height>
+<sql_create_table>CREATE TABLE `user_type_functions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser_type` int(11) DEFAULT NULL,
+  `idfunction` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex2` (`iduser_type`),
+  CONSTRAINT `FK_user_type_functions` FOREIGN KEY (`iduser_type`) REFERENCES `user_types` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="verifikasi_tindakans" view="colnames">
+<left>396</left>
+<top>1326</top>
+<width>171</width>
+<height>306</height>
+<sql_create_table>CREATE TABLE `verifikasi_tindakans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) NOT NULL,
+  `kode_verifikasi` varchar(255) DEFAULT NULL,
+  `kode_t_medis_rs` varchar(255) DEFAULT NULL,
+  `jumlah_t_medis_rs` int(11) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `kode_t_medis_ejkbm` varchar(255) DEFAULT NULL,
+  `satuan_tarif_ejkbm` double DEFAULT '0',
+  `sub_total_tarif_ejkbm` double DEFAULT '0',
+  `iduser` int(11) DEFAULT NULL,
+  `nama_t_medis_rs` varchar(255) DEFAULT NULL,
+  `jenis_pelayanan` int(11) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_verifikasi_tindakans` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kategori_obats" view="colnames">
+<left>1052</left>
+<top>842</top>
+<width>110</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `kategori_obats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `NewIndex1` (`kode`),
+  KEY `NewIndex2` (`iduser`),
+  CONSTRAINT `FK_kategori_obats` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="obats" view="colnames">
+<left>870</left>
+<top>6</top>
+<width>204</width>
+<height>277</height>
+<sql_create_table>CREATE TABLE `obats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `kode_kategori` varchar(255) DEFAULT NULL,
+  `bentuk_kekuatan_kemasan` varchar(255) DEFAULT NULL,
+  `jumlah` int(11) DEFAULT '0',
+  `satuan` varchar(255) DEFAULT NULL,
+  `het_satuan` double DEFAULT '0',
+  `het_pack` double DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_obats` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="verifikasi_pemeriksaans" view="colnames">
+<left>570</left>
+<top>18</top>
+<width>198</width>
+<height>260</height>
+<sql_create_table>CREATE TABLE `verifikasi_pemeriksaans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `kode_verifikasi` varchar(255) DEFAULT NULL,
+  `kode_pemeriksaan_ejkbm` varchar(255) DEFAULT NULL,
+  `tarif_pemeriksaan` double DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `sub_total_tarif_ejkbm` double DEFAULT '0',
+  `jumlah` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`kode_verifikasi`),
+  KEY `FK_verifikasi_pemeriksaans` (`iduser`),
+  CONSTRAINT `FK_verifikasi_pemeriksaans` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="verifikasi_logs" view="colnames">
+<left>1192</left>
+<top>86</top>
+<width>260</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `verifikasi_logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status_verifikasi_verifikator_sebelum` int(11) DEFAULT NULL,
+  `status_verifikasi_verifikator_sesudah` int(11) DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `kode_verifikasi` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`kode_verifikasi`),
+  KEY `NewIndex2` (`iduser`),
+  CONSTRAINT `FK_verifikasi_logs` FOREIGN KEY (`kode_verifikasi`) REFERENCES `verifikasis` (`kode`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="verifikasis" view="colnames">
+<left>810</left>
+<top>318</top>
+<width>253</width>
+<height>375</height>
+<sql_create_table>CREATE TABLE `verifikasis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) NOT NULL,
+  `no_pelayanan` varchar(255) DEFAULT '',
+  `tgl_masuk` varchar(255) DEFAULT '',
+  `tgl_keluar` varchar(255) DEFAULT '',
+  `lama_dirawat` int(11) DEFAULT '0',
+  `no_kk` varchar(255) DEFAULT '',
+  `nik` varchar(255) DEFAULT '',
+  `ktp` varchar(255) DEFAULT '',
+  `dokter` varchar(255) DEFAULT '',
+  `poli` varchar(255) DEFAULT '',
+  `keluhan` varchar(255) DEFAULT '',
+  `diagnosa_icd` varchar(255) DEFAULT '',
+  `status_pengiriman` tinyint(1) DEFAULT '0',
+  `status_verifikasi_sistem` tinyint(1) DEFAULT '0',
+  `status_verifikasi_verifikator` int(11) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `total_tarif` double DEFAULT '0',
+  `nama_pasien` varchar(255) DEFAULT NULL,
+  `kode_alasan_verifikasi` varchar(255) DEFAULT NULL,
+  `no_ejkbm` varchar(255) DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `kode_jenis_pelayanan` int(11) DEFAULT NULL,
+  `kode_kabupaten` varchar(255) DEFAULT NULL,
+  `nama_t_medis` varchar(255) DEFAULT NULL,
+  `nama_obat` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `sent_to_ejkbm` tinyint(1) DEFAULT '0',
+  `sent_to_rs` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `NewIndex1` (`kode`),
+  KEY `NewIndex2` (`iduser`),
+  CONSTRAINT `FK_verifikasis` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="verifikasi_obats" view="colnames">
+<left>256</left>
+<top>34</top>
+<width>171</width>
+<height>294</height>
+<sql_create_table>CREATE TABLE `verifikasi_obats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) NOT NULL,
+  `kode_verifikasi` varchar(255) DEFAULT NULL,
+  `kode_obat_rs` varchar(255) DEFAULT NULL,
+  `jumlah_obat_rs` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `kode_obat_ejkbm` varchar(255) DEFAULT NULL,
+  `satuan_tarif_ejkbm` double DEFAULT '0',
+  `sub_total_tarif_ejkbm` double DEFAULT '0',
+  `iduser` int(11) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `nama_obat_rs` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_verifikasi_obats` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapping_data_tindakan_penunjangs" view="colnames">
+<left>1260</left>
+<top>688</top>
+<width>117</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `mapping_data_tindakan_penunjangs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_rs` varchar(255) DEFAULT NULL,
+  `kode_ejkbm` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_mapping_data_tindakan_penunjangs` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapping_data_tindakan_medis" view="colnames">
+<left>1296</left>
+<top>1020</top>
+<width>117</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `mapping_data_tindakan_medis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_rs` varchar(255) DEFAULT NULL,
+  `kode_ejkbm` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_mapping_data_tindakan_medis` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapping_data_pemeriksaans" view="colnames">
+<left>892</left>
+<top>1288</top>
+<width>155</width>
+<height>209</height>
+<sql_create_table>CREATE TABLE `mapping_data_pemeriksaans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_tm_rs` varchar(255) DEFAULT NULL,
+  `kode_tm_ejkbm` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `kode_pemeriksaan` varchar(255) DEFAULT NULL,
+  `jenis_pelayanan` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_mapping_data_pemeriksaans` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="mapping_data_obats" view="colnames">
+<left>1134</left>
+<top>1160</top>
+<width>117</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `mapping_data_obats` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode_rs` varchar(255) DEFAULT NULL,
+  `kode_ejkbm` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_mapping_data_obats` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="alasan_verifikasis" view="colnames">
+<left>478</left>
+<top>1092</top>
+<width>110</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `alasan_verifikasis` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `alasan` varchar(255) DEFAULT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`iduser`),
+  CONSTRAINT `FK_alasan_verifikasis` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kabupatens" view="colnames">
+<left>1208</left>
+<top>364</top>
+<width>110</width>
+<height>158</height>
+<sql_create_table>CREATE TABLE `kabupatens` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`kode`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="peserta_jkbms" view="colnames">
+<left>1494</left>
+<top>802</top>
+<width>141</width>
+<height>294</height>
+<sql_create_table>CREATE TABLE `peserta_jkbms` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(255) DEFAULT NULL,
+  `no_pelayanan` varchar(255) DEFAULT NULL,
+  `no_kk` varchar(255) DEFAULT NULL,
+  `nik` varchar(255) DEFAULT NULL,
+  `ktp` varchar(255) DEFAULT NULL,
+  `no_ejkbm` varchar(255) DEFAULT NULL,
+  `kode_kabupaten` varchar(255) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `nama_pasien` varchar(255) DEFAULT NULL,
+  `alamat` text,
+  `tgl_masuk` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `NewIndex1` (`kode_kabupaten`),
+  CONSTRAINT `FK_peserta_jkbms` FOREIGN KEY (`kode_kabupaten`) REFERENCES `kabupatens` (`kode`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="functions" view="colnames">
+<left>1356</left>
+<top>1290</top>
+<width>139</width>
+<height>175</height>
+<sql_create_table>CREATE TABLE `functions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `action_name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `controller_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="f_user_levels" view="colnames">
+<left>1130</left>
+<top>1370</top>
+<width>110</width>
+<height>141</height>
+<sql_create_table>CREATE TABLE `f_user_levels` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="settings" view="colnames">
+<left>1527</left>
+<top>1195</top>
+<width>129</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `string_value` varchar(255) DEFAULT NULL,
+  `integer_value` int(11) DEFAULT NULL,
+  `boolean_value` tinyint(1) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

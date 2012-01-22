@@ -1,0 +1,49 @@
+xml.instruct! :xml, :version=>"1.0"
+
+xml.verifikasi do
+ xml.status_pengiriman @status
+ if @status == "1"
+ xml.status_verifikasi @verifikasi.respon_verifikasi_sistem_xml
+ xml.total_tarif_ejkbm @verifikasi.total_tarif
+
+  xml.pemeriksaan do
+    @verifikasi_pemeriksaans.each do |verifikasi_pemeriksaan|
+      xml.pemeriksaan("kode_pemeriksaan" => verifikasi_pemeriksaan.kode_pemeriksaan_rs,
+         "jumlah_hari" => "#{verifikasi_pemeriksaan.jumlah}",
+         "status" => "#{verifikasi_pemeriksaan.status_verifikasi_sistem}")
+    end
+  end
+
+  xml.tindakan do
+    @verifikasi_tindakan_medis.each do |verifikasi_tindakan_medi|
+      xml.tindakan_medis("kode_tm" => verifikasi_tindakan_medi.kode_t_medis_rs, 
+        "tgl_tm" => "#{verifikasi_tindakan_medi.tgl_t_medis_rs}",
+        "status"=>"#{verifikasi_tindakan_medi.status_verifikasi_sistem}")
+      #xml.kode_t_medis verifikasi_tindakan_medi.kode_t_medis
+      #xml.status verifikasi_tindakan_medi.status_verifikasi
+    end
+  end
+
+  xml.obat do
+    @verifikasi_obats.each do |verifikasi_obat|
+      xml.obat("kode_obat" => verifikasi_obat.kode_obat_rs, 
+        "tgl_obat" => "#{verifikasi_obat.tgl_obat}",
+        "status"=>"#{verifikasi_obat.status_verifikasi_sistem}")
+      #xml.kode_t_medis verifikasi_tindakan_medi.kode_t_medis
+      #xml.status verifikasi_tindakan_medi.status_verifikasi
+    end
+  end
+
+  xml.pelayanan_lain do
+    @verifikasi_pelayanan_lains.each do |verifikasi_pelayanan_lain|
+      xml.obat("kode_pl" => verifikasi_pelayanan_lain.kode_pelayanan_lain_rs, 
+        "tgl_pl" => "#{verifikasi_pelayanan_lain.tgl_pelayanan_lain_rs}",
+        "status"=>"#{verifikasi_pelayanan_lain.status_verifikasi_sistem}")
+      #xml.kode_t_medis verifikasi_tindakan_medi.kode_t_medis
+      #xml.status verifikasi_tindakan_medi.status_verifikasi
+    end
+  end
+ end
+
+end
+

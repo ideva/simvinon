@@ -1,0 +1,31 @@
+WS:
+
+1. iduser = 3 adalah user virtual yang menggambarkan data diproses dari Web Service
+2. Level otorisasi ada 3 yaitu Admin, Verifikator, Rumah Sakit
+
+3. Menerima data dari RS, Non RS dan WS SIK, Alamat ws_vi_rs ( SIM VI )
+   Separator: _ localhost:3000/verifikasis/ws_vi_rs/new.xml?no_klaim_rs=1234&no_skp=1234&no_peserta=1234&norm&1234&no_daftar=1234&nama_pasien=Altec Lansing&alamat=Gianyar&kode_kabupaten=xxx&tgl_masuk=2011-12-12&tgl_keluar=2011-12-14&lama_dirawat=0&no_kk=123456789&nik=&ktp=012309894&nama_dokter=Dr RS&kode_ruang_rawat=1234&keluhan=Sakit Perut&diagnosa_icd=1234&jenis_pelayanan=0&tgl_t_medis=11-12-2011_11-12-2011_11-12-2011&kode_t_medis=tm1_tm2_tm3&nama_t_medis=Cabut Gigi_Suntik_KKK&jumlah_t_medis=1_1_1&&tgl_obat=11-12-2011_11-12-2011_11-12-2011&kode_obat=o1_o2_o3&nama_obat=Amoxilin_Forte_Panadol&jumlah_obat=5_1_1&kode_ruang_dirawat=0006&&tgl_pelayanan_lain=11-12-2011_11-12-2011_11-12-2011&nama_pelayanan_lain=a_b_c&kode_pelayanan_lain=01_02_03&jumlah_pelayanan_lain=1_1_1
+   Separator: ;    localhost:3000/verifikasis/ws_vi_rs/new.xml?no_klaim_rs=1234&no_skp=1234&no_peserta=1234&norm&1234&no_daftar=1234&nama_pasien=Altec Lansing&alamat=Gianyar&kode_kabupaten=xxx&tgl_masuk=2011-12-12&tgl_keluar=2011-12-14&lama_dirawat=0&no_kk=123456789&nik=&ktp=012309894&nama_dokter=Dr RS&kode_ruang_rawat=1234&keluhan=Sakit Perut&diagnosa_icd=1234&jenis_pelayanan=0&tgl_t_medis=11-12-2011;11-12-2011;11-12-2011&kode_t_medis=tm1;tm2;tm3&nama_t_medis=Cabut Gigi;Suntik;KKK&jumlah_t_medis=1;1;1&&tgl_obat=11-12-2011;11-12-2011;11-12-2011&kode_obat=o1_o2_o3&nama_obat=Amoxilin_Forte_Panadol&jumlah_obat=5;1;1&kode_ruang_dirawat=0006&&tgl_pelayanan_lain=11-12-2011;11-12-2011;11-12-2011&nama_pelayanan_lain=a;b;c&kode_pelayanan_lain=01;02;03&jumlah_pelayanan_lain=1;1;1
+
+4. *Menerima data dari EJKBM, Alamat ws_vi_ejkbm ( SIM VI )
+   http://localhost:3000/peserta_jkbms/ws_vi_ejkbm/new.xml?no_jkbm=1234&nama_pasien=Altec%20Lansing&alamat=Gianyar&kode_kabupaten=02&no_kk=123456789&nik=&ktp=012309894
+
+5. *Mengambil data dari kepersetaan dari EJKBM ( SIM NON RS dan SIK )
+   http://localhost:3000/verifikasis/ambil_data_kepersetaan_ejkbm/new
+
+6. Mengirim data ke EJKBM dan RS (Verifiaksi.send_to_ejkbm, Verifiaksi.send_to_rs)
+
+7. Mengirim data ke VI dari NON RS dan WS SIK ( WS SIK -> PesertaJKBM.send_to_vi)
+
+8. Menerima data transaksi perbaikan, gagal dan sukses dari SIM VI
+
+Cron Job
+1. Verifiaksi.send_to_ejkbm
+2. Verifiaksi.ambil_data_kepersetaan_ejkbm
+
+
+Alamat WS Sanglah:
+http://192.168.1.2:8080/web_service/sanglah/get_verifikasi.php
+
+Alamat WS Portal
+http://localhost:3001/verifikasis/ws_vi_rs/new.xml

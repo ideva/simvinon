@@ -1,0 +1,59 @@
+
+
+<% if (column rescue false) %>
+
+  <table width="100%" cellspacing="5" cellpadding="3" style=" overflow:hidden;  border:0px solid #cccccc; background-color:transparent;">
+    <tbody>
+      <%
+        i=0
+        n=1
+      %>
+      <% object_photos.each do |object| %>
+        <%
+        unless object.nil?
+          if (session[:mobile] rescue false)
+            thumbnail = "phone"
+           else
+            thumbnail = thumb rescue "thumb"
+           end
+        %>
+          <% if (i == 0 ) || ( (i.to_i > 0) && (i % (column rescue 6) == 0 ) ) %><tr><%end%>
+            <td valign="top" align="center" style="overflow:hidden; text-align: center; border:none;" width="16%">
+              <%if (show_popup rescue false) %>
+                <%= link_to image_tag(object.image_url(thumbnail), :alt => (title rescue object.caption rescue ""),:title => (title rescue object.caption rescue ""), :class => "img"), object.image_url, :rel => "sexylightbox[#{group rescue 'photo'}]", :title => (title rescue object.caption rescue "")  %>
+              <%else%>
+                <%= image_tag(object.image_url(thumbnail), :alt => (title rescue object.caption rescue ""),:title => (title rescue object.caption rescue ""), :class => "img")  %>
+              <%end%>
+              <br/>
+              <%= object.caption %>
+            </td>
+            <% if i == (column rescue 6)*n - 1 %><%n=n+1%></tr><%end%>
+          <%i=i+1%>
+        <%end%>
+      <%end%>
+    </tbody>
+  </table>
+
+<%else%>
+
+  <% object_photos.each do |object| %>
+    <div class="thumb_horizontal">
+      <%
+            unless object.nil?
+              if (session[:mobile] rescue false)
+                thumbnail = "phone"
+              else
+                thumbnail = thumb rescue "thumb"
+              end
+      %>
+        <%if (show_popup rescue false) %>
+          <%= link_to image_tag(object.image_url(thumbnail), :alt => (title rescue object.caption rescue ""),:title => (title rescue object.caption rescue "")), object.image_url, :rel => "sexylightbox[#{group rescue 'photo'}]", :title => (title rescue object.caption rescue "")  %>
+        <%else%>
+          <%= image_tag(object.image_url(thumbnail), :alt => (title rescue object.caption rescue ""),:title => (title rescue object.caption rescue ""))  %>
+        <%end%>
+      <%end%>
+    </div>
+  <%end%>
+  <div style="clear:both"></div>
+
+<%end%>

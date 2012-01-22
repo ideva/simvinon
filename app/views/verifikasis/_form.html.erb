@@ -1,0 +1,71 @@
+
+<%= form_for(@verifikasi) do |f| %>
+  <% if @verifikasi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@verifikasi.errors.count, "error") %> prohibited this verifikasi from being saved:</h2>
+
+      <ul>
+      <% @verifikasi.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="" style="">
+    <%= render :partial => "verifikasis/data_pasien" %>
+  </div>
+
+  <div class="" style="">
+    <%= render :partial => "verifikasis/data_obat_and_tindakan" %>
+  </div>
+
+    <div class="field" style="margin-top: 20px;">
+      <hr/>
+      <%#= f.label :status_verifikasi_verifikator, "Status Verifikasi" %><br />
+      <%#= select :verifikasi, :status_verifikasi_verifikator, option, {:selected => @verifikasi.status_verifikasi_verifikator}, {:onchange => "check_status_verifikasi()"} %>
+    </div>
+    <!--<div class="field">
+      <%
+        if @verifikasi.status_verifikasi_verifikator == 0 || !@verifikasi.status_verifikasi_verifikator == 1
+          disabled = true
+        else
+          disabled = false
+        end
+      %>
+      <%#= f.label :kode_alasan_verifikasi, "Alasan Tidak Lolos" %><br />
+      <%#= f.collection_select :kode_alasan_verifikasi, AlasanVerifikasi.order("alasan"), :kode, :alasan, {:prompt => true }, {:class => "required", :disabled => disabled} %>
+    </div>-->
+    <div class="field">
+      <%= f.label :komentar, "Komentar Akhir" %><br />
+      <%= f.text_area :komentar, {:class => "", :disabled => (disabled)} %>
+    </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+  <script type="text/javascript">
+    function check_status_verifikasi(param, val){
+      //alert($('input:radio[id=verifikasi_'+param+'_status_verifikasi_verifikator_'+val+']:checked').val());
+      status = $('input:radio[id=verifikasi_'+param+'_status_verifikasi_verifikator_'+val+']:checked').val()
+      //alert(status);
+      if(status == '2' || status == '3'){
+        $('#verifikasi_'+param+'_kode_alasan_verifikasi').removeAttr("disabled");
+        $('#verifikasi_'+param+'_komentar').removeAttr("disabled");
+      }else{
+        $('#verifikasi_'+param+'_kode_alasan_verifikasi').attr("disabled", true);
+        $('#verifikasi_'+param+'_kode_alasan_verifikasi').val('');
+        $('#verifikasi_'+param+'_komentar').attr("disabled", true);
+        $('#verifikasi_'+param+'_komentar').val('');
+      }
+    }
+
+    function check_box_toggle2(param, val){
+      id = 'verifikasi_'+param+'_status_verifikasi_verifikator_'+val;
+      $('#'+id).attr('checked', true);
+      check_status_verifikasi(param, val);
+  }
+
+  </script>

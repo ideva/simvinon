@@ -1,0 +1,30 @@
+
+<p>
+  <b>Kode:</b>
+  <%= @pemeriksaan.kode %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @pemeriksaan.nama %>
+</p>
+
+<p>
+  <b>Tarif:</b>
+  <%#= @pemeriksaan.tarif rescue "0"%>
+  <%= number_to_currency(@pemeriksaan.tarif, :unit => "Rp ") %>
+</p>
+
+<p>
+  <b>Flag:</b>
+  <%= @pemeriksaan.status_flag %>
+</p>
+
+<p>
+  <b>Jenis Pelayanan:</b>
+  <%= @pemeriksaan.status_pelayanan rescue "-"%>
+</p>
+
+
+<%#= link_to 'Edit', edit_pemeriksaan_path(@pemeriksaan) %> 
+<%#= link_to 'Back', pemeriksaans_path %>

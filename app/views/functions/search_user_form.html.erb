@@ -1,0 +1,11 @@
+<%= form_for(@user, :url => {:action => :searching_user, :id => @id},
+                    :html => {:name => "form_#{controller.controller_name}"}) do |f| %>
+
+  <div class="field">
+    User<br />
+    <%= f.collection_select :id, User.all, :id, :login, {:promt => true} %>
+  </div>
+  <!--<div class="actions">
+    <%#= f.submit %>
+  </div>-->
+<% end %>

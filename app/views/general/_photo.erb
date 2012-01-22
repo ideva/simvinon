@@ -1,0 +1,21 @@
+
+<%
+
+        prefer_image_width = width.to_i rescue 70
+        prefer_image_height = height.to_i rescue 70
+        unless object.nil?
+
+
+          if (session[:mobile] rescue false)
+            thumbnail = "phone"
+          else
+            thumbnail = thumb rescue "thumb"
+          end
+%>
+      <%= link_to image_tag(object.image_url(thumbnail),:size => "#{prefer_image_width}x#{prefer_image_height}", :alt => (title rescue object.caption rescue ""),:title => (title rescue object.caption rescue "")), object.image_url, :rel => "sexylightbox[#{group rescue 'photo'}]", :title => (title rescue object.caption rescue "")  %>
+    <%
+        else
+          prefer_image_height = prefer_image_width.to_i
+    %>
+          <%= link_to image_tag("none.gif",:size => "#{prefer_image_width}x#{prefer_image_height}", :alt => (title rescue object.caption rescue ""),:title => (title rescue object.caption rescue "")) %>
+<%end%>

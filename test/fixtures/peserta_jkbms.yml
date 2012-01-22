@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  no_pelayanan: MyString
+  no_kk: MyString
+  nik: MyString
+  ktp: MyString
+  no_ejkbm: MyString
+  kode_kabupaten: MyString
+  flag: 1
+
+two:
+  kode: MyString
+  no_pelayanan: MyString
+  no_kk: MyString
+  nik: MyString
+  ktp: MyString
+  no_ejkbm: MyString
+  kode_kabupaten: MyString
+  flag: 1

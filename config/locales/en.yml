@@ -1,0 +1,64 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  
+  will_paginate:
+    previous_label: "&#8592; Sebelum"
+    next_label: "Selanjutnya &#8594;"
+    page_gap: "&hellip;"
+    page_entries_info:
+      single_page:
+        #zero:  "No %{model} found"
+        zero:  "Tidak ada data yang ditemukan"
+        #one:   "Displaying 1 %{model}"
+        one:   "Menampilkan 1 data"
+        #other: "Displaying all %{count} %{model}"
+        other: "Total data = <b>&nbsp;%{count}</b>"
+      single_page_html:
+        #zero:  "No %{model} found"
+        zero:  "Tidak ada data yang ditemukan"
+        #one:   "Displaying <b>1</b> %{model}"
+        one:   "Menampilkan <b>1</b> data"
+        other: "Total data = <b>&nbsp;%{count}</b>" 
+        #other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
+
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+      #multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+      multi_page_html: "Menampilkan data <b>%{from}&nbsp;-&nbsp;%{to}</b> dari total data <b>%{count}</b>"
+
+  time:
+   formats:
+    ind: '%d %b. %Y'
+    your_another_format: '%I:%M'
+    
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user:
+        password: "Sandi"
+        password_confirmation: "Konfirmasi Sandi"
+    errors:
+      template:
+        header:
+          one:   "1 kesalahan telah terjadi pada saat data akan disimpan"
+          other: "%{count} kesalahan telah terjadi pada saat data ingin disimpan"
+        body:    "Masalah terjadi pada bagian:"
+
+      messages:
+        blank: "tidak boleh kosong"
+
+      models:
+        user:
+          attributes:
+            password:
+              length:
+                minimum: 6
+                too_short: "Sandi terlalu pendek"
+              confirmation: "Konfirmasi sandi tidak cocok"
+            password_confirmation:
+              confirmation: "Konfirmasi sandi tidak cocok"
+
+

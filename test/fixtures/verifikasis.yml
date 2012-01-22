@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  no_pelayanan: MyString
+  tgl_masuk: MyString
+  tgl_keluar: MyString
+  lama_dirawat: 1
+  no_kk: MyString
+  nik: MyString
+  ktp: MyString
+  dokter: MyString
+  poli: MyString
+  keluhan: MyString
+  diagnosa_icd: MyString
+  status_pengiriman: 
+  status_verifikasi_sistem: false
+  status_verifikasi_verifikator: false
+
+two:
+  kode: MyString
+  no_pelayanan: MyString
+  tgl_masuk: MyString
+  tgl_keluar: MyString
+  lama_dirawat: 1
+  no_kk: MyString
+  nik: MyString
+  ktp: MyString
+  dokter: MyString
+  poli: MyString
+  keluhan: MyString
+  diagnosa_icd: MyString
+  status_pengiriman: 
+  status_verifikasi_sistem: false
+  status_verifikasi_verifikator: false

@@ -1,0 +1,29 @@
+<%= form_for(@mapping_pelayanan_lain) do |f| %>
+  <% if @mapping_pelayanan_lain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mapping_pelayanan_lain.errors.count, "error") %> prohibited this mapping_pelayanan_lain from being saved:</h2>
+
+      <ul>
+      <% @mapping_pelayanan_lain.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_pelayanan_lain_rs %><br />
+    <%= f.text_field :kode_pelayanan_lain_rs %>
+  </div>
+  <div class="field">
+    <%= f.label :kode_pelayanan_lain_ejkbm %><br />
+    <%= f.text_field :kode_pelayanan_lain_ejkbm %>
+  </div>
+  <div class="field">
+    <%= f.label :iduser %><br />
+    <%= f.text_field :iduser %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

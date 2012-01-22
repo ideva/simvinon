@@ -1,0 +1,42 @@
+<%= form_for(@function, :url => {:action => "assign_user_function_list" },
+                        :html => { :name => "form_#{controller.controller_name}", :id => "form_#{controller.controller_name}" }) do |f| %>
+
+  <div class="field">
+    <%  if @user.id.nil? %>
+    User<br />
+    <%= collection_select :user, :id, User.all, :id, :login, {:promt => true} %>
+    <%else%>
+      <p>
+        <b>User: </b><%= @user.login %>
+        <%= hidden_field :user, :id %>
+      </p>
+    <%end%>
+  </div>
+  <div class="field">
+    Hak Akses
+    <table>
+    <%
+      checked = false
+      i = 0
+      Function.all.each do |function|
+        i+=1
+        string = @user.function_list rescue ''
+        split = ","
+        match = function.id.to_s rescue ''
+        if (loop_and_check(string, split, match) rescue false)
+          checked = true
+        else
+          checked = false
+        end
+    %>
+      <% if i % 3 == 1%><tr><%end%>
+        <td style="width: 200px">
+          <%= check_box_tag "function_list[]", function.id, checked, :id => "function#{function.id}" %>
+          <span onclick="check_box_toggle('function<%=function.id%>')" style="cursor: pointer"><%= function.name.capitalize %></span>
+        </td>
+      <% if i % 3 == 0%></tr><%end%>
+    <%end%>
+    </table>
+  </div>
+
+<%end%>

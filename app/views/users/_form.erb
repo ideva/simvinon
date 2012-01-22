@@ -1,0 +1,66 @@
+<%= form_for(@user, :html => {}) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :login, :class => "required" %><br/>
+    <%= f.text_field :login, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :name, :class => "required" %><br/>
+    <%= f.text_field :name, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :email , :class => "required" %><br/>
+    <%= f.text_field :email, :class => "email" %>
+  </div>
+
+  <% if @user.id.nil? %>
+    <div class="field">
+      <%= f.label :password, :class => "required" %><br/>
+      <%= f.password_field :password, :class => "required" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, 'Confirm Password', :class => "required"  %><br/>
+      <%= f.password_field :password_confirmation, :class => "required" %>
+    </div>
+  <%end%>
+
+  <div class="field">
+    <%= f.label :iduser_type, 'Tipe User', :class => "required"  %><br/>
+    <%= f.collection_select :iduser_type, UserType.all, :id, :nama, {:promt => true}, :class => "required" %>
+  </div>
+
+  <% #if (current_user.super_admin? rescue false) && @user.super_admin == false %>
+  <% if (current_user.super_admin? rescue false) %>
+    <div class="field">
+      <%= f.check_box :super_admin, :style => "width: 20px;" %> Super Admin
+    </div>
+  <%end%>
+
+  <% if (super_admin? rescue false) %>
+    <!--
+    <div class="field">
+      <%#= f.label :iduser_level, 'User Level'  %><br/>
+      <%#= f.collection_select :iduser_level, FUserLevel.all, :id, :name, {:promt => true}, :class => "required" %>
+    </div>
+    -->
+  <%end%>
+
+  <div class="actions">
+    <%= f.submit 'Save', :class => "as_button" %>
+  </div>
+<% end %>
+
+
+
+

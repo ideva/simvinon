@@ -1,0 +1,45 @@
+<% @verifikasis.each do |verifikasi| %>
+  <tr>
+    <%if @show_bt_upload %>
+      <td>
+        <input type="checkbox" name="check_box[]" value="<%=verifikasi.kode%>" class="child_check_box"/>
+      </td>
+    <%end%>
+    <!--<td><%= verifikasi.kode %></td>-->   
+    <td>
+      <%  a = verifikasi.no_reg %>
+      <label title="<%=a%>"><%=  a.length > 10 ? a[0..9]+"..." : a %></label>
+    </td>
+    <td><%= verifikasi.kabupaten.nama rescue '' %></td>
+    <!--<td><%#= l(verifikasi.tgl_keluar.to_time, :format => :ind) rescue '-' %></td>-->
+    <td><%= verifikasi.no_ejkbm %></td>
+    <td>
+      <%  a = verifikasi.nik %>
+      <label title="<%=a%>"><%=  a.length > 10 ? a[0..9]+"..." : a %></label>
+    </td>
+    <td><%= verifikasi.status_verifikasi %></td>
+    <td> <%= label_tag verifikasi.sent_to_rs_text, verifikasi.sent_to_rs_text, :style => (verifikasi.sent_to_rs == true ? "color:blue" : "") %> </td>
+    <td><%= label_tag verifikasi.sent_to_ejkbm_text, verifikasi.sent_to_ejkbm_text, :style => (verifikasi.sent_to_ejkbm == true ? "color:blue" : "") %></td>
+    <td><%= link_to 'Lihat', verifikasi %></td>
+    <td>
+      <% if (verifikasi.status_pengiriman == 2) %>
+      <%else%>
+        <%= link_to 'Periksa', edit_verifikasi_path(verifikasi), :class => "" %>
+      <%end%>
+    </td>
+  </tr>
+<% end %>
+
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @verifikasis %>
+        </div>
+        <%= will_paginate @verifikasis, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

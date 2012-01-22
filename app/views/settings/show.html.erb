@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @setting.name %>
+</p>
+
+<p>
+  <b>Integer value:</b>
+  <%= @setting.integer_value %>
+</p>
+
+<p>
+  <b>Boolean value:</b>
+  <%= @setting.boolean_value %>
+</p>
+
+
+<%= link_to 'Edit', edit_setting_path(@setting) %> |
+<%= link_to 'Back', settings_path %>

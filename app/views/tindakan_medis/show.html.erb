@@ -1,0 +1,30 @@
+
+<p>
+  <b>Kode:</b>
+  <%= @tindakan_medi.kode %>
+</p>
+
+<p>
+  <b>Kode kategori tindakan medis:</b>
+  <%= @tindakan_medi.kode_kategori_tindakan_medis %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @tindakan_medi.nama %>
+</p>
+
+<p>
+  <b>Tarif:</b>
+  <%#= @tindakan_medi.tarif %>
+  <%= number_to_currency(@tindakan_medi.tarif, :unit => "Rp ") %>
+</p>
+
+<p>
+  <b>Flag:</b>
+  <%= @tindakan_medi.flag %>
+</p>
+
+
+<%#= link_to 'Edit', edit_tindakan_medi_path(@tindakan_medi) %> |
+<%#= link_to 'Back', tindakan_medis_path %>

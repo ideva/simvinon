@@ -1,0 +1,51 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#bt_delete').click(function() {
+        $("#bt_delete").attr("href","<%= url_for(:action => :batch_destroy, :id => "new") %>");
+        //alert( $("#kirim_data").attr("action") );
+        //$("#kirim_data").submit();
+      });
+  });
+</script>
+<table>
+  <tr>
+    <%if current_user.super_admin %>
+      <th>
+         <td>
+          <input type="checkbox" id="master_check_box" onclick="check_box_toggle_class(this, 'child_check_box')"/>
+        </td>
+      </th>
+    <%end%>
+    <th>Name</th>
+    <th>Controller name</th>
+    <th>Action name</th>
+    <%if current_user.super_admin%>
+      <th></th>
+      <th></th>
+    <%end%>
+  </tr>
+<%
+      session[:array_id] = Array.new
+      @functions.each do |function|
+        id = function.id # -- Adjust it --
+        session[:array_id] << id
+    %>
+  <tr id="list<%=  id %>" style="">
+    <%if current_user.super_admin%>
+    <td>
+      <td>
+        <input type="checkbox" name="check_box[]" value="<%=function.id%>" class="child_check_box"/>
+      </td>
+    </td>
+    <%end%>
+    <td><%= function.name %></td>
+    <td><%= function.controller_name %></td>
+    <td><%= function.action_name %></td>
+    <%if current_user.super_admin%>
+      <td><%= link_to 'Edit', edit_function_path(function) %></td>
+      <td><%= link_to 'Hapus', function, :confirm => 'Are you sure?', :method => :delete %></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+

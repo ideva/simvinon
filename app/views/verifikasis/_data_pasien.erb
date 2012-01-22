@@ -1,0 +1,91 @@
+  <h2>Data Pasien</h2>
+  <div class="left" style="width: 300px">
+    <p>
+      <b>No Reg:</b>
+      <%= @verifikasi.no_reg %>
+    </p>
+
+    <p>
+      <b>No. JKBM:</b>
+      <%= @verifikasi.no_ejkbm %>
+    </p>
+    <p>
+      <b>Nama Pasien:</b>
+      <%= @verifikasi.nama_pasien %>
+    </p>
+
+    <p>
+      <b>Kabupaten:</b>
+      <%= @verifikasi.kabupaten.nama rescue '-'%>
+    </p>
+
+    <!--<p>
+      <b>Alamat:</b>
+      <%#= @verifikasi.alamat %>
+    </p>-->
+
+    <p>
+      <b>No. KK:</b>
+      <%= @verifikasi.no_kk == ""? "-" : @verifikasi.no_kk%>
+    </p>
+
+    <p>
+      <b>No. NIK:</b>
+      <%= @verifikasi.nik  == ""? "-" : @verifikasi.nik%>
+    </p>
+
+    <p>
+      <b>No. KTP:</b>
+      <%= @verifikasi.ktp  == ""? "-" : @verifikasi.ktp%>
+    </p>
+  </div>
+  <div class="right" style="width: 300px;">
+    <p>
+    <b>Tanggal masuk:</b>
+      <%= l(@verifikasi.tgl_masuk.to_time, :format => :ind) rescue '-' %>
+    </p>
+
+    <p>
+      <b>Tanggal keluar:</b>
+      <%= l(@verifikasi.tgl_keluar.to_time, :format => :ind) rescue '-' %>
+    </p>
+
+    <p>
+      <b>Lama dirawat:</b>
+      <%= @verifikasi.lama_dirawat %>
+    </p>
+
+    <p>
+      <b>Dokter:</b>
+      <%= @verifikasi.dokter %>
+    </p>
+
+    <p>
+      <b>Poli:</b>
+      <%= @verifikasi.nama_instalasi_layanan %>
+    </p>
+
+    <p>
+      <b>Keluhan:</b>
+      <%= @verifikasi.keluhan %>
+    </p>
+
+    <p>
+      <b>Diagnosa ICD:</b>
+      <%= @verifikasi.diagnosa_icd %>
+    </p>
+    </div>
+  <div style="float: left; margin-left: 0px">
+    <p>
+      <b>Kode Transaksi:</b>
+      <%= @verifikasi.kode %>
+    </p>
+    <p>
+      <b>Jenis Pelayanan:</b>
+      <%= @verifikasi.jenis_pelayanan.nama rescue '' %>
+    </p>
+    <p>
+    <b>Status verifikasi:</b> <%= @verifikasi.status_verifikasi  %>
+    </p>
+  </div>
+  <div style="clear: both"></div>

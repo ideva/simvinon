@@ -1,0 +1,23 @@
+<% @mapping_data_pemeriksaans.each do |mapping_data_pemeriksaan| %>
+  <tr>
+    <td><%= mapping_data_pemeriksaan.kode_pemeriksaan_rs %></td>
+    <td><%= mapping_data_pemeriksaan.kode_pemeriksaan_ejkbm %></td>
+    <%#= link_to 'Show', mapping_data_pemeriksaan %>
+    <td><%= link_to 'Edit/Hapus', edit_mapping_data_pemeriksaan_path(mapping_data_pemeriksaan) %></td>
+    <%#= link_to 'Destroy', mapping_data_pemeriksaan, :confirm => 'Are you sure?', :method => :delete %>
+  </tr>
+<% end %>
+
+<tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @mapping_data_pemeriksaans %>
+        </div>
+        <%= will_paginate @mapping_data_pemeriksaans, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

@@ -1,0 +1,130 @@
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery( "#verifikasi_tgl_keluar").datepicker( { dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true } );
+  });
+</script>
+
+<%= form_for(@peserta_jkbm) do |f| %>
+  <% if @verifikasi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@verifikasi.errors.count, "error") %> prohibited this verifikasi from being saved:</h2>
+
+      <ul>
+      <% @verifikasi.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h2>Data Pasien</h2>
+  <div>
+    <p>
+      <b>Kode:</b>
+      <%= @peserta_jkbm.kode %>
+
+    </p>
+    <p>
+      <b>Nama Pasien:</b>
+      <%= @peserta_jkbm.nama_pasien == ""? "-" : @peserta_jkbm.nama_pasien %>
+      <%= hidden_field :verifikasi,:nama_pasien %>
+    </p>
+    <p>
+      <b>Nomor Pelayanan:</b>
+      <%= @peserta_jkbm.no_pelayanan %>
+      <%= hidden_field :verifikasi, :no_pelayanan %>
+    </p>
+    <p>
+      <b>No. KK:</b>
+      <%= @peserta_jkbm.no_kk == ""? "-" : @peserta_jkbm.no_kk%>
+      <%= hidden_field :verifikasi, :no_kk %>
+    </p>
+    <p>
+      <b>No. NIK:</b>
+      <%= @peserta_jkbm.nik  == ""? "-" : @peserta_jkbm.nik%>
+      <%= hidden_field :verifikasi,:nik %>
+    </p>
+    <p>
+      <b>No. KTP:</b>
+      <%= @peserta_jkbm.ktp  == ""? "-" : @peserta_jkbm.ktp%>
+      <%= hidden_field :verifikasi,:ktp %>
+    </p>
+    <p>
+      <b>No. EJKBM:</b>
+      <%= @peserta_jkbm.no_ejkbm %>
+      <%= hidden_field :verifikasi,:no_ejkbm %>
+    </p>
+    <p>
+      <b>Alamat:</b>
+      <%= @peserta_jkbm.alamat %>
+      <%= hidden_field :verifikasi,:alamat %>
+    </p>
+    <p>
+      <b>Kabupaten:</b>
+      <%= @peserta_jkbm.kode_kabupaten %>
+      <%= hidden_field :verifikasi,:kode_kabupaten %>
+    </p>
+    <p>
+      <b>Tanggal Masuk:</b>
+      <%#= @peserta_jkbm.tgl_masuk.to_date %>
+      <%=l(@peserta_jkbm.tgl_masuk.to_time, :format => :ind) rescue ''%>
+      <%= hidden_field :verifikasi,:tgl_masuk %>
+
+    </p>
+
+  </div>
+
+  <div style="margin-top: 10px; border-top: 1px solid silver;">
+
+    <div class="left" style="margin-top: 10px;">
+      <div class="field" >     
+        <%= label :verifikasi,:dokter, :class => "required" %><br />
+        <%= text_field :verifikasi,:dokter, :class => "required", :value => @verifikasi.dokter rescue '' %>
+        <%= hidden_field :verifikasi, :kode_peserta_jkbm, :class => "required", :value => @verifikasi.kode_peserta_jkbm rescue '' %>
+      </div>
+      <div class="field">
+        <%= label :verifikasi,:poli, :class => "required" %><br />
+        <%= text_field :verifikasi,:poli, :class => "required", :value => @verifikasi.poli rescue '' %>
+      </div>
+      <div class="field">
+        <%= label :verifikasi,:keluhan, :class => "required" %><br />
+        <%= text_field :verifikasi,:keluhan, :class => "required", :value => @verifikasi.keluhan rescue '' %>
+      </div>
+    </div>
+    <div class="right" style="margin-top: 10px;">
+      <div class="field">
+        <%= label :verifikasi,:diagnosa_icd, :class => "required" %><br />
+        <%= text_field :verifikasi,:diagnosa_icd, :class => "required", :value => @verifikasi.diagnosa_icd rescue '' %>
+      </div>
+      <div class="field">
+        <%= label :verifikasi,:lama_dirawat, :class => "required" %><br />
+        <%= text_field :verifikasi,:lama_dirawat, :class => "required", :value => @verifikasi.lama_dirawat rescue '' %>
+      </div>
+      <div class="field">
+        <%= label :verifikasi,:tgl_keluar, :class => "required" %><br />
+        <%= text_field :verifikasi,:tgl_keluar, :class => "required", :value => @verifikasi.tgl_keluar rescue '' %>
+      </div>
+    </div>
+    <div style="clear: both"></div>
+  </div>
+    
+    
+<h2>Pemeriksaan</h2>
+<div class="" style="width: 670px">
+    <%= render :partial => "peserta_jkbms/tabel_pemeriksaan", :locals => {:kode_pemeriksaan => @verifikasi.kode rescue nil} %>
+</div>
+
+<h2>Obat</h2>
+<div class="" style="width: 670px">
+    <%= render :partial => "peserta_jkbms/tabel_obat" %>
+</div>
+
+<h2>Tindakan</h2>
+<div class="" style="width: 670px">
+    <%= render :partial => "peserta_jkbms/tabel_tindakan" %>
+</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

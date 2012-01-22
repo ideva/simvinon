@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode_pelayanan_lain_rs: MyString
+  kode_pelayanan_lain_ejkbm: MyString
+  iduser: 1
+
+two:
+  kode_pelayanan_lain_rs: MyString
+  kode_pelayanan_lain_ejkbm: MyString
+  iduser: 1

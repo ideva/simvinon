@@ -1,0 +1,11 @@
+<div id="caption<%= object_photo.id %>">
+    <% if ( object_photo.caption.strip != '' rescue false) %>
+    <div class="label_opaque" style="position:absolute;bottom:0;">
+      <%
+          min_length = 20
+      %>
+      <label id="" title="<%=object_photo.caption.strip rescue ""%>" style="word-wrap:break-word;"><%= (object_photo.caption.strip.length > min_length ? object_photo.caption.strip[0..min_length]+"..." : object_photo.caption.strip) rescue ""%></label>
+    </div>
+    <%end%>
+</div>
+

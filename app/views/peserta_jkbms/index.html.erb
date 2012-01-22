@@ -1,0 +1,35 @@
+<h1>Data Peserta JKBM</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>No. KK</th>
+    <th>NIK</th>
+    <th>KTP</th>
+    <th>No. EJKBM</th>
+    <th>Kode kabupaten</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    
+  </tr>
+
+<% @peserta_jkbms.each do |peserta_jkbm| %>
+  <tr>
+    <td><%= peserta_jkbm.kode %></td>
+    <td><%= peserta_jkbm.no_kk %></td>
+    <td><%= peserta_jkbm.nik %></td>
+    <td><%= peserta_jkbm.ktp %></td>
+    <td><%= peserta_jkbm.no_ejkbm %></td>
+    <td><%= peserta_jkbm.kabupaten.nama rescue '' %></td>
+    <td><%= peserta_jkbm.status_data %></td>
+    <td><%= link_to 'Lihat', peserta_jkbm %></td>
+    <td><%= link_to 'Ubah', edit_peserta_jkbm_path(peserta_jkbm) %></td>
+    <%#= link_to 'Destroy', peserta_jkbm, :confirm => 'Are you sure?', :method => :delete %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%#= link_to 'New Peserta jkbm', new_peserta_jkbm_path %>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table th{
+    text-align: center
+  }
+
+  .centre_td td{
+    text-align: center
+}
+</style>
+
+  <title>SIMVerifikasiEJKBM_RS</title>
+ <%= stylesheet_link_tag('general','print')%>
+ <%= stylesheet_link_tag('print', 'general', :media => :print) %>
+
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<div style="margin: 20px;">
+  <div style="float: left;margin-right: 10px;">
+    <%= button_to_function("Print", "javascript:print()", :class => "as_button noprint")%>
+  </div>
+  <div>
+    <%= button_to_function("Tutup", "javascript:self.close ();", :class => "as_button noprint")%>
+  </div>
+  <div style="clear: both"></div>
+
+  <%#kabupaten = Setting.find_by_name("KABUPATEN")%>
+  <%rs = Setting.find_by_name("RS_PUSK_NAMA")%>
+  <%kelas = Setting.find_by_name("KELAS_RS")%>
+  <%direktur = Setting.find_by_name("RS_DIREKTUR")%>
+  <div style="text-align: center;margin-bottom: 30px">
+    <h3>From <%=@nama_laporan%></h3>
+    <h3>(Diisi mingguan oleh RS/BKMM/BKIM/BBKPM/BP4, Diverifikasi Oleh Tenaga Pelaksana Verifikasi)</h3>
+  </div>
+  <div style="width: 60%; float: left; margin-bottom: 20px;padding-left: 10px">
+    <div style="width: 110px; float: left;margin-right: 0px;">
+      Tanggal Pelaporan <br/>
+      Kabupaten <br/>
+      Rentang Data <br/>
+      RS <br/>
+      Kelas RS
+    </div>
+    <div style="width: 5px;float: left;margin-right: 5px;">
+      :<br/>:<br/>:<br/>:<br/>:
+    </div>
+    <div style="float: left;margin-right: 5px;">
+      <%= Date.today.strftime("%d-%m-%Y") %><br/>
+      <%= @nama_kabupaten %><br/>
+      <%=@awal%> s/d  <%=@akhir%><br/>
+      <%= rs.string_value %><br/>
+      <%= kelas.string_value %>
+    </div>
+  </div>
+  <div style="text-align: right;float: left;margin-right: 10px;">Status :</div>
+
+  <div style="clear: both; margin-bottom: 50px">
+      <%= yield %>
+  </div>
+
+  <div style="clear: both"></div>
+  <div style="width: 40%; float: left;margin-right: 10px;margin-left: 10%">
+    <div style="margin-bottom: 50px"> Telah diverifikasi oleh Tenaga Pelaksana Verifikasi </div>
+    <div> <%=current_user.name%> </div>
+  </div>
+  <div style="width: 40%; float: left;margin-right: 5px;">
+    <div style="margin-bottom: 50px">
+      Tanda tangan Direktur Rumah Sakit & Cap RS
+    </div>
+    <div><%=direktur.string_value%></div>
+  </div>
+</div>
+
+
+</body>
+</html>

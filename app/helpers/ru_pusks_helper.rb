@@ -1,0 +1,2 @@
+module RuPusksHelper
+end

@@ -1,0 +1,33 @@
+<%= form_for(@pelayanan_lain) do |f| %>
+  <% if @pelayanan_lain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pelayanan_lain.errors.count, "error") %> prohibited this pelayanan_lain from being saved:</h2>
+
+      <ul>
+      <% @pelayanan_lain.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :nama %><br />
+    <%= f.text_field :nama %>
+  </div>
+  <div class="field">
+    <%= f.label :tarif %><br />
+    <%= f.text_field :tarif %>
+  </div>
+  <div class="field">
+    <%= f.label :iduser %><br />
+    <%= f.text_field :iduser %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

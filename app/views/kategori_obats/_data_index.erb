@@ -1,0 +1,21 @@
+<% @kategori_obats.each do |kategori_obat| %>
+  <tr>
+    <td><%= kategori_obat.kode %></td>
+    <td><%= kategori_obat.nama %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_kategori_obat_path(kategori_obat) %></td>
+  </tr>
+<% end %>
+  
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @kategori_obats %>
+        </div>
+        <%= will_paginate @kategori_obats, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

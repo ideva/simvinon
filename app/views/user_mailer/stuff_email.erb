@@ -1,0 +1,50 @@
+<div style="margin-bottom:10px">
+  <div style="margin-bottom:10px;">
+    <%= (link_to @user.full_name, "http://#{SITE}/#{@user.to_param}/profile/#{@user.id}") rescue @user%>
+    wants you to look this Ads.<br/>
+    <%=link_to "#{@d_stuff.name}", "http://#{SITE}/#{@d_stuff.d_brand.to_param}/stuff/#{@d_stuff.to_param}/#{@d_stuff.id}"%>
+  </div>
+<%unless @msg == "" || @msg.nil?%>
+  <div>
+    <u>Message from <%=@user.full_name rescue @user%></u>: <br/>
+    <%=@msg%>
+  </div>
+<%end%>
+</div>
+<div>
+  <h2>
+    <% if @d_stuff.put_onsale %><label style="color:red">OnSale:</label><%end%> <%=h @d_stuff.name %>
+  </h2>
+  <label>Taged as
+    <%= render :partial => "l_tags/tag_list_simple", :locals => {:l_tags => @array_tag, :action => "by_tag", :model => "DStuff"}  %>
+  </label><br/>
+  <label>Viewed <%= @d_stuff.counter   %> times.</label>
+  <table style="background-color: #226a00;color:white;margin:10px 0">
+    <tr>
+      <td style="width:20%">Posted at:</td>
+      <td><%= @d_stuff.created_at.to_date %></td>
+    </tr>
+    <tr>
+      <td>Condition:</td>
+      <td><%= @d_stuff.l_stuff_condition.name %></td>
+    </tr>
+    <% if @d_stuff.use_price  %>
+      <tr>
+        <td>Price:</td>
+        <td><%= number_to_currency(@d_stuff.price, :unit => @d_stuff.l_currency.symbol) %><% if @d_stuff.is_negotiable %>&nbsp;<label style="color:yellow">Negotiable Price</label><%end%></td>
+      </tr>
+    <%end%>
+    <% if @d_stuff.show_stock  %>
+      <tr>
+        <td>Stock:</td>
+        <td><%= @d_stuff.stock %></td>
+      </tr>
+          <%end%>
+  </table>
+  <%=link_to "See Detail", "http://#{SITE}/#{@d_stuff.user.to_param}/stuff/#{@d_stuff.to_param}/#{@d_stuff.id}"%>
+</div>
+
+
+<div style="clear:both"></div>
+
+

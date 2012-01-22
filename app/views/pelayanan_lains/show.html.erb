@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Kode:</b>
+  <%= @pelayanan_lain.kode %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @pelayanan_lain.nama %>
+</p>
+
+<p>
+  <b>Tarif:</b>
+  <%= @pelayanan_lain.tarif %>
+</p>
+
+<p>
+  <b>Iduser:</b>
+  <%= @pelayanan_lain.iduser %>
+</p>
+
+
+<%= link_to 'Edit', edit_pelayanan_lain_path(@pelayanan_lain) %> |
+<%= link_to 'Back', pelayanan_lains_path %>

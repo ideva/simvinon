@@ -1,0 +1,41 @@
+<style>
+    .simple_box_index{
+      float:left;
+      padding:5px;
+      width:100px;
+      height:100px;
+      margin-left:10px;
+      margin-top:10px;
+      border:1px solid silver;
+      text-align:center;
+      cursor:pointer;
+    }
+  </style>
+
+
+  <div style="width:100%;margin:0 auto">
+  <%  if @current_user.iduser_level == 1 %>
+     <div class="simple_box_index" onclick="window.location='<%=url_for(:controller => "f_user_levels")%>'"> <%= image_tag "master48x48.png" %><br/>Master User Level </div>
+   <%end%>
+  <%  if @current_user.iduser_level == 1 || @current_user.iduser_level == 2 %>
+    <div class="simple_box_index" onclick="window.location='<%=url_for(:controller => "users")%>'"> <%= image_tag "user48x48.png" %><br/>User</div>
+  <%end%>
+    <div class="simple_box_index" onclick="window.location='<%= url_for(:controller => "pages") %>'"> <%= image_tag "page-swap-icon48x48.png" %><br/>Page List</div>
+    <div class="simple_box_index" onclick="window.location='<%= url_for(:controller => "blogs") %>'"> <%= image_tag "page-preview-icon48x48.png" %><br/>Article List</div>
+    <div class="simple_box_index" onclick="window.location='<%= url_for(:controller => "album_galleries") %>'"> <%= image_tag "Photos-icon48x48.png" %><br/>Gallery List</div>
+
+</div>
+
+<% if (@current_user.active? rescue false) %>
+
+
+<% else %>
+  <!--
+  A notification e-mail has sent to your e-mail address.<br/>
+  Please check your e-mail to have full access of this system.
+
+  Your account will be activated soons, a notifivation e-mail will be sent to your email address.
+  -->
+<%end%>
+<div style="clear: both"></div>
+

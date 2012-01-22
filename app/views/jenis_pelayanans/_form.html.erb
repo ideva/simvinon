@@ -1,0 +1,25 @@
+<%= form_for(@jenis_pelayanan) do |f| %>
+  <% if @jenis_pelayanan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@jenis_pelayanan.errors.count, "error") %> prohibited this jenis_pelayanan from being saved:</h2>
+
+      <ul>
+      <% @jenis_pelayanan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode %><br />
+    <%= f.text_field :kode %>
+  </div>
+  <div class="field">
+    <%= f.label :nama %><br />
+    <%= f.text_field :nama %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,34 @@
+<%if @form_print == false%>
+<h1>Data Laporan <%= @nama_laporan  %> </h1>
+<%end%>
+<% i = 1 %>
+<table>
+  <tr>
+    <th >No.</th>
+    <th>Pelayanan</th>
+    <th>Jumlah Pasien</th>
+    <th>Lama Rawat</th>
+    <th>Total Tarif</th>
+  </tr>
+  <%if @form_print == true%>
+  <tr class="centre_td">
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+  <%end%>
+
+  <% @laporans.each do |laporan| %>
+  <tr>
+    <td style="text-align: right"><%= i %></td>
+    <td><%= laporan["Pelayanan"] %></td>
+    <td style="text-align: right"><%= laporan["Jumlah Pasien"] %></td>
+    <td style="text-align: right"><%= laporan["Lama Rawat"] %></td>
+    <td style="text-align: right"><%= laporan["Total Tarif"] %></td>
+  </tr>
+  <%i = i + 1%>
+<% end %>
+
+</table>

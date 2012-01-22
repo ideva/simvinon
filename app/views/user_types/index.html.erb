@@ -1,0 +1,31 @@
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Description</th>  
+  </tr>
+
+  <%
+      session[:array_id] = Array.new
+      color_style = ODD_COLOR
+      @user_types.each do |user_type|
+        if color_style == ODD_COLOR
+          color_style = EVEN_COLOR
+        else
+          color_style = ODD_COLOR
+        end
+
+        session[:array_id] << user_type.id
+    %>
+  <tr id="list<%=user_type.id%>" style="background-color:<%= color_style %>">
+    <td><%= link_to 'Ubah', edit_user_type_path(user_type) %></td>
+    <td><%= link_to 'Hapus', user_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= user_type.kode %></td>
+    <td><%= user_type.nama %></td>
+    <td><%= user_type.description %></td>    
+  </tr>
+<% end %>
+</table>
+

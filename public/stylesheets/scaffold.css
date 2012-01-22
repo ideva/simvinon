@@ -1,0 +1,90 @@
+
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 12px;
+  overflow: auto;
+
+}
+/*
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+*/
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+div.actions input {
+     background-color: #dae252;
+    padding: 5px 8px;
+    color: black;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    cursor:pointer;
+    border:1px solid black;
+    font-weight:bold;
+    min-height:15px;
+}
+
+#notice {
+    font-weight:bold;
+    padding: 5px;
+    width: auto;
+    text-align: center;
+    border: 1px solid #1C6B05;
+    background-color: #B8EFA8;
+}
+
+#extra_notice{
+    font-weight:bold;
+    padding: 5px;
+    width: auto;
+    text-align: left;
+    border: 1px solid #1C6B05;
+    background-color: #F5F5F5;
+    color: blue;
+}
+
+#error{
+    font-weight:bold;
+    color: red;
+    padding: 5px;
+    width: auto;
+    text-align: center;
+    border: 1px solid #FE1902;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

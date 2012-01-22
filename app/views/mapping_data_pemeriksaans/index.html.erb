@@ -1,0 +1,49 @@
+<h1>Mapping Data Pemeriksaans</h1>
+
+<table>
+  <tr>
+    <th>Kode Rumah Sakit</th>
+    <th>Kode EJKBM</th>
+    <th></th>
+    
+  </tr>
+
+<tr>
+    <td>
+      <input type="text" size="7" onkeyup="searching(this.value, 'kode_tm_rs')"/>
+    </td>
+    <td>
+      <input type="text" size="7" onkeyup="searching(this.value, 'kode_tm_ejkbm')"/>
+    </td>
+    <td colspan="9"></td>
+  </tr>
+
+  <tbody id="data_ajax_target">
+    <%= render :partial => "mapping_data_pemeriksaans/data_index", :locals => {:mapping_data_pemeriksaans => @mapping_data_pemeriksaans} %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  function searching(text, tipe){
+    jQuery.ajax({
+      url: "/mapping_data_pemeriksaans/index/new",
+      dataType: "script",// "json",
+      data: {
+        authenticity_token: encodeURIComponent('<%= u form_authenticity_token %>'),
+        param: text,
+        tipe: tipe
+      },
+      beforeSend: function(data) {
+        jQuery('#loading_body').toggle();
+      },
+      success: function(data) {
+        //jQuery('#data').html(data);
+      },
+      complete: function(data) {
+        jQuery('#loading_body').toggle();
+      }
+    });
+  }
+</script>
+
+

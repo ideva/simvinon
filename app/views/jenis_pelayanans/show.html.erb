@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Kode:</b>
+  <%= @jenis_pelayanan.kode %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @jenis_pelayanan.nama %>
+</p>
+
+
+<%= link_to 'Edit', edit_jenis_pelayanan_path(@jenis_pelayanan) %> |
+<%= link_to 'Back', jenis_pelayanans_path %>

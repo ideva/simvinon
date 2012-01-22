@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  status_verifikasi_verifikator_sebelum: 1
+  status_verifikasi_verifikator_sesudah: 1
+  iduser: 1
+
+two:
+  status_verifikasi_verifikator_sebelum: 1
+  status_verifikasi_verifikator_sesudah: 1
+  iduser: 1

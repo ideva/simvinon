@@ -1,0 +1,21 @@
+<% @alasan_verifikasis.each do |alasan_verifikasi| %>
+  <tr>
+    <td><%= alasan_verifikasi.kode %></td>
+    <td><%= alasan_verifikasi.alasan %></td>
+    <td><%= link_to 'Edit/Hapus', edit_alasan_verifikasi_path(alasan_verifikasi) %></td>
+  </tr>
+<% end %>
+
+<tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @alasan_verifikasis %>
+        </div>
+        <%= will_paginate @alasan_verifikasis, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

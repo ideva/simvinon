@@ -1,0 +1,21 @@
+<%
+  @d_user_detail = DUserDetail.find_by_iduser(@user.id)
+  if @d_user_detail.url_nick.nil? || @d_user_detail.url_nick == ""
+    link_adddress = "http://#{SITE}/#{@d_user_detail.user.to_param}/profile/#{@d_user_detail.id}"
+  else
+    link_adddress = "http://#{SITE}/profile/#{@d_user_detail.url_nick}"
+  end
+%>
+
+<div style="margin-bottom:10px">
+<%= (link_to @user.full_name, link_adddress) rescue @user%> comment <%=link_to @title, @url_comment%>
+<p>
+  Comment:<br/>
+  <%=@comment%>
+<p>
+<br/>
+To see the comment thread, follow the link below:<br/> <%=link_to @url_comment, @url_comment%>
+</div>
+
+
+

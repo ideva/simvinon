@@ -1,0 +1,108 @@
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $( "#tgl_keluar" ).datepicker( { dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true } );
+      
+      $('#kirim_rs').click(function() {
+        $("#kirim_data").attr("action","<%= url_for(:action => :sent_to_rs, :id => "new") %>");
+        var r=confirm('Apakah anda yakin ingin mengirim data ini?'); if (r==false){return false;}
+        $("#kirim_data").submit();
+      });
+
+      $('#kirim_jkbm_rs').click(function() {
+        $("#kirim_data").attr("action", "<%= url_for(:action => :sent_to_rs_ejkbm, :id => "new") %>");
+        var r=confirm('Apakah anda yakin ingin mengirim data ini?'); if (r==false){return false;}
+        $("#kirim_data").submit();
+      });
+  });
+</script>
+
+<h1><%= @judul %></h1>
+
+  <%= form_for(:verifikasis, :url => {:action => :sent_to_rs_ejkbm, :id => "new"},
+                :html => {:id => "kirim_data", :class => "simple_form"}) do %>
+
+<table>
+  <tr>
+    <%if @show_bt_upload %>
+      <th></th>
+    <%end%>
+    <!--<th>Kode</th>-->
+    <th>No. Reg</th>
+    <th>Kabupaten</th>
+    <th>No. EJKBM</th>
+    <th>No. NIK</th>
+    <th>Status</th>
+    <th>Kirim RS/Pusk</th>
+    <th>Kirim EJKBM</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <%if @show_bt_upload %>
+    <td>
+      <input type="checkbox" id="master_check_box" onclick="check_box_toggle_class(this, 'child_check_box')"/>
+    </td>
+    <%end%>
+    <!--<td>
+      <input type="text" size="5" onkeyup="searching(this.value, 'kode')"/>
+    </td>-->
+    <td >
+      <input type="text" size="5" onkeyup="searching(this.value, 'no_reg')"/>
+    </td>
+    <td>
+       <%= collection_select :verifikasi, :kode_kabupaten, Kabupaten.all, :kode, :nama, {:prompt => "-- Semua --"}, :onchange => "searching(this.value, 'kode_kabupaten')" %>
+    </td>
+    <td>
+      <input type="text" size="5" id="no_ejkbm" onkeyup="searching(this.value, 'no_ejkbm')" />
+    </td>
+    <td>
+      <input type="text" size="5" id="nik" onkeyup="searching(this.value, 'nik')" />
+    </td>
+    <td>
+      <% option = [['-- Semua --', ''], ['Baru', 0], ['Layak', 1], ['Tidak Layak', 2], ['Perbaikan', 3]] %>
+      <%= select :verifikasi, :status, option, {}, {:onchange => "searching(this.value, 'status')"} %>
+    </td>
+    <td>
+      <% option = [['-- Semua --', ''], ['Belum', 0], ['Terkirim', 1]] %>
+      <%= select :verifikasi, :sent_to_rs, option, {}, {:onchange => "searching(this.value, 'sent_to_rs')"} %>
+    </td>
+    <td>
+      <% option = [['-- Semua --', ''], ['Belum', 0], ['Terkirim', 1]] %>
+      <%= select :verifikasi, :sent_to_ejkbm, option, {}, {:onchange => "searching(this.value, 'sent_to_ejkbm')"} %>
+    </td>
+    <td colspan="9"></td>
+  </tr>
+
+  <tbody id="data_ajax_target">
+    <%= render :partial => "verifikasis/data_index", :locals => {:verifikasis => @verifikasis} %>
+  </tbody>
+</table>
+<%end%>
+
+
+<%#= link_to 'New Verifikasi', new_verifikasi_path %>
+
+<script type="text/javascript">
+  function searching(text, tipe){
+    jQuery.ajax({
+      url: "/verifikasis/index/<%= params[:id] %>",
+      dataType: "script",// "json",
+      data: {
+        authenticity_token: encodeURIComponent('<%= u form_authenticity_token %>'),
+        param: text,
+        tipe: tipe
+      },
+      beforeSend: function(data) {
+        jQuery('#loading_body').toggle();
+      },
+      success: function(data) {
+        //jQuery('#data').html(data);
+      },
+      complete: function(data) {
+        jQuery('#loading_body').toggle();
+      }
+    });
+  }
+</script>

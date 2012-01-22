@@ -1,0 +1,58 @@
+<h1>Listing Test Plant</h1>
+<div style="height: 500px;width: 900px; ">
+<table >
+  <tr>
+    <th style="">Tanggal</th>
+    <th>Menu</th>
+    <th>Url</th>
+    <th>Skenario</th>
+    <th>Hasil</th>
+    <th>Deskripsi</th>
+    <th>Komentar</th>
+    <th>Image</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <% option = [['-- Semua --', ''], ['Benar', true], ['Salah', false]] %>
+      <%= select :test_plant, :hasil, option, {}, {:onchange => "searching(this.value, 'hasil')"} %>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+  <tbody id="data_ajax_target">
+    <%= render :partial => "test_plants/data_index", :locals => {} %>
+  </tbody>
+
+</table>
+</div>
+
+<script type="text/javascript">
+  function searching(text, tipe){
+    jQuery.ajax({
+      url: "/test_plants/index/new",
+      dataType: "script",// "json",
+      data: {
+        authenticity_token: encodeURIComponent('<%= u form_authenticity_token %>'),
+        param: text,
+        tipe: tipe
+      },
+      beforeSend: function(data) {
+        jQuery('#loading_body').toggle();
+      },
+      success: function(data) {
+        //jQuery('#data').html(data);
+      },
+      complete: function(data) {
+        jQuery('#loading_body').toggle();
+      }
+    });
+  }
+</script>

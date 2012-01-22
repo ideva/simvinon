@@ -1,0 +1,21 @@
+<% @kategori_tindakan_penunjangs.each do |kategori_tindakan_penunjang| %>
+  <tr>
+    <td><%= kategori_tindakan_penunjang.kode %></td>
+    <td><%= kategori_tindakan_penunjang.nama %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_kategori_tindakan_penunjang_path(kategori_tindakan_penunjang) %></td>
+  </tr>
+<% end %>
+
+ <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @kategori_tindakan_penunjangs %>
+        </div>
+        <%= will_paginate @kategori_tindakan_penunjangs, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+  <script type="text/javascript">
+    ajaxifyPagination();
+  </script>

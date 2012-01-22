@@ -1,0 +1,7 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  error_msg: MyText
+
+two:
+  error_msg: MyText

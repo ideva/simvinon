@@ -1,0 +1,36 @@
+<% if logged_in? && (editing_mode == true rescue false) %>
+<script type="text/javascript">
+    //<![CDATA[
+        document.observe('dom:loaded', function() {
+            var changeEffect;
+            Sortable.create('<%=model%>_<%=param_id%>', { tag: 'div', overlap:'horizontal',constraint:false,
+                onChange: function(item) {
+                    //var list = Sortable.options(item).element;
+                    //$('changeNotification').update(Sortable.serialize(list).escapeHTML());
+                    //if(changeEffect) changeEffect.cancel();
+                    //changeEffect = new Effect.Highlight('changeNotification', {restoreColor:"transparent" });
+                },
+
+                onUpdate: function() {
+                    new Ajax.Request("/general/update_image_order/<%=param_id%>?model=<%=model%>", {
+                        method: "post",
+                        onLoading: function(){$('loading_body').show()},
+                        onLoaded: function(){$('loading_body').hide()},
+                        parameters: { data: Sortable.serialize("<%=model%>_<%=param_id%>") }
+                    });
+                }
+            });
+        });
+    // ]]>
+    </script>
+<%end%>
+<div id="<%=model%>_<%=param_id%>">
+<% object_photos.each do |object_photo| %>
+  <%=render :partial => "general/photo_manage",
+          :locals => {:controller => controller,:model => model, :editing_mode => editing_mode,
+                      :object_photo => object_photo, :param_id => (param_id rescue nil),
+                      :width => (width rescue 50), :height => (height rescue 50), :group => (group rescue "photo"), :use_cover => (use_cover rescue false)
+                      }  %>
+<%end%>
+  <span id ="<%= div_target_new_photo_id rescue "new_photo" %>"></span>
+</div>

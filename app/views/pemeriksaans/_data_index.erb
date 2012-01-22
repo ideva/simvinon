@@ -1,0 +1,25 @@
+<% @pemeriksaans.each do |pemeriksaan| %>
+  <tr>
+    <td><%= pemeriksaan.kode %></td>
+    <td><%= pemeriksaan.nama %></td>
+    <td><%= pemeriksaan.tarif %></td>
+    <td><%= pemeriksaan.status_flag %></td>
+    <td><%= link_to 'Lihat', pemeriksaan %></td>
+    <td><%= link_to 'Ubah/Hapus', edit_pemeriksaan_path(pemeriksaan) %></td>
+    <%#= link_to 'Destroy', pemeriksaan, :confirm => 'Are you sure?', :method => :delete %>
+  </tr>
+<% end %>
+  <tr style="background-color: transparent">
+    <td colspan="100">
+      <div class="digg_pagination">
+        <div class="page_info">
+          <%= raw page_entries_info @pemeriksaans %>
+        </div>
+        <%= will_paginate @pemeriksaans, :class => 'pagination ajax' %>
+      </div>
+    </td>
+  </tr>
+
+<script type="text/javascript">
+    ajaxifyPagination();
+  </script>

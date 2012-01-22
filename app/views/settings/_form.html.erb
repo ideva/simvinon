@@ -1,0 +1,34 @@
+<%= form_for(@setting) do |f| %>
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+      <ul>
+      <% @setting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Variable" %><br />
+    <%= f.text_field :name, :disable => true %>
+  </div>
+  <div class="field">
+    <%= f.label :string_value, "Nilai" %><br />
+    <% if @setting.name == "KODE_KABUPATEN"  %>
+      <%= f.collection_select :string_value, Kabupaten.order("kode"), :kode, :kode_nama, {:prompt => true}, :class => "required" %>
+    <% elsif @setting.name == "KABUPATEN"  %>
+      <%= f.collection_select :string_value, Kabupaten.order("kode"), :nama, :kode_nama, {:prompt => true}, :class => "required" %>
+    <%elsif @setting.name == "RS_PUSK_KODE" %>
+      <%= f.collection_select :string_value, RuPusk.order("kode"), :kode, :kode_nama, {:prompt => true}, :class => "required" %>
+    <%else%>
+      <%= f.text_field :string_value, :class => "required" %>
+    <%end%>
+    
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

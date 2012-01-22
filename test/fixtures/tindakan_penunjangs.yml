@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  kode_kategori_tindakan_penunjang: MyString
+  nama: MyString
+  tarif: 1
+  flag: MyString
+
+two:
+  kode: MyString
+  kode_kategori_tindakan_penunjang: MyString
+  nama: MyString
+  tarif: 1
+  flag: MyString

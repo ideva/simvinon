@@ -1,0 +1,25 @@
+<%= form_for(@kategori_tindakan_penunjang) do |f| %>
+  <% if @kategori_tindakan_penunjang.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kategori_tindakan_penunjang.errors.count, "error") %> prohibited this kategori_tindakan_penunjang from being saved:</h2>
+
+      <ul>
+      <% @kategori_tindakan_penunjang.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode, :class => "required" %><br />
+    <%= f.text_field :kode, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :nama, :class => "required" %><br />
+    <%= f.text_field :nama, :class => "required required" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

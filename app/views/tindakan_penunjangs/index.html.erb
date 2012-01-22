@@ -1,0 +1,53 @@
+<h1>Data Tindakan Penunjang</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Kategori Tindakan Penunjang</th>
+    <th>Nama</th>
+    <th>Tarif</th>
+    <th>Flag</th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <td>
+      <input type="text" size="7" onkeyup="searching(this.value, 'kode')"/>
+    </td>
+    <td>
+      <input type="text" size="7" onkeyup="searching(this.value, 'kategori_tindakan_penunjang')"/>
+    </td>
+    <td>
+      <input type="text" size="7" onkeyup="searching(this.value, 'nama')"/>
+    </td>
+    <td colspan="9"></td>
+  </tr>
+
+  <tbody id="data_ajax_target">
+    <%= render :partial => "tindakan_penunjangs/data_index", :locals => {:tindakan_penunjangs => @tindakan_penunjangs} %>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  function searching(text, tipe){
+    jQuery.ajax({
+      url: "/tindakan_penunjangs/index/new",
+      dataType: "script",// "json",
+      data: {
+        authenticity_token: encodeURIComponent('<%= u form_authenticity_token %>'),
+        param: text,
+        tipe: tipe
+      },
+      beforeSend: function(data) {
+        jQuery('#loading_body').toggle();
+      },
+      success: function(data) {
+        //jQuery('#data').html(data);
+      },
+      complete: function(data) {
+        jQuery('#loading_body').toggle();
+      }
+    });
+  }
+</script>
+

@@ -1,0 +1,29 @@
+<h1>Listing pelayanan_lains</h1>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Tarif</th>
+    <th>Iduser</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pelayanan_lains.each do |pelayanan_lain| %>
+  <tr>
+    <td><%= pelayanan_lain.kode %></td>
+    <td><%= pelayanan_lain.nama %></td>
+    <td><%= pelayanan_lain.tarif %></td>
+    <td><%= pelayanan_lain.iduser %></td>
+    <td><%= link_to 'Show', pelayanan_lain %></td>
+    <td><%= link_to 'Edit', edit_pelayanan_lain_path(pelayanan_lain) %></td>
+    <td><%= link_to 'Destroy', pelayanan_lain, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pelayanan lain', new_pelayanan_lain_path %>

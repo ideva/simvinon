@@ -1,0 +1,47 @@
+<script type="text/javascript">
+      var form_id = $('form').attr('id');
+      $('#'+form_id).submit(function() {
+        return true;
+      });
+
+      function submit_form_function(){
+        if( $('#'+form_id) ){
+          if( $('#'+form_id).valid() ){
+            <% if @save_message.nil? || @save_message == "" %>
+              $('#'+form_id).submit();
+           <%else%>
+              var r = confirm('<%= @save_message %>');
+              if (r == false){
+                return false;
+              }else{
+                $('#'+form_id).submit();
+              }
+           <%end%>
+          }else{
+            alert('Data tidak lengkap');
+          }
+        }
+    }
+
+    <% if (logged_in? && @user_concurrence rescue false) %>
+
+       $(document).ready(function(){
+           PeriodicalTimer = $.PeriodicalUpdater({
+              url : '<%= url_for(:controller => "application", :action => "update_time_out", :id => @idlock_table) %>',
+              minTimeout: <%= PERIODIC_REQUEST %>,
+              maxTimeout: 100000,
+              multiplier: 1,
+              type: 'script'
+           });
+        })
+     $(window).bind("focus", function(event){
+        //alert('focus');
+      });
+
+      $(window).bind("blur", function(event){
+        //alert('lost');
+        //clearTimeout(PeriodicalTimer);
+      });
+    <%end%>
+  </script>
+

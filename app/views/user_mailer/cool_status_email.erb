@@ -1,0 +1,28 @@
+<%
+  @d_user_detail = DUserDetail.find_by_iduser(@user.id)
+  if @d_user_detail.url_nick.nil? || @d_user_detail.url_nick == ""
+    link_adddress = "http://#{SITE}/#{@d_user_detail.user.to_param}/profile/#{@d_user_detail.id}"
+  else
+    link_adddress = "http://#{SITE}/profile/#{@d_user_detail.url_nick}"
+  end
+%>
+<div style="margin-bottom:10px">
+  <%= (link_to @user.full_name, link_adddress) rescue @user%> needs you to support on Cool Status Competition.<br/>
+  Please follow this <%=link_to "link", "http://#{SITE}/cool/status#cool_status#{@d_cool_status.id}"%> to Vote.
+</div>
+<div style="margin-bottom:10px">
+  <%= @user.full_name rescue @user%> Cool Status:<br/>
+  <%=  @d_cool_status.status %>
+</div>
+<%unless @msg == "" || @msg.nil?%>
+  <div>
+    <u>Message</u>: 
+    <div style="margin-top:10px">
+      <%=@msg%>
+    </div>
+  </div>
+<%end%>
+
+
+
+

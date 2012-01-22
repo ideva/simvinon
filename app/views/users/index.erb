@@ -1,0 +1,43 @@
+<h1>Listing Users</h1>
+
+<table>
+  <th>Login</th>
+  <th>Nama</th>
+  <th>Email</th>
+  <th>Tipe User</th>
+  <th></th>
+  <th></th>
+    <%
+      color_style = ODD_COLOR
+
+      @users.each do |user|
+        if color_style == ODD_COLOR
+          color_style = EVEN_COLOR
+        else
+          color_style = ODD_COLOR
+        end
+
+        id = user.id # -- Adjust it --
+    %>
+    <tr id="list<%=  id %>" style="background-color:<%= color_style %>">
+      <td><%= user.login %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.super_admin %>
+          Super Admin
+        <%else%>
+          <%= user.user_type.nama rescue '' %>
+        <%end%>
+      </td>
+      <td><%= link_to 'Ubah/Hapus', edit_user_path(user) %></td>
+      <td><%= link_to 'Ubah Sandi', :action => "form_change_password", :id => user.id %></td>
+    </tr>
+  <%end%>
+</table>
+
+ <%= will_paginate @users%>
+
+<br />
+
+<%#= link_to 'New User', new_user_path %>

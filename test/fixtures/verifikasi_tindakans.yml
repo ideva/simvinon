@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode_t_medis: MyString
+  flag: 1
+  kode_verifikasi: MyString
+
+two:
+  kode_t_medis: MyString
+  flag: 1
+  kode_verifikasi: MyString

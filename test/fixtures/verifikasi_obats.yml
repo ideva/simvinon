@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode_obat: MyString
+  kode_verifikasi: MyString
+
+two:
+  kode_obat: MyString
+  kode_verifikasi: MyString

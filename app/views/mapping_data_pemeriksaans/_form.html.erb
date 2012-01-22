@@ -1,0 +1,27 @@
+<%= form_for(@mapping_data_pemeriksaan) do |f| %>
+  <% if @mapping_data_pemeriksaan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mapping_data_pemeriksaan.errors.count, "error") %> prohibited this mapping_data_pemeriksaan from being saved:</h2>
+
+      <ul>
+      <% @mapping_data_pemeriksaan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode_pemeriksaan_rs, :class => "required" %><br />
+    <%= f.text_field :kode_pemeriksaan_rs, :class => "required"%>
+  </div>
+  <div class="field">
+    <%= f.label :kode_pemeriksaan_ejkbm, :class => "required"  %><br />
+    <%= f.collection_select :kode_pemeriksaan_ejkbm, Pemeriksaan.order("kode") ,:kode, :nama_pemeriksaan, {:prompt => true}, :class => "required combo_box" %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+
+  <% if logged_in? && (current_user.id == iduser rescue false)%>
+    <%= render :partial => "general/upload_photo_form", :locals => {:controller => "general", :model=> model, :param_id => param_id, :iduser => iduser, :group => group, :action_update => "create_photo", :multi => true} %>
+  <%end%>
+<span id="new_photo"></span>
+<div style="position:absolute;bottom:0;right:0;margin-bottom:10px;margin-right:5px">
+  <%= link_to "Finish", redirect_finish_link, :class => "as_button"  %>
+</div>
+<div style="clear:both"></div>

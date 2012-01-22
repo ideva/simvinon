@@ -1,0 +1,2 @@
+module MappingDataObatsHelper
+end

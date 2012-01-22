@@ -1,0 +1,64 @@
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery( "#test_plant_tanggal").datepicker( { dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true, showOtherMonths: true, selectOtherMonths: true } );
+  });
+</script>
+
+<%= form_for(@test_plant) do |f| %>
+  <% if @test_plant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@test_plant.errors.count, "error") %> prohibited this test_plant from being saved:</h2>
+
+      <ul>
+      <% @test_plant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="left">
+  <div class="field">
+    <%= f.label :tanggal,:class => "required" %><br />
+    <%= f.text_field :tanggal,:class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :menu, 'Jenis/Bagian/Menu', :class => "required" %><br />
+    <%= f.text_field :menu,:class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :skenario, :class => "required" %><br />
+    <%= f.text_area :skenario, :class => "required" %>
+  </div>
+</div>
+<div class="right">
+  <div class="field">
+    <%= f.label :hasil, :class => "" %><br />
+    <%#= f.check_box :hasil %>
+    <% option = [['OK', true], ['Not OK', false]] %>
+      <%= select :test_plant, :hasil, option, {:selected => @test_plant.hasil, :prompt => true}, {:class => ""} %>
+  </div>
+  <div class="field">
+    <%= f.label :deskripsi_hasil, :class => "required" %><br />
+    <%= f.text_area :deskripsi_hasil, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :komentar %><br />
+    <%= f.text_area :komentar %>
+  </div>
+  <div class="field">
+    <%#= f.label :image %><br />
+    <%#= f.text_field :image %>
+  </div>
+</div>
+<div style="clear: both"></div>
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

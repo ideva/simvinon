@@ -1,0 +1,70 @@
+<div style="overflow: auto; border: 1px solid black;-moz-box-shadow: 0 0 5px #888; -webkit-box-shadow: 0 0 5px#888; box-shadow: 0 0 5px #888;">
+
+<table style="text-align: center">
+  <tr>
+    <th>No</th>
+    <th>Nama</th>
+    <th></th>
+  </tr>
+  <% if (kode_verifikasi.nil? rescue true) %>
+     <%
+          @counter_pemeriksaan = 0
+          row = 3
+          for i in 1..row do
+          verifikasi_pemeriksaan = VerifikasiPemeriksaan.new
+          verifikasi_pemeriksaan.kode_pemeriksaan_ejkbm = nil
+          #verifikasi_pemeriksaan.jumlah = nil
+          @counter_pemeriksaan = @counter_pemeriksaan + 1
+        %>
+          <%= render :partial => "peserta_jkbms/table_form_pemeriksaan", :locals => {:no => @counter_pemeriksaan, :verifikasi_pemeriksaan => verifikasi_pemeriksaan} %>
+       <%end%>
+  <%else%>
+        <%
+          @counter_pemeriksaan = 0
+          verifikasi_pemeriksaans = VerifikasiPemeriksaan.where(:kode_verifikasi => kode_verifikasi)
+          verifikasi_pemeriksaans.each do |verifikasi_pemeriksaan|
+            @counter_pemeriksaan = @counter_pemeriksaan + 1
+        %>
+          <%= render :partial => "peserta_jkbms/table_form_pemeriksaan", :locals => {:no => @counter_pemeriksaan, :verifikasi_pemeriksaan => verifikasi_pemeriksaan} %>
+        <%end%>
+  <%end%>
+
+      <tr id="new_baris"></tr>
+</table>
+
+<input type="hidden" id="counter_pemeriksaan" name="counter_pemeriksaan" value="<%= @counter_pemeriksaan rescue 1 %>"/>
+
+  </div>
+<div style="cursor: pointer; width: 110px; margin: 10px;" onclick="tambah_baris()" class="button">
+  <div style="float: left; margin-right: 5px">
+    <%= image_tag 'add.png', :style => "width: 20px", :title => "Tambah Baris" %>
+  </div>
+  <div style="float: left; padding-top: 3px">
+    Tambah Baris
+  </div>
+  <div style="clear: both"></div>
+</div>
+
+<script type="text/javascript">
+  function tambah_baris(){
+    $.ajax({
+      url: "/peserta_jkbms/add_new_list_pemeriksaan/new",
+      dataType: "text",// "text/script/json",
+      data: {
+        authenticity_token: encodeURIComponent('<%= u form_authenticity_token %>'),
+        counter_pemeriksaan: $('#counter_pemeriksaan').val()
+      },
+      beforeSend: function(data) {
+        jQuery('#loading_body').toggle();
+      },
+      success: function(data) {
+        $(data).insertBefore('#new_baris');
+        $('#counter_pemeriksaan').val( parseInt($('#counter_pemeriksaan').val()) + 1 ) ;
+        make_table_tr_color();
+      },
+      complete: function(data) {
+        jQuery('#loading_body').toggle();
+      }
+    });
+  }
+</script>

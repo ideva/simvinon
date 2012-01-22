@@ -1,0 +1,2 @@
+module ObatsHelper
+end

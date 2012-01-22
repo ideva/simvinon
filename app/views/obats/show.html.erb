@@ -1,0 +1,46 @@
+
+<p>
+  <b>Kode:</b>
+  <%= @obat.kode %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @obat.nama %>
+</p>
+
+<p>
+  <b>Kategori Obat:</b>
+  <%= @obat.kategori_obat.nama rescue "-"%>
+</p>
+
+<p>
+  <b>Bentuk kekuatan kemasan:</b>
+  <%= @obat.bentuk_kekuatan_kemasan rescue "-"%>
+</p>
+
+<p>
+  <b>Jumlah:</b>
+  <%= @obat.jumlah rescue "0"%>
+</p>
+
+<p>
+  <b>Satuan:</b>
+  <%= @obat.satuan rescue "-"%>
+</p>
+
+<p>
+  <b>Het satuan:</b>
+  <%#= @obat.het_satuan rescue "0"%>
+  <%= number_to_currency(@obat.het_satuan, :unit => "Rp ") %>
+</p>
+
+<p>
+  <b>Het pack:</b>
+  <%#= @obat.het_pack rescue "0"%>
+  <%= number_to_currency(@obat.het_pack, :unit => "Rp ") %>
+</p>
+
+
+<%#= link_to 'Edit', edit_obat_path(@obat) %> 
+<%#= link_to 'Back', obats_path %>

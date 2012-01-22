@@ -1,0 +1,19 @@
+<h1>Hasil Pemeriksaan Data</h1>
+
+  <div class="" style="">
+    <%= render :partial => "verifikasis/data_pasien" %>
+  </div>
+
+  <div class="" style="">
+    <%= render :partial => "verifikasis/data_obat_and_tindakan" %>
+  </div>
+
+<div>
+  <p>
+    <b>Komentar Akhir:</b><br/>
+    <%= @verifikasi.komentar.to_s rescue '-' %>
+  </p>
+</div>
+
+
+

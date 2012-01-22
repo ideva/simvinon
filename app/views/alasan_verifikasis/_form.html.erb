@@ -1,0 +1,28 @@
+<%= form_for(@alasan_verifikasi) do |f| %>
+  <% if @alasan_verifikasi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@alasan_verifikasi.errors.count, "error") %> prohibited this alasan_verifikasi from being saved:</h2>
+
+      <ul>
+      <% @alasan_verifikasi.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode, :class => "required" %><br />
+    <%= f.text_field :kode, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :alasan, :class => "required" %><br />
+    <%= f.text_field :alasan, :class => "required" %>
+  </div>
+  
+  
+    <div class="actions">
+      <%= f.submit  %>
+    </div>
+  
+<% end %>

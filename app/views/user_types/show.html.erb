@@ -1,0 +1,34 @@
+<p>
+  <b>Kode:</b>
+  <%= @user_type.kode %>
+</p>
+
+<p>
+  <b>Nama:</b>
+  <%= @user_type.nama %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @user_type.description %>
+</p>
+
+<p>
+  <b>Function:</b><br/>
+  <table>
+    <th>Nama</th>
+    <th>Controller</th>
+    <th>Action</th>
+    <%
+      user_type_functions = UserTypeFunction.where(:iduser_type => @user_type.id)
+      user_type_functions.each do |user_type_function|
+    %>
+    <tr>
+      <td><%= user_type_function.function.name %></td>
+      <td><%= user_type_function.function.controller_name %></td>
+      <td><%= user_type_function.function.action_name %></td>
+    </tr>
+
+    <%end%>
+  </table>
+  </p>

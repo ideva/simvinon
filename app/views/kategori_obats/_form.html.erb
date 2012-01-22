@@ -1,0 +1,30 @@
+<%= form_for(@kategori_obat) do |f| %>
+  <% if @kategori_obat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kategori_obat.errors.count, "error") %> prohibited this kategori_obat from being saved:</h2>
+
+      <ul>
+      <% @kategori_obat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :kode, :class => "required" %><br />
+    <%= f.text_field :kode, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :nama, :class => "required" %><br />
+    <%= f.text_field :nama, :class => "required" %>
+  </div>
+
+  
+    <div class="actions">
+      <%= f.submit '' %>
+    </div>
+  
+<% end %>
+
+

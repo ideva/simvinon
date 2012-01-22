@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  kode: MyString
+  kode_verifikasi: MyString
+  kode_pemeriksaan_ejkbm: MyString
+  tarif_pemeriksaan: 1.5
+
+two:
+  kode: MyString
+  kode_verifikasi: MyString
+  kode_pemeriksaan_ejkbm: MyString
+  tarif_pemeriksaan: 1.5

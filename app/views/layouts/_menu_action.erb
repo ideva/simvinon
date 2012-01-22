@@ -1,0 +1,217 @@
+
+<div style="" id="home" class="button_action">
+              <% if @home_message.nil? || @home_message == "" %>
+                <a href="/"><img src="/images/home.png" border="0" title="Home"/></a>
+                <%else%>
+                  <a href="/"
+                     onclick="var home_msg = confirm('<%= @home_message %>');
+                          if (home_msg == false){
+                            return false;
+                          }else{return true;}">
+                    <img src="/images/home.png" border="0" title="Home"/>
+                  </a>
+                <%end%>             
+            </div>
+
+            <% if @show_bt_add == false %>
+            <% elsif @show_bt_add || controller.controller_name != "main" && controller.action_name == "index" %>
+              <div style="" class="button_action">
+                <a href="<%= "/#{controller.controller_name}/new" %>"><img src="/images/add.png" border="0" title="Buat Baru"/></a>
+              </div>
+            <%end%>
+          
+
+            <% if @show_bt_search || controller.action_name == "searching_form" %>
+              <div style=" float: left; margin-right: 10px" onclick="document.<%="form_#{controller.controller_name}"%>.submit();">
+                <input TYPE="image" SRC="/images/find.png" /><br/>
+                Temukan
+              </div>
+            <%end%>
+
+            <% if (@state == "pengisian_hasil_so" rescue false) && controller.action_name == "edit" %>
+              <div id="simpan" style="width: auto;" onclick="submit_form2()" >
+                <script type="text/javascript">
+                  function submit_form2(){
+                    if(jQuery('#form_<%= controller.controller_name %>').valid()){
+                        $('save_state').value = "sementara";
+                        document.<%="form_#{controller.controller_name}"%>.submit();
+                    }else{
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="image" src="/images/save_sementara.png" onclick="submit_form2()"/><br/>
+                Simpan Sementara
+              </div>
+            <%end%>
+
+            <% if @show_bt_save == false %>
+            <%elsif @show_bt_save || (controller.action_name == "new" || controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "create" || controller.action_name == "destroy") %>
+              <script type="text/javascript">
+                  function submit_form(){
+                    submit_form_function();
+                  }
+              </script>
+              <div id="simpan" class="button_action" onclick="submit_form()" >
+                <input type="image" src="/images/save.png" onclick="" title="Simpan"/>             
+              </div>
+            <%end%>
+
+            <% if @show_bt_ok == false %>
+            <%elsif @show_bt_ok  %>
+              <script type="text/javascript">
+                  function submit_form2(){
+                    submit_form_function();
+                  }
+              </script>
+              <div id="ok" class="button_action" onclick="submit_form2()" >
+                <input type="image" src="/images/ok.png" onclick="" title="OK"/>          
+              </div>
+            <%end%>
+
+            <% if @show_bt_upload == false %>
+            <% elsif @show_bt_upload ||  controller.controller_name == "peserta_jkbms" && controller.action_name == "index" %>
+              <script type="text/javascript">
+                  function submit_form3(){
+                    submit_form_function();
+                  }
+              </script>
+              <div id="kirim_rs" class="button_action" onclick="" >
+                <input type="image" src="/images/upload_rs.png" onclick="" title="Kirim ke RS"/>
+              </div>
+              <div id="kirim_jkbm_rs" class="button_action" onclick="" >
+                <input type="image" src="/images/upload.png" onclick="" title="Kirim ke EJKBM & RS"/>
+              </div>
+            <%end%>
+
+            <% if @show_bt_upload_rs == false %>
+            <% elsif @show_bt_upload_rs ||  controller.controller_name == "peserta_jkbms" && controller.action_name == "index" %>
+              <script type="text/javascript">
+                  function submit_form3(){
+                    submit_form_function();
+                  }
+              </script>
+              <div id="kirim_rs" class="button_action" onclick="" >
+                <input type="image" src="/images/upload_rs.png" onclick="" title="Kirim ke RS"/>
+              </div>
+            <%end%>
+
+            <% if @show_bt_delete == false %>
+            <% elsif @show_bt_delete || (controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "destroy") %>
+              <% 
+                if @id.nil? 
+                  @id = params[:id]
+                end
+              %>
+              <div style="" class="button_action">
+                <a href="<%= "/#{controller.controller_name}/destroy/#{@id}" %>" id="bt_delete"
+                   onclick="var r=confirm('Apakah anda yakin ingin menghapus data ini?'); if (r==false){return false;}">
+                  <img src="/images/delete.png" border="0" title="Hapus"/></a>
+              </div>
+            <%end%>
+<!--
+            <%if @show_bt_page == false%>
+            <%else%>
+              <% unless (session[:array_id].nil? rescue true) || (session[:array_id].empty? rescue true) %>
+                <% if @show_bt_page || controller.action_name == "show" || controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "destroy" %>
+                  <div style="" class="button_action">
+                    <% if @prev_id == 0  %>
+                      <img src="/images/resultset_previous_gray.png" border="0" title="Sebelumnya"/>
+                    <%else%>
+                    <a href="<%= controller.action_name == "show" ? "/#{controller.controller_name}/#{@prev_id}" : "/#{controller.controller_name}/edit/#{@prev_id}" %>">
+                      <img src="/images/resultset_previous.png" border="0" title="Sebelumnya"/></a>
+                      
+                    <%end%>   
+                  </div>
+                  <div style="" class="button_action">
+                    <% if (@next_id == 0 rescue true)  %>
+                      <img src="/images/resultset_next_gray.png" border="0" title="Selanjutnya"/>
+                    <%else%>
+                    <a href="<%= controller.action_name == "show" ? "/#{controller.controller_name}/#{@next_id}" : "/#{controller.controller_name}/edit/#{@next_id}" %>">
+                      <img src="/images/resultset_next.png" border="0" title="Selanjutnya"/></a>
+                      
+                    <%end%>  
+                  </div>
+                <%end%>
+              <%end%>
+            <%end%>
+-->
+            <% if @show_bt_cancel == false %>
+            <% elsif @show_bt_cancel || (controller.action_name == "new" || controller.action_name == "edit" || controller.action_name == "searching_form" || controller.action_name == "create" || controller.action_name == "update" || controller.action_name == "destroy") %>
+              <div style="" class="button_action">
+                <a href="<%= @cancel_url %>" onclick="var r=confirm('Apakah anda yakin ingin membatalkan?'); if (r==false){return false;}">
+                  <img src="/images/cancel.png" title="Batal"/></a>              
+              </div>
+            <%end%>
+
+            <% if controller.action_name == "searching" %>
+
+            <%end%>
+
+            <% if controller.controller_name == "members" && (controller.action_name == "new" || controller.action_name == "edit" || controller.action_name == "show" || controller.action_name == "update" || controller.action_name == "calon_member") %>
+              
+              <div style=" float: left; margin-right: 10px">
+                <%if (@member.image_ktp? rescue false)%>
+                  <a href="<%= @member.image_ktp_url() %>" title="Kartu ID" onclick="return popup(this, 'Kartu_ID', 1000, 500)"><img src="/images/card_front.png" border="0"/></a>
+                <%else%>
+                  <img src="/images/card_front.png" border="0" onclick="alert('Tidak ada Kartu ID')" style="cursor: pointer"/>
+                <%end%>
+                <br/>
+                Lihat Kartu ID
+              </div>              
+            <%end%>
+
+          <% if @show_bt_print == false %>
+          <% elsif @show_bt_print %>
+            <% if @link_to_print.nil? || @link_to_print == "" %>
+              <div style="cursor: pointer" class="noprint" class="button_action">
+                <span id="bt_print" onclick= "javascript:print()" title="Print">
+                  <img src="/images/printer.png" border="0" title="Cetak"/></span>
+              </div>
+            <%else%>
+              <div style="" class="noprint button_action" >
+                <a id="bt_print" href="<%= @link_to_print %>" onclick="return popup( this, 'Print', '<%= @popup_width.nil? == true ? 550 : @popup_width %>', '<%= @popup_height.nil? == true ? 300 : @popup_height %>' )" title="Print">
+                  <img src="/images/printer.png" border="0" title="Cetak"/>
+                </a>
+              </div>
+            <%end%>
+          <%end%>
+
+            <% if @show_bt_back == false %>
+            <% elsif @show_bt_back || controller.action_name == "show" || controller.action_name == "edit" || controller.action_name == "update" || controller.action_name == "searching" %>
+
+              <div style="" class="button_action">
+                <%
+                  if controller.action_name == "new"
+                    @back_message = "Apakah anda yakin meninggalkan halaman ini?"
+                  end
+
+                  if controller.action_name == "edit" && controller.controller_name != "verifikasis"
+                      session[:url_back] = "/#{controller.controller_name}/index/new"
+                  end
+
+                  if session[:url_back].nil?
+                    if controller.action_name == "show" #|| controller.action_name == "edit"
+                      session[:url_back] = "/#{controller.controller_name}"
+                    end
+                end
+
+                %>
+                    <% if @back_message.nil? || @back_message == "" %>
+                      <a href="<%= session[:url_back].nil? == true ? url_for(:back) : session[:url_back] %>">
+                        <img src="/images/back.png" border="0" title="<%= @title_back rescue "Kembali" %>"/>
+                      </a>
+                    <%else%>
+                      <a href="<%= session[:url_back].nil? == true ? url_for(:back) : session[:url_back] %>"
+                         onclick="var r = confirm('<%= @back_message %>');
+                              if (r == false){
+                                return false;
+                              }else{return true;}">
+                        <img src="/images/back.png" border="0" title="<%= @title_back rescue "Kembali" %>"/>
+                      </a>
+                    <%end%>
+                </div>
+            <%end%>
+          
+            
+            <div style="clear: both"></div>

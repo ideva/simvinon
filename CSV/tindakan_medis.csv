@@ -1,0 +1,633 @@
+KODE TIND. MEDIS;KODE KATEGORI TIND. MEDIS;NAMA TIND. PENUNJANG; TARIF ;FLAG
+0001;001;Rawat luka;25000;1
+0002;001;Buka jahitan luka;25000;1
+0003;001;Evakuasi serumen/spooling;25000;1
+0004;001;Buka douwer cateter;25000;1
+0005;001;Kontrol luka post operasi;25000;1
+0006;001;Ekstraksi kuku;25000;1
+0007;001;Aff IUD;25000;1
+0008;001;Insersi IUD;25000;1
+0009;001;Incici Abses;25000;1
+0010;001;Excici;25000;1
+0011;001;Injeksi intravena/subcutan;25000;1
+0012;001;Buka infus;25000;1
+0013;001;Pasang infus;25000;1
+0014;001;Pasang Douwer Cateter;25000;1
+0015;001;Buka Douwer Cateter;25000;1
+0016;001;Hecting/jahit luka;25000;1
+0017;001;Tampon telinga;25000;1
+0018;001;Tampon hidung;25000;1
+0019;001;Ekstraksi korpus alienum;25000;1
+0020;001;Pasang spalk 1 ekstremitas;25000;1
+0021;001;Pasang mitela;25000;1
+0022;002;Perawatan saraf gigi;25000;1
+0023;002;Cabut gigi;25000;1
+0024;002;Pengobatan pulpa dan tumpatan 1 gigi;25000;1
+0025;002;Kontrol dry socket;25000;1
+0026;002;Fissure sealant, topikal aplikasi 1 gigi;25000;1
+0027;002;Tumpatan sederhana 1 gigi;25000;1
+0028;002;Incisi intraoral/ekstraoral;25000;1
+0029;003;Allergi Test / PatehTest ;51500;2
+0030;003;Ambil Bahan kultur/ kerokan/sweb/Biopsi;51500;2
+0031;003;Angkat K-Wire ;51500;2
+0032;003;Aspirasi Hemarthrosis ;51500;2
+0033;003;Assesment dekondisi;51500;2
+0034;003;Assesment  Fleksibilitas dan lingkup gerak;51500;2
+0035;003;Assesment  Fungsi berkemih;51500;2
+0036;003;Assesment  Fungsi eksekusi gerak;51500;2
+0037;003;Assesment  Fungsi kardiorespirasi;51500;2
+0038;003;Assesment  fungsi kognisi;51500;2
+0039;003;Assesment Fungsi Komunikasi;51500;2
+0040;003;Assesment  Fungsi lokomotor;51500;2
+0041;003;Assesment  fungsi memori;51500;2
+0042;003;Assesment  fungsi menelan;51500;2
+0043;003;Assesment  integrasi sensori motor;51500;2
+0044;003;Assesment  Kebugaran;51500;2
+0045;003;Assesment  kekuatan otot;51500;2
+0046;003;Assesment  kemempuan fungsional dan perawatan diri;51500;2
+0047;003;Assesment  keseimbangan static dan dinamik;51500;2
+0048;003;Assesment  motorik halus;51500;2
+0049;003;Assesment  pola jalan;51500;2
+0050;003;Assesment  postur control;51500;2
+0051;003;Assesment  sensibilitas;51500;2
+0052;003;Bedah Listrik;51500;2
+0053;003;Bilas Lambung ;51500;2
+0054;003;Cabut atau tambal gigi tanpa komplikasi ;51500;2
+0055;003;Chemo surgary Podophylin;51500;2
+0056;003;Chemo surgary TCAA;51500;2
+0057;003;Dilatasi Phimosis ;51500;2
+0058;003;Eksisi Condiloma Accuminata ;51500;2
+0059;003;Eksisi Granuloma Pyogenikum ;51500;2
+0060;003;Eksisi Keloid < 5 cm ;51500;2
+0061;003;Eksisi Syringoma ;51500;2
+0062;003;Eksisi Veruka Vulgaris ;51500;2
+0063;003;Ekstraksi Kalium Oxalat ;51500;2
+0064;003;Ektirpasi Kista Ateroma / Lipoma I Ganglion< 2CM ;51500;2
+0065;003;Ektraksi serumen dengan penyulit;51500;2
+0066;003;Elektrofulgulasi;51500;2
+0067;003;Enulkleasi milia;51500;2
+0068;003;Enulkleasi Moluskum;51500;2
+0069;003;Epilasi Bulu Mata ;51500;2
+0070;003;Fitting dan check out ortosis & prostesis;51500;2
+0071;003;FNA (Fine Needle Aspiration) ;51500;2
+0072;003;Ganti Balut (khusus gangrene diabetika dan luka bakar luas >20%);51500;2
+0073;003;Ganti perban/debridement;51500;2
+0074;003;Injeksi Kenacort THT;51500;2
+0075;003;Insisi Furunkell Abses ;51500;2
+0076;003;IPPB (Intermiten Positive Pressure Sreathing) ;51500;2
+0077;003;Irigasi Telinga ;51500;2
+0078;003;Kaustik hidung/faring;51500;2
+0079;003;Kenacort Intra Lesi;51500;2
+0080;003;Klinical Kaustik;51500;2
+0081;003;Mantoux Test ;51500;2
+0082;003;Nekretomi ;51500;2
+0083;003;Nitrogen Cair;51500;2
+0084;003;Osteotektomi sederhana;51500;2
+0085;003;Papsmear (Pengambilan Sekret) ;51500;2
+0086;003;Parasentense telinga ;51500;2
+0087;003;Pasang / Angkat Implant / IUD ;51500;2
+0088;003;Pasang dan Angkat Jahit sederhana ;51500;2
+0089;003;Pasang infus umbilicalis;51500;2
+0090;003;Pasang Pesarium ;51500;2
+0091;003;pemasangan Belog Tampon ;51500;2
+0092;003;Pemasangan kateter (kasus non operasi) ;51500;2
+0093;003;Pemasangan tampon telinga;51500;2
+0094;003;Pengeluaran Corpus Alienum ;51500;2
+0095;003;Pengisian Saluran Akar Gigi Sulung ;51500;2
+0096;003;Pengobatan Epistaksis ;51500;2
+0097;003;Perawatan saluran akar gigi + Pulp;51500;2
+0098;003;Pulpatomi ;51500;2
+0099;003;punksi Batu ;51500;2
+0100;003;Punksi Hematoma Telinga ;51500;2
+0101;003;Reposisi Trauma Hidung Sederhana ;51500;2
+0102;003;Solarium/photo therapi;51500;2
+0103;003;Sondage Canalculi Lacrimalis;51500;2
+0104;003;Spooling Bola Mata ;51500;2
+0105;003;Spooling Cerumen Telinga ;51500;2
+0106;003;swab discar lesi;51500;2
+0107;003;Tindakan Anoscopy ;51500;2
+0108;003;Tindakan Businasi ;51500;2
+0109;003;Tindakan Cuci Sinus (Perawatan) ;51500;2
+0110;003;Tindakan nebulizer ;51500;2
+0111;003;Tindakan pada Keratosis Seboroika ;51500;2
+0112;003;Tindakan pembuatan visum et repertum korban hidup ;51500;2
+0113;003;Tindakan Psikoterapi / Psikometri ;51500;2
+0114;003;Tindakan Resusitasi;51500;2
+0115;003;Tindakan Roser Plasty ;51500;2
+0116;003;uji penisilin;51500;2
+0117;003;Uji Provokasi Obat;51500;2
+0118;003;Uji tusuk obat;51500;2
+0119;003;Uji tusuk Standar;51500;2
+0120;003;Water Drinking Test ;51500;2
+0121;004;Aspirasi Pneumotoraks;195000;2
+0122;004;Bedah Sakpel;195000;2
+0123;004;Biopsi Endoskopi;195000;2
+0124;004;Biopsi Hippfaring Onko;195000;2
+0125;004;Biopsi Insisional Tumor leher onko;195000;2
+0126;004;Biopsi Lidah palatum;195000;2
+0127;004;Biopsi Nasofaring Fiber Onko;195000;2
+0128;004;Biopsi Nasofaring Rigid Onko;195000;2
+0129;004;Biopsi Sinur Maksila Onko;195000;2
+0130;004;Biopsi Tumor Hidung Onko;195000;2
+0131;004;Biopsi Tumor Oral Cavity LF;195000;2
+0132;004;Eksisi Clavus;195000;2
+0133;004;Eksisi Hordeleum / Granuloma;195000;2
+0134;004;Eksisi Kaloid > 5 cm;195000;2
+0135;004;Eksisi Kista Ateroma / Lipoma / Ganglion < 2 cm ;195000;2
+0136;004;Eksisi skin grafting;195000;2
+0137;004;Eksisi xantoma;195000;2
+0138;004;Ekstirpasi Kista;195000;2
+0139;004;Ekstirpasi Tumor Jinak;195000;2
+0140;004;Ekstraksi benda asing dg penyulit;195000;2
+0141;004;Ekstraksi Corpus alenium cornea;195000;2
+0142;004;Ekstraksi Jaringan Granoulus;195000;2
+0143;004;Ekstraksi kolesteatum;195000;2
+0144;004;Ekstraksi Kuku;195000;2
+0145;004;Fisioterapi dengan alat (4 x tindakan) ;195000;2
+0146;004;Insisi Abses;195000;2
+0147;004;Insisi Abses sub mandibula;195000;2
+0148;004;Insisi Intra / ektra oral;195000;2
+0149;004;Insisi Spulis;195000;2
+0150;004;intra dermal test THT;195000;2
+0151;004;Lithiasis;195000;2
+0152;004;Parasintaesis;195000;2
+0153;004;Pasang/angkat buka Gips Sirkular ;195000;2
+0154;004;Pasang/angkat Jahit luka Besar/Kompleks ;195000;2
+0155;004;Pemberian Sitostatika ;195000;2
+0156;004;Pencabutan Gigi dengan komplikasi ;195000;2
+0157;004;Pengangkatan neuro fibroma;195000;2
+0158;004;Pengangkatan nevus;195000;2
+0159;004;Pengangkatan skin tag;195000;2
+0160;004;Pengangkatan Tandur Kulit ;195000;2
+0161;004;Psiodokista THT;195000;2
+0162;004;Rekonstruksi/flap;195000;2
+0163;004;Reposisi Hidung;195000;2
+0164;004;Reposisi Trauma Hidung Sederhana;195000;2
+0165;004;Skin prick Test THT;195000;2
+0166;004;Sondage canaliculi lacrimaris;195000;2
+0167;004;Taping & Strapping;195000;2
+0168;004;Terapi okupasi (4 x tindakan);195000;2
+0169;004;Terapi wicara (4 x tindakan) ;195000;2
+0170;004;Tindakan bedah beku ;195000;2
+0171;004;Tindakan Bedah Flap ;195000;2
+0172;004;Tindakan Cryosurgery ;195000;2
+0173;004;Tindakan Dermabrasi ;195000;2
+0174;004;Tindakan Electro Convulsive Theraphy (ECT) ;195000;2
+0175;004;Tindakan Punksi Lumbal ;195000;2
+0176;004;Trikeopitelioma;195000;2
+0177;005;Aspirasi Kista;526500;2
+0178;005;Biopsi insisi dengan lokal anestesi;526500;2
+0179;005;Biopsi Tumor Kelopak;526500;2
+0180;005;Eksisi Chalazion / hordiolum;526500;2
+0181;005;Eksisi dengan Lokal anastesi;526500;2
+0182;005;Eksisi Granuloma;526500;2
+0183;005;Eksisi Pterigium Bare Sklera;526500;2
+0184;005;Ekstirpasi tumor jinak THT;526500;2
+0185;005;Ektirpasi Fibroma ;526500;2
+0186;005;Fistulectomi ;526500;2
+0187;005;Frenectomi ;526500;2
+0188;005;Injeksi Haemoroid (termasuk obat) ;526500;2
+0189;005;Injeksi Varises (termasuk obat) ;526500;2
+0190;005;Marsupialisasi kista bartholini;526500;2
+0191;005;Odontectomy dengan lokal anestesi ;526500;2
+0192;005;Operculectomy;526500;2
+0193;005;Pasang Traksi Vertebra (Tulang Selakang);526500;2
+0194;005;Pemasangan WSD;526500;2
+0195;005;Pengangkatan nevus Marga palpebra;526500;2
+0196;005;Penutupan Oroantral Fistula;526500;2
+0197;005;Punksi Ascitas;526500;2
+0198;005;Punksi Ilrigasi Pleura;526500;2
+0199;005;Punksi Sumsum Tulang;526500;2
+0200;005;Reposisi dengan anestesi Lokal;526500;2
+0201;005;Sistostomi;526500;2
+0202;005;Sleep Nasoendoscopy;526500;2
+0203;005;Tindakan Deepening Sulcus;526500;2
+0204;005;Tindakan pada keratosis seboroika;526500;2
+0205;006;Amputasi Jari (Sinqle) ;2200000;2
+0206;006;Angkat K-Wire dengan Hekting;2200000;2
+0207;006;Angkat Pen / Screw ;2200000;2
+0208;006;Apendektomi akut ;2200000;2
+0209;006;Apendektomi laparoskopi ;2200000;2
+0210;006;Arthrotomy /Synovectomi ;2200000;2
+0211;006;belloque tampon dlm narkose;2200000;2
+0212;006;Biopsi dalam Narkose Umum ;2200000;2
+0213;006;Biopsi Insisi Tumor;2200000;2
+0214;006;Biopsi prostat ;2200000;2
+0215;006;Biopsi saraf kutaneus/otot ;2200000;2
+0216;006;Biopsi telinga/hidung/lidah/nasofaing THT;2200000;2
+0217;006;Biopsi testis ;2200000;2
+0218;006;Biopsi/ Eksisi KGB, Lipoma, Ganglion, Atheroma;2200000;2
+0219;006;Dibredement Fraktur Terbuka ;2200000;2
+0220;006;Dilatasi Urethra ;2200000;2
+0221;006;Eksisi Fibroma;2200000;2
+0222;006;Eksisi Fistel;2200000;2
+0223;006;Eksisi Giant nevus;2200000;2
+0224;006;Eksisi Hemangioma;2200000;2
+0225;006;Eksisi tumor adneksa kecil;2200000;2
+0226;006;Eksisi Xantalasma;2200000;2
+0227;006;Eksisi/Konisasi ;2200000;2
+0228;006;Ekstirpasi Fibroma ;2200000;2
+0229;006;Ekstirpasi Kista atroma/lipoma/ganglion > 2cm;2200000;2
+0230;006;Ekstirpasi kista bartolin;2200000;2
+0231;006;Ekstirpasi Polip ;2200000;2
+0232;006;Ekstirpasi tumor jinak kulit;2200000;2
+0233;006;Enucleatie Kista ;2200000;2
+0234;006;Excochliasi ;2200000;2
+0235;006;Extirpasi Tumor ;2200000;2
+0236;006;Fiksasi Externa Sederhana ;2200000;2
+0237;006;Fistulektomi ;2200000;2
+0238;006;Flebektomi ;2200000;2
+0239;006;Foto koagulasi laser;2200000;2
+0240;006;Gingivectomy ;2200000;2
+0241;006;Hemoroidektomi;2200000;2
+0242;006;Insisi biopasi kelenjar leher;2200000;2
+0243;006;Insisi Drainase/debridement abses;2200000;2
+0244;006;Insisi Mucocel;2200000;2
+0245;006;Irigasi sinus;2200000;2
+0246;006;Kolostomi ;2200000;2
+0247;006;Kuretase tanpa narkose ;2200000;2
+0248;006;Kuretase/diratase kuretase dengan narkose ;2200000;2
+0249;006;Labioplasti Unilateral ;2200000;2
+0250;006;Laparatomy Percobaan ;2200000;2
+0251;006;Laser Iridotomy perifer;2200000;2
+0252;006;Lobuloplasti 1/2 telinga ;2200000;2
+0253;006;Marsupialisasi Abses bartholin;2200000;2
+0254;006;Marsupialisasi Ranula ;2200000;2
+0255;006;Meatotomi ;2200000;2
+0256;006;Nekrotomi;2200000;2
+0257;006;Odontectomy >2 elemen dengan narkose ;2200000;2
+0258;006;Operasi Hernia tanpa komplikasi ;2200000;2
+0259;006;Operasi Hydrokel ;2200000;2
+0260;006;Pemasangan gromet dg narkose;2200000;2
+0261;006;Pengangkatan Fibro Adenom Mamae ;2200000;2
+0262;006;Pengangkatan Ganglion Paplitea dengan narkose ;2200000;2
+0263;006;Ptergium + CLG;2200000;2
+0264;006;Punksi cairan otak dengan narkose ;2200000;2
+0265;006;Rekonstruksi kelainan jarI /ekstremitas(polidaktili,. sindaktili,construction hand) sederhana ;2200000;2
+0266;006;Repair filitel urethra pascauretroplasti ;2200000;2
+0267;006;Repair Komplikasi AV Shunt ;2200000;2
+0268;006;Repair luka robek sederhana pada wajah , ;2200000;2
+0269;006;Repair Muscle / Tendon;2200000;2
+0270;006;Repair Ruptur palpebra simple;2200000;2
+0271;006;Reposisi fraktur sederhana  nassal ;2200000;2
+0272;006;Reposisi IOL;2200000;2
+0273;006;Reposisi Iris;2200000;2
+0274;006;Reshapino untuk Torus/ Tumor Tulang ;2200000;2
+0275;006;Ret Cam + Narkose;2200000;2
+0276;006;Sequesterectomy dengan narkose ;2200000;2
+0277;006;Sinuskopy/sinuscopy dg tindakan;2200000;2
+0278;006;Siok saraf tepi ;2200000;2
+0279;006;Sirklase ;2200000;2
+0280;006;Sirkumsisi pad a Phvmosis dengan narkose ;2200000;2
+0281;006;Sistostomi ;2200000;2
+0282;006;Somnoplasty;2200000;2
+0283;006;Terapi Sklerosing ;2200000;2
+0284;006;Tindakan manual plasenta;2200000;2
+0285;006;Tonsilektomi ;2200000;2
+0286;006;Trauma jarigan lunak wajah;2200000;2
+0287;006;Tubektomi;2200000;2
+0288;006;Turbinektomi ;2200000;2
+0289;006;Turbinoplasty;2200000;2
+0290;006;Vasektomi;2200000;2
+0291;006;Vena Seksi;2200000;2
+0292;006;Yag Laser;2200000;2
+0293;007;Adenoidektomi ;3250000;2
+0294;007;Adenolisis ;3250000;2
+0295;007;Amputasi Transmedular ;3250000;2
+0296;007;Anoplasti sederhana (Cut Back) ;3250000;2
+0297;007;Apendektomi Perforata ;3250000;2
+0298;007;Biopsi Tumor orbita;3250000;2
+0299;007;Caldwell Luc Anthrostomi ;3250000;2
+0300;007;Debridement pada luka bakar ;3250000;2
+0301;007;Drainage Kista Pankreas ;3250000;2
+0302;007;Drainage Periureter ;3250000;2
+0303;007;Eksisi Kelenjar Liur Submandibula;3250000;2
+0304;007;Eksisi Kista Urachus ;3250000;2
+0305;007;Eksisi KistaTiroalosus ;3250000;2
+0306;007;Eksisi tumor adneksa sedang;3250000;2
+0307;007;Eksisl Chodee ;3250000;2
+0308;007;Ekslsi Higroma;3250000;2
+0309;007;Eksplorasi Abses Parafarinqeal;3250000;2
+0310;007;Eksplorasi Kista Branchial ;3250000;2
+0311;007;Eksplorasi Kista Ductus Tiroqlosus;3250000;2
+0312;007;Eksplorasi Kista Tiroid ;3250000;2
+0313;007;Eksplorasi nasofaring;3250000;2
+0314;007;Ekstirpasi kista bronchialis;3250000;2
+0315;007;Ekstirpasi papiloma;3250000;2
+0316;007;Ekstirpasi tumor jinak kulit >3 cm;3250000;2
+0317;007;Ekstirpasi tumor jinal sinonasal, oral  cavity;3250000;2
+0318;007;Ethmoidektomi (intranasal) ;3250000;2
+0319;007;Extirpatie Plunqina Ranula ;3250000;2
+0320;007;Fiksasi Interna Yang Kompleks;3250000;2
+0321;007;Fissurektomi ;3250000;2
+0322;007;Fissurektomi peri anal ;3250000;2
+0323;007;Giniotomi;3250000;2
+0324;007;Herniotomi;3250000;2
+0325;007;Hystrecktomy Partial ;3250000;2
+0326;007;Kehamilan EktopikTerganggu (KET);3250000;2
+0327;007;Kistektomi ;3250000;2
+0328;007;Koreksi Disartikulasi ;3250000;2
+0329;007;Koreksi Extropion / Entropion ;3250000;2
+0330;007;Koreksi Priapismus ;3250000;2
+0331;007;Koreksi Symblepharon ;3250000;2
+0332;007;Koreksi Torsio Testis ;3250000;2
+0333;007;Labioplasti Bilateral ;3250000;2
+0334;007;Liqasi Tinaal Hidrokel ;3250000;2
+0335;007;Mastektomi Subkutaneus ;3250000;2
+0336;007;Myomectomy;3250000;2
+0337;007;Open Renal Biopsi ;3250000;2
+0338;007;Operasi Hernia dengan Komplikasi;3250000;2
+0339;007;Operasi Hernia Incarcerata ;3250000;2
+0340;007;Operasi Hvpospadia ;3250000;2
+0341;007;Operasi Manchester Fortegil ;3250000;2
+0342;007;Operasi mikrotia ;3250000;2
+0343;007;Operasi pada Spermatocele ;3250000;2
+0344;007;Operasi pada Varicocele / Palomo;3250000;2
+0345;007;Operasi Palatoplasti;3250000;2
+0346;007;Orchidektomi Subkapsuler ;3250000;2
+0347;007;Pemasangan T Tube ;3250000;2
+0348;007;Pemasanqan Pipa Shepard ;3250000;2
+0349;007;Penektomi ;3250000;2
+0350;007;Potong Flap ;3250000;2
+0351;007;Pthisis Bulbi (graf Mukosa bibir);3250000;2
+0352;007;Regional Flap ;3250000;2
+0353;007;Rekanalisasi Ruptura / Transkanal;3250000;2
+0354;007;Rekonstruksi Kontraktur ;3250000;2
+0355;007;Release Carpal Tunnel Syndrome Unilateral;3250000;2
+0356;007;Repair Fistel ;3250000;2
+0357;007;Repair fraktur penis;3250000;2
+0358;007;Repair luka pada waiah kompleks;3250000;2
+0359;007;Repair Rupture palpebra transakanal;3250000;2
+0360;007;Repair tendon jari;3250000;2
+0361;007;Reposisi Fixatie (Compucate) ;3250000;2
+0362;007;Reposisi Fraktur / Dislokasi Dalam Narkose;3250000;2
+0363;007;Reposisi Fraktur Rahang Simple;3250000;2
+0364;007;Reposisi Fraktur rahanq sederhana;3250000;2
+0365;007;Salpingoofarektomi unilateral ;3250000;2
+0366;007;Segmentektorni ;3250000;2
+0367;007;Seksio Sesaria (Sectio Caesaria);3250000;2
+0368;007;Septum Reseksi;3250000;2
+0369;007;Skingrafting yang tidak luas;3250000;2
+0370;007;Sklerotomi;3250000;2
+0371;007;Tindakan Argon Laser / Kenon;3250000;2
+0372;007;Tindakan Blok Resectie;3250000;2
+0373;007;Tindakan Congenital Fornix Plastik;3250000;2
+0374;007;Tindakan Cyclodia Termi;3250000;2
+0375;007;Tindakan pada Kolpodeksis;3250000;2
+0376;007;Tonsilo Adenoidedomi;3250000;2
+0377;007;Tracheostomi  dg penyulit;3250000;2
+0378;007;Ureterolysis;3250000;2
+0379;007;Ureterostomi;3250000;2
+0380;007;Vasografi;3250000;2
+0381;007;Vesicolithotomi (Sectio Alta);3250000;2
+0382;007;Eksplorasi Abses Mandibula;3250000;2
+0383;008;Amputasi Eksisi Kista Branchiogenik;4250000;2
+0384;008;Amputasi Jari (Multiple) ;4250000;2
+0385;008;Anterior / Posterior Sklerotoml ;4250000;2
+0386;008;Arthroscopy Therapeutik ;4250000;2
+0387;008;Arthrosplasty ;4250000;2
+0388;008;BSEF/FEES 1: mini;4250000;2
+0389;008;BSEF/FEES 2: mini + maksila /etmoid;4250000;2
+0390;008;Condylotomy Mandibula ;4250000;2
+0391;008;Detorsi Testis dengan Orchidopexi ;4250000;2
+0392;008;Divertikulektomi ;4250000;2
+0393;008;Eksisi Angiofibroma Nasofarlng ;4250000;2
+0394;008;Eksisi giant nevus+skin graft;4250000;2
+0395;008;Eksisi hemangiona kompleks ;4250000;2
+0396;008;Eksisl Mamma Aberran ;4250000;2
+0397;008;Eksplorasi abses multiple;4250000;2
+0398;008;Eksplorasi Duktus Koledokus ;4250000;2
+0399;008;eksplorasi preaurikuler fistel THT;4250000;2
+0400;008;eksplorasi tumor jinak ke liur THT;4250000;2
+0401;008;Ekstropion sikatris / entropion dg laser;4250000;2
+0402;008;Enucleatie Kista D 42 ;4250000;2
+0403;008;Enukleasi Kista Ginjal ;4250000;2
+0404;008;Extraksi Linear ;4250000;2
+0405;008;Fare Head Flap  ;4250000;2
+0406;008;Faringotorni ;4250000;2
+0407;008;Fistula ureterovesika ;4250000;2
+0408;008;Frontoethmoidektomi (Ekstranasal) ;4250000;2
+0409;008;Graf Vena membuat A Vlstula ;4250000;2
+0410;008;Hemiatomi Bilateral ;4250000;2
+0411;008;Hemiglosektomi ;4250000;2
+0412;008;Hystrecktomy Total;4250000;2
+0413;008;Internal Urethrotomi ;4250000;2
+0414;008;Isthobektomi ;4250000;2
+0415;008;Kapsulektomi Posterior;4250000;2
+0416;008;Keratoplastie lamelar ;4250000;2
+0417;008;Kolesistektomi ;4250000;2
+0418;008;Konkoplasty;4250000;2
+0419;008;Koreksi Atresia Ani ;4250000;2
+0420;008;Koreksi Fraktur Rahana Multiple I Komoleks ;4250000;2
+0421;008;Koreksi Strabismus ;4250000;2
+0422;008;Koreksi Tortikolis ;4250000;2
+0423;008;Koreksl CTEV (conoenital talipes eouino varus) ;4250000;2
+0424;008;Labiopalatoplasti Bilateral;4250000;2
+0425;008;Laparatomi Eksplorasi ;4250000;2
+0426;008;Laparatomi VC ;4250000;2
+0427;008;Litotripsi ;4250000;2
+0428;008;Maksilektorni Partialis ;4250000;2
+0429;008;Mandibulektoml Marainalis ;4250000;2
+0430;008;Mastektomi Simpleks ;4250000;2
+0431;008;Myrinooplasty;4250000;2
+0432;008;Nefropexie ;4250000;2
+0433;008;NefrostomiOpen ;4250000;2
+0434;008;Neurektomi Saraf Vidian ;4250000;2
+0435;008;Open Reduksi Fraktur I Dislokasi Lama ;4250000;2
+0436;008;Operasi Cyclodialysa ;4250000;2
+0437;008;Operasi katarak ICCE/ECCE;4250000;2
+0438;008;Operasi Psoas Hiscth / Boari Flap ;4250000;2
+0439;008;Operasi Tumor Pembuluh Darah ;4250000;2
+0440;008;Operasl Peyronie ;4250000;2
+0441;008;Operasl Tumor Jinak Ovarium ;4250000;2
+0442;008;Orbitomi anterior;4250000;2
+0443;008;Orchidektomi Liaasi Tinggi ;4250000;2
+0444;008;Orthoonatie Suraerv ;4250000;2
+0445;008;Otoplasty THT;4250000;2
+0446;008;Parasintesa;4250000;2
+0447;008;Parotidektorni ;4250000;2
+0448;008;Pembedahan Kompartemental ;4250000;2
+0449;008;Phacoemulsifikasi ;4250000;2
+0450;008;Prostatektomi Retropubik ;4250000;2
+0451;008;Pyelolithotorn i ;4250000;2
+0452;008;Pyeloplasty;4250000;2
+0453;008;Rekonstruksi Duktus lacrimalis / stenosis sederhana;4250000;2
+0454;008;Rekonstruksi Kelopak Mata/Kontraktur palpebra;4250000;2
+0455;008;Rekonstruksi Kontraktur Kompleks ;4250000;2
+0456;008;Rekontruksi Blassemeck ;4250000;2
+0457;008;Rekontruksi Defek /Kelainan Tubuh Yang kompleks ;4250000;2
+0458;008;Rekontruksi Veslka ;4250000;2
+0459;008;Release Carpal Tunnel Syndrome Bilateral ;4250000;2
+0460;008;Repair ruptur korneasklera;4250000;2
+0461;008;Reparasi Fistula Vesiko Vaginal ;4250000;2
+0462;008;Reposisl Fraktur maksila / Zygoma ;4250000;2
+0463;008;Resectie Rahano ;4250000;2
+0464;008;Reseksi Adenomiosis ;4250000;2
+0465;008;Reseksi Anastomosis ;4250000;2
+0466;008;Reseksi Partial Vesika ;4250000;2
+0467;008;Reseksi Urachus ;4250000;2
+0468;008;Rinotomi Lateralis ;4250000;2
+0469;008;ruptur palpebra moderat ;4250000;2
+0470;008;SalpinQoofarektomi bilateral ;4250000;2
+0471;008;Salvagino operasi mikro;4250000;2
+0472;008;Septoplasty ;4250000;2
+0473;008;Septoplasty EC Trauma hidung;4250000;2
+0474;008;Simpatektomi ;4250000;2
+0475;008;Sistoplasti Reduksi ;4250000;2
+0476;008;Skinoraftina yang luas ;4250000;2
+0477;008;Sklera Buckling;4250000;2
+0478;008;Solenektomi ;4250000;2
+0479;008;Synovectomy ;4250000;2
+0480;008;Tindakan Dekomoresi Fasialis ;4250000;2
+0481;008;Tindakan Pharvnaeal Flap ;4250000;2
+0482;008;Tirodektomi ;4250000;2
+0483;008;Transeksi Esofagus;4250000;2
+0484;008;Tumor Ganas / Adneksa luas dengan rekonstruksi;4250000;2
+0485;008;Uretero Sigmoidostomi;4250000;2
+0486;008;Uretero Ureterostomi;4250000;2
+0487;008;Ureterocutaheostomi;4250000;2
+0488;008;Ureterolithotomi;4250000;2
+0489;008;Urethrektomi;4250000;2
+0490;008;Uretroplasti;4250000;2
+0491;009;Adrenalektomi abdominotorakal;9187000;2
+0492;009;Amputasi Forequarter;13750000;2
+0493;009;Amputasi Hind Quarter;6875000;2
+0494;009;Bladder Neck Incision;5000000;2
+0495;009;Complicated Functional Neuro Perculteneus Kordotomi;17500000;2
+0496;009;Complicated Functional Neuro Steraotaxy sederhana;20625000;2
+0497;009;Complicated Functional Neuro Stereotaxy kompleks;22500000;2
+0498;009;Complicated FunctionalNeuro Percuteneus Paraverteb / Visceral block;18750000;2
+0499;009;DCR + Silocon Tube;8000000;2
+0500;009;Debulking;11875000;2
+0501;009;Dekompresi Syaraf;6875000;2
+0502;009;Dekompresi Syaraf tepi;13125000;2
+0503;009;Diseksi Kelenjar Getah Benlng (KGB) Pelvis;15625000;2
+0504;009;Diseksi Kelenjar Inguinal;10625000;2
+0505;009;Diseksi Leher Radikal Modifikasi / Fungsional;16875000;2
+0506;009;Eksenterasi;8000000;2
+0507;009;Eksisi Luas Radikal+ Rekontruksi;11875000;2
+0508;009;Ekstlrpasi Tumor ganas adneksia + Rekonstruksi;12000000;2
+0509;009;Ekstlrpasi Tumor Scalp I Cranium;12500000;2
+0510;009;Enukleasi/ eviscerasi +DFG;6000000;2
+0511;009;Epididimovasostomi;7000000;2
+0512;009;Explorasi testis mikro surgery;6875000;2
+0513;009;Extended Pyelolithektomi (Gilveme);10000000;2
+0514;009;Free Flap surgery;10750000;2
+0515;009;Fungsional Endoscopy Sinus Surgery (FESS);6875000;2
+0516;009;Ganti Sendi (Arthroplasty) tidak termasuk alat;18125000;2
+0517;009;Gastrectomi (Bilroth 1 & 2);13125000;2
+0518;009;Glosektomi Totalis;11875000;2
+0519;009;Grafting pada Arterial lnsufisiensi;8750000;2
+0520;009;Hemipelvektomi .;10625000;2
+0521;009;Hemiglosektomi + RNO;9375000;2
+0522;009;Histrecktomy Radikal;12500000;2
+0523;009;Horseshoe Kidney Koreksi;7500000;2
+0524;009;Keratoplasty;11000000;2
+0525;009;Koledoko Jejunostomi;16875000;2
+0526;009;Koreksi Fraktur Impresif ;17500000;2
+0527;009;Koreksi Scoliosis ;22500000;2
+0528;009;Koreksi Spondilitis ;22500000;2
+0529;009;Koreksi symbleparon berat;11000000;2
+0530;009;Kraniotomi / trenpanasi konvensional ;17500000;2
+0531;009;Kraniotorni + Bedah mikro;21875000;2
+0532;009;Kraniotorni + Endoskopi;22500000;2
+0533;009;Laminektomi  Sederhana ;17500000;2
+0534;009;Laminektomi Kompleks;17500000;2
+0535;009;Laparascopy Operatif ;8750000;2
+0536;009;Laparaskopik Kolesistektomi ;16875000;2
+0537;009;Laringektomi. ;6875000;2
+0538;009;Le-Ford Advancement surgery;6875000;2
+0539;009;Limfadenektomi Ileonguinal;6875000;2
+0540;009;Limfadenektomi Retroperitoneal ;6875000;2
+0541;009;Longitudinal Nefrolithotomi (Kadet) ;6875000;2
+0542;009;Maksilektomi Totalis ;9375000;2
+0543;009;Mandibulektomi Partlalis dengan Rekontruksi ;16875000;2
+0544;009;Mandibulektomi Totalis;6250000;2
+0545;009;Mastektomi Radikal dg penyulit;10625000;2
+0546;009;Microsurgery (tulang-syaraf) ;18125000;2
+0547;009;Mikrosuroeri Ligasi Vena Sprematika . ;6875000;2
+0548;009;Miles Operation ;13125000;2
+0549;009;Myocutaneus Flap / Pectoral Mavor ;13125000;2
+0550;009;Nefrektomi Partial;10625000;2
+0551;009;Nefrektomi Radikal;13500000;2
+0552;009;Nefro Uterektomi;9375000;2
+0553;009;Nefrostomi Percutan;6875000;2
+0554;009;Neurektomi / Neurolise ;16250000;2
+0555;009;Oivertikulektomi Vesika;10000000;2
+0556;009;Operas Arteri Rehalis Stenosis ;9375000;2
+0557;009;Operasi  Mikro Cranialis/Spinalis Perifer ;20625000;2
+0558;009;Operasi Ablatio Retina ;9375000;2
+0559;009;Operasi Aneurisma Aorta ;9375000;2
+0560;009;Operasi Arteri Coritis;9375000;2
+0561;009;Operasi Fraktur kompleks:(Acetabulum, tulang belakang Pelvis);18125000;2
+0562;009;Operasi Fraktur Tripodo / Multiple ;18125000;2
+0563;009;Operasi Fronto-orbital advancement pada craniosynoostosis;22875000;2
+0564;009;Operasi Fusi Korpus Vertebra Approach Anterior  ;23125000;2
+0565;009;Operasi Fusi Korpus Vertebra Approach Posterior ;18750000;2
+0566;009;Operasi konvensional  Plexus Brakhialis / Lumbalis Sacralis/Cranialis/Spinalis Perifer. ;18125000;2
+0567;009;Operasi Kranioplasti/Koreksi Fraktur ;18750000;2
+0568;009;Operasi lleal Condoit (Bricker);7500000;2
+0569;009;Operasi Mega Kolon (Hirschpruoa) ;18125000;2
+0570;009;Operasi Mikro Plexus Brakhialis /Lumbalis Sacralis ;22500000;2
+0571;009;Operasi pada Atresia Esofagus ;17500000;2
+0572;009;Operasi Pemasangan fiksasi interna pada kasus bedah syaraf;17500000;2
+0573;009;Operasi Pemasangan Traksi Cervical / dan pemasanqan HaloVest;5000000;2
+0574;009;Operasi Pemasanqan Pintasan VA / VP Shunt ;7000000;2
+0575;009;Operasi Shuntina Poplitea Tibialis ;6875000;2
+0576;009;Operasi Shunting Femoralis ;6875000;2
+0577;009;Operasi Shuntinq Splenorenal ;8750000;2
+0578;009;Operasi Tumor Ganas Ovariurn ;7500000;2
+0579;009;Operasi Tumor s'p!nal Daerah Kraniospinal;22500000;2
+0580;009;Operasi Tumor spinal Daerah gervikal;20625000;2
+0581;009;Operasi Tumor spinal Daerah Torakolumbal ;18750000;2
+0582;009;Operasi Vaskuler yang memerlukan Tehnik Operasi Khusus;7500000;2
+0583;009;Operasl Usus (Duhamel) ;7500000;2
+0584;009;Orbitotomi Lateral ;11250000;2
+0585;009;Orthoanatic suraerv ;11250000;2
+0586;009;Pankreaktektomi ;22500000;2
+0587;009;Parotidektomi Radikal + Maridibulektomi ;9375000;2
+0588;009;Pembedahan ForeQuater ' ;12500000;2
+0589;009;Percutaneous Nephrolithostripsv (PCNL) ;9000000;2
+0590;009;Phaceomulsifikisi;6500000;2
+0591;009;Postero Saaital Anorectoplastv (PSA) ;5000000;2
+0592;009;Ptosis;6000000;2
+0593;009;Qperasi Fraktur Muka Multiple ;18125000;2
+0594;009;Radical Neck Desection ;5000000;2
+0595;009;Radikal Cvstektomi ;7000000;2
+0596;009;Radikal Prostatektomi ;7500000;2
+0597;009;Rekontruksi K'elopak Mata Berat ;9375000;2
+0598;009;Rekontruksi Menfngokel Kranial (anterior/pasterior);18125000;2
+0599;009;Rekontruksi Meninaokel Spina bifid a  ;17500000;2
+0600;009;Rekontruksi Orblta Conaenital ;18125000;2
+0601;009;Rekontruksi Renovaskuler ;7500000;2
+0602;009;Rekontrul<si Saket Berat ;9375000;2
+0603;009;Repair veslco vaqina fistel complex ;7500000;2
+0604;009;Replantasi ;7000000;2
+0605;009;Reseksi Esofaaus + Interooslsl Kolon ;22500000;2
+0606;009;Reseksi Hepar ;13125000;2
+0607;009;Rinotomy lateralis;7500000;2
+0608;009;RPLND ;7000000;2
+0609;009;Scheral buckel;7500000;2
+0610;009;Septorinoplasty THT;7500000;2
+0611;009;Simple Functional Neuro Suraery ;13125000;2
+0612;009;Splenektomi ;7500000;2
+0613;009;Stapedektomi ;8750000;2
+0614;009;Starbimus (3-4) otot;8000000;2
+0615;009;Surgical Staqina ;11250000;2
+0616;009;Syndroma blefaophimosis;11000000;2
+0617;009;Temporal Bone Resection ;9375000;2
+0618;009;Timpano Plastik ;6875000;2
+0619;009;Tindakan Dekompresi fasialis;9000000;2
+0620;009;Trabekulektomi ;6500000;2
+0621;009;Trabekulektomi +ECCE / Phacoemulsifikasi;7500000;2
+0622;009;Triple Produser Keratiplasti denqan Glaukoma ;6000000;2
+0623;009;TUR Prostat ;6625000;2
+0624;009;TUR Tumor Buli-buli ;6625000;2
+0625;009;Ureteroneo Cvstosthomi ;6875000;2
+0626;009;Urethrenuscopv (URS) ;6875000;2
+0627;009;Uretroplasty ;8125000;2
+0628;009;Ventrikulostomi I VE Dralnaae ;7500000;2
+0629;009;Vitrektomi + Endo laser + SB + Silicon Oil / Gas;19000000;2
+0630;009;Vulvektomi ;8750000;2
+0631;009;Paket Bedah Paru;30000000;2
+0644;010;Darah ;250000;2

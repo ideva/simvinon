@@ -1,0 +1,149 @@
+<script>
+	jQuery(function() {
+          var icons = {
+			header: "ui-icon-circle-arrow-e",
+			headerSelected: "ui-icon-circle-arrow-s"
+		};
+		jQuery( "#accordion" ).accordion({
+			icons: icons,
+                        event: "mouseover",
+                        autoHeight: false
+		});
+		jQuery( "#toggle" ).button().toggle(function() {
+			jQuery( "#accordion" ).accordion( "option", "icons", false );
+		}, function() {
+			jQuery( "#accordion" ).accordion( "option", "icons", icons );
+		});
+
+	});
+	</script>
+
+         
+
+<h1><%= @form_header %></h1>
+<%= form_for(@user_type, :html => { }) do |f| %>
+  <% if @user_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_type.errors.count, "error") %> prohibited this user_type from being saved:</h2>
+
+      <ul>
+      <% @user_type.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nama %><br/>
+    <%= f.text_field :nama %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Keterangan" %><br/>
+    <%= f.text_area :description, :rows => 5 %>
+  </div>
+    <div class="field">
+      <div style="">
+        <label>Daftar Fungsi</label>
+      </div>
+    
+    <div id="accordion" style="width: 500px; float: left">
+    <%
+      tmp_name = ""
+      to_the_right = true
+      header_name = ""
+      header_name_checked = false
+      checked = false
+      next_data = 0
+      function_list = UserTypeFunction.function_list(@user_type.id)
+      functions = Function.order("name")
+      functions.each do |function|
+
+        if @user_type.id.nil?
+          checked = false
+          header_name_checked = false
+        else
+          string = function_list
+          split = ","
+          match = function.id.to_s rescue ''
+          if (loop_and_check(string, split, match) rescue false) 
+            checked = true
+          else
+            checked = false
+          end
+        end
+
+      function_name = function.name.split("-")
+
+      if tmp_name == ""
+        to_the_right = true
+      elsif tmp_name == function_name[0].strip
+        to_the_right = false
+      else
+        to_the_right = true
+      end
+
+      
+      if to_the_right
+        header_name = function_name[0].strip
+        functions2 = Function.where(:controller_name => function.controller_name)
+        functions2.each do |function2|
+          string = function_list
+          split = ","
+          match = function2.id.to_s rescue ''
+          if (loop_and_check(string, split, match) rescue false)
+            header_name_checked = true
+          end
+        end
+      else
+        header_name_checked = false
+      end
+
+      tmp_name = function_name[0].strip
+      puts "to_the_right = #{to_the_right}"
+
+
+    %>
+      <% if to_the_right %>
+        <h3><a href="#">
+            <%= check_box_tag "group_function_list[]", header_name, header_name_checked, :id => "group_function_#{header_name.parameterize("_")}",
+              :onclick => "check_box_toggle_class(this, '#{header_name.parameterize("_")}')", :style => "width: 20px" %>
+            <%=header_name%>
+          </a></h3>
+        <div style="">
+      <%end%>
+           <%
+            if function_name.length == 2
+              name = "<b>"+function_name[1].strip+"</b>"
+            elsif function_name.length == 3
+              name = "<i>"+function_name[1].strip+"</i> - <b>"+function_name[2].strip+"</b>"
+            else
+              name = "<i>"+function_name[1].strip+"</i> - <i>"+function_name[2].strip+"</i> - <b>"+function_name[3].strip+"</b>"
+            end
+          %>
+        <%= check_box_tag "function_list[]", function.id, checked, :id => "function#{function.id}", :class => header_name.parameterize("_"), :style => "width: 25px" %>
+          <span onclick="check_box_toggle('function<%=function.id%>')" style="cursor: pointer"><%= raw name %></span>
+      <br/>
+      <%
+        next_data = next_data +1
+        name_next_data = functions[next_data].name.split("-") rescue ""
+        name_next_data  = name_next_data[0].strip rescue ""
+        if tmp_name == name_next_data
+          stop_div = false
+        else
+          stop_div = true
+        end
+
+      %>
+        <%if stop_div %>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+      <div style="clear: both"></div>
+  </div>
+
+  <div class="actions">
+    <%#= f.submit "", :class => "hide_button" %>
+  </div>
+<% end %>

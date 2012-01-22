@@ -1,0 +1,31 @@
+<h1><%= @form_header %></h1>
+<%= form_for(@function, :html => { :name => "form_#{controller.controller_name}", :id => "form_#{controller.controller_name}" }) do |f| %>
+  <% if @function.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@function.errors.count, "error") %> prohibited this function from being saved:</h2>
+
+      <ul>
+      <% @function.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, raw(render :partial => "general/mandatory")+"Nama" %><br/>
+    <%= f.text_field :name, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :controller_name, raw(render :partial => "general/mandatory")+"Controller name" %><br/>
+    <%= f.text_field :controller_name, :class => "required" %>
+  </div>
+  <div class="field">
+    <%= f.label :action_name, raw(render :partial => "general/mandatory")+"Action name" %><br/>
+    <%= f.text_field :action_name, :class => "required" %>
+  </div>
+  <div class="actions">
+    <%#= f.submit "", :class => "hide_button" %>
+  </div>
+<% end %>
+

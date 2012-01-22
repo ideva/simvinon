@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tanggal: MyString
+  menu: MyString
+  url: MyString
+  skenario: MyText
+  hasil: false
+  deskripsi_hasil: MyText
+  komentar: MyText
+  image: MyString
+
+two:
+  tanggal: MyString
+  menu: MyString
+  url: MyString
+  skenario: MyText
+  hasil: false
+  deskripsi_hasil: MyText
+  komentar: MyText
+  image: MyString
